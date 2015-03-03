@@ -73,7 +73,7 @@ public class DeliveryOrderServlet extends BaseServlet {
             if (x == true) {
                 out.print("Valid");
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/MonitorDeliveryOrders.jsp");
+                RequestDispatcher rd = context.getRequestDispatcher("/MonitorDeliveryOrder.jsp");
                 HttpSession session = request.getSession();
                 session.setAttribute("arrDeliveryOrder", arrDeliveryOrder);
                 rd.forward(request, response);
