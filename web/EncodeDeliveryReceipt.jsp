@@ -25,11 +25,31 @@
 
         <script>
          
+         //retrieve();
+         
+         function retrieve(){
+             var selectedItem = readCookie("selectedItem");
+             var select = document.getElementById("selected");
+             select[2].selected = true;
+         }
+         
             function selected(){
                 
                 var selected = document.getElementbyId('selected');
+                //var selectedItem = 
+                selected.options[1].selected = true;
+                //createCookie("selectedItem", selectItem);
                 return selected;
             }
+            
+            window.onload = function() {
+               //when the document is finished loading, replace everything
+               //between the <a ...> </a> tags with the value of splitText
+               //document.getElementById("selected").value = retrieve();
+            } 
+            /*
+            document.getElementById("lala").innerHTML = retrieve();           
+            */
         </script>
     </head>
     <body>  
@@ -41,15 +61,14 @@
                 ArrayList<PurchaseOrder> PurchaseOrder = (ArrayList<PurchaseOrder>) session.getAttribute("poList");
             %>
             
-            <select name="selected" onchange="window.location.reload() + this.value">
-                <option value="PleaseChoose">Choose</option>
+            <select name="selected" onchange="window.location.reload() "> 
+                <!--<option value="PleaseChoose"></option>-->
                 <%
             for (int i = 0; i < PurchaseOrder.size(); i++) {
             %>
-                <option value="<% y =i; %>"> <%=PurchaseOrder.get(i).getPoNumber()%></option>
+                <option value="<% y = i; %>"> <%=PurchaseOrder.get(i).getPoNumber()%></option>
             <%
                 }
-
             %> 
             </select>
             
