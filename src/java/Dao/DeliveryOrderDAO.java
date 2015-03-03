@@ -71,7 +71,7 @@ public class DeliveryOrderDAO {
                     temp.setDeliveryOrderNumber(rs.getInt("deliveryOrderNumber"));
                     temp.setPromo(rs.getInt("promo"));
                     temp.setOutlet(rs.getString("outlet"));
-                    temp.setProductionNumber(rs.getInt("productionNunber"));
+                    temp.setProductionNumber(rs.getInt("productionNumber"));
                     temp.setSex(rs.getString("sex"));
                     temp.setItemDescription(rs.getString("itemDescription"));
                     temp.setAgeGroup(rs.getString("ageGroup"));
