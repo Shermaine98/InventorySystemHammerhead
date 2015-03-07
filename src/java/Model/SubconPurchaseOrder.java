@@ -8,6 +8,7 @@ package Model;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -158,6 +159,13 @@ public class SubconPurchaseOrder {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date madeDate1 = formatter.parse(df.format(madeDate0));
         java.sql.Date sqlreceivedDate1 = new java.sql.Date(madeDate1.getTime());
+        this.dateMade = sqlreceivedDate1;
+    }
+    
+    public void setDateMade(Date date) throws ParseException{
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date madeDate = formatter.parse(df.format(date));
+        java.sql.Date sqlreceivedDate1 = new java.sql.Date(madeDate.getTime());
         this.dateMade = sqlreceivedDate1;
     }
 
