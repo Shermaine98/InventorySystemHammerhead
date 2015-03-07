@@ -137,6 +137,10 @@
         <servlet-class>controller.SupplierServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ViewPickingForm</servlet-name>
+        <servlet-class>controller.ViewPickingForm</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>EncodePickingForm</servlet-name>
         <servlet-class>controller.EncodePickingForm</servlet-class>
     </servlet>
