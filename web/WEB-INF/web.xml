@@ -136,6 +136,10 @@
         <servlet-name>SupplierServlet</servlet-name>
         <servlet-class>controller.SupplierServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EncodePickingForm</servlet-name>
+        <servlet-class>controller.EncodePickingForm</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
         <url-pattern>/BaseServlet</url-pattern>
