@@ -33,9 +33,10 @@ public class PurchaseOrderServlet extends BaseServlet {
         try {
             
             PurchaseOrder po = new PurchaseOrder();
-            
-            po.setPoNumber(Integer.parseInt(request.getParameter("poNumber")));
+      
             po.setItemDescription(request.getParameter("itemDescription"));
+            po.setSupplier(request.getParameter("Supplier"));
+            po.setType(request.getParameter("Type"));
             po.setQty(Integer.parseInt(request.getParameter("qty")));
             po.setUnitMeasurement(request.getParameter("unitMeasurement"));
             po.setUnitprice(Double.parseDouble(request.getParameter("UnitPrice")));
@@ -46,8 +47,12 @@ public class PurchaseOrderServlet extends BaseServlet {
             Logger.getLogger(PurchaseOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
             po.setPreparedBy(Integer.parseInt(request.getParameter("preparedBy")));
-            po.setApprovedBy(Integer.parseInt(request.getParameter("preparedBy")));
-            
+            po.setApprovedBy(Integer.parseInt(request.getParameter("approvedBy")));
+        try {
+            po.setDeliverySchedule(request.getParameter("DeliverySchedule"));
+        } catch (ParseException ex) {
+            Logger.getLogger(PurchaseOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
             PurchaseOrderDAO poDAO = new PurchaseOrderDAO();
             
             if (poDAO.EncodePurchaseOrder(po)) {

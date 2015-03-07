@@ -102,7 +102,7 @@
                 <tbody id="dataTable" class="scrollContent"><tr>
 
                         <td><input type="checkbox" name="chk"/></td>
- <!--if that, selected itemDescription, itemDescription  -- for the next row -->
+         <!--if that, selected itemDescription, itemDescription  -- for the next row -->
 
                         <td>  
                             <select name="itemDescription" style="width:90px">

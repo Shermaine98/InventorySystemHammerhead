@@ -18,6 +18,7 @@ public class PurchaseOrder {
           
     private int PoNumber;
     private int qty;
+    private String type;
     private int preparedBy;
     private int approvedBy;
     private String ItemDescription;
@@ -188,8 +189,25 @@ public class PurchaseOrder {
     /**
      * @param deliverySchedule the deliverySchedule to set
      */
-    public void setDeliverySchedule(java.sql.Date deliverySchedule) {
-        this.deliverySchedule = deliverySchedule;
+    public void setDeliverySchedule(String date) throws ParseException{
+     DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date madeDate = formatter.parse(df.format(date));
+        java.sql.Date sqlreceivedDate1 = new java.sql.Date(madeDate.getTime());
+        this.dateMade = sqlreceivedDate1;
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
     }
     
   

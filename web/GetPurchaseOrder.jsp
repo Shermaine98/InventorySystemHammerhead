@@ -42,6 +42,7 @@
                 <tr>
                     <td><%=PurchaseOrder.get(i).getPoNumber()%></td>
                     <td><%= PurchaseOrder.get(i).getItemDescription()%></td>
+                    <td><%= PurchaseOrder.get(i).getSupplier()%></td>
                     <td><%= PurchaseOrder.get(i).getQty()%></td>
                     <td><%= PurchaseOrder.get(i).getUnitMeasurement()%></td>
                     <td><%= PurchaseOrder.get(i).getUnitprice()%></td>
@@ -49,6 +50,7 @@
                     <td><%= PurchaseOrder.get(i).getDateMade()%></td>
                     <td><%= PurchaseOrder.get(i).getPreparedBy()%></td>
                     <td><%= PurchaseOrder.get(i).getApprovedBy() %></td>
+                     <td><%= PurchaseOrder.get(i).getDeliverySchedule()%></td>
                 </tr>
                 <%
 

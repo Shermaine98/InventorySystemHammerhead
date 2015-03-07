@@ -129,12 +129,12 @@
         <servlet-class>controller.ViewCRtoPIServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ViewPickingForm</servlet-name>
-        <servlet-class>controller.ViewPickingForm</servlet-class>
+        <servlet-name>ViewSupplierServlet</servlet-name>
+        <servlet-class>controller.ViewSupplierServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EncodePickingForm</servlet-name>
-        <servlet-class>controller.EncodePickingForm</servlet-class>
+        <servlet-name>SupplierServlet</servlet-name>
+        <servlet-class>controller.SupplierServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
@@ -263,6 +263,14 @@
     <servlet-mapping>
         <servlet-name>ViewCRtoPI</servlet-name>
         <url-pattern>/ViewCRtoPI</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewSupplierServlet</servlet-name>
+        <url-pattern>/ViewSupplierServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SupplierServlet</servlet-name>
+        <url-pattern>/SupplierServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewPickingForm</servlet-name>
