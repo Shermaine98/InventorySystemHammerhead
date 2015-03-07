@@ -24,25 +24,35 @@
         </style>
 
         <script>
-            $(document).ready(function () {
-                $("selected").on("click", function () {
 
-                    $("center").load("center.html");
-                });
-            });
+            <%                
+                ArrayList<PurchaseOrder> PurchaseOrder = (ArrayList<PurchaseOrder>) session.getAttribute("poList");
+            %>
+            var textBlocks = new Array(<%=PurchaseOrder.size()%>);
+            var i;
+              <% int i= 0; %>;
+            for (  i = 0; i < 10; i++)
+            {
+                textBlocks[i] = <%=PurchaseOrder.get(i).getPoNumber()%>;
+                <%i++;%>
+            }
+
+            function changeText(elemid) {
+                var ind = document.getElementById(elemid).selectedIndex;
+                document.getElementById("display").innerHTML = textBlocks[ind];
+            }
         </script>
     </head>
     <body>  
         <br/><br/><br/>
 
-        <div id="refresh" align="center">
-            <%                ArrayList<PurchaseOrder> PurchaseOrder = (ArrayList<PurchaseOrder>) session.getAttribute("poList");
-            %>
+        <div id="refresh" align="center" >
 
-            <select name="selected" > 
+
+            <select id="selected" onChange="changeText('selected')" > 
                 <option>choose</option>
                 <%
-                    for (int i = 0; i < PurchaseOrder.size(); i++) {
+                    for (int y = 0; y < PurchaseOrder.size(); y++) {
                 %>
                 <option value="<%=PurchaseOrder.get(i).getPoNumber()%>"> <%=PurchaseOrder.get(i).getPoNumber()%></option>
                 <%
@@ -55,6 +65,7 @@
     <center><h2>Encode Delivery Receipt</h2></center>
     <div id= "center" align="center">
         <form method="POST" action="ConsumptionReportServlet">
+            <div id="display">Select from the list to change this box</div> 
 
             <%
                 int y = 0;
