@@ -73,7 +73,7 @@ public class PurchaseOrderDAO {
                     temp.setDateMade(rs.getDate("dateMade"));
                     temp.setPreparedBy(rs.getInt("preparedBy"));
                     temp.setApprovedBy(rs.getInt("approvedBy"));
-                    temp.setd("deliverySchedule");
+                    temp.setDeliverySchedule(rs.getDate("deliverySchedule"));
                     newPurchaseOrder.add(temp);
                 }
                 pstmt.close();
