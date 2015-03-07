@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,20 +25,22 @@ public class PurchaseOrderDAO {
             try {
                 DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
                 Connection conn = myFactory.getConnection();
-                String query = "insert into purchase_order(poNumber,itemDescription,qty,unitMeasurement,unitPrice,vat,dateMade,preparedBy,approvedBy) values (?,?,?,?,?,?,?,?,?) ";
+                String query = "insert into supplier_purchase_order(poNumber,itemDescription,supplier,qty,unitMeasurement,unitPrice,vat,dateMade,preparedBy,approvedBy,deliverySchedule) values (?,?,?,?,?,?,?,?,?,?,?) ";
                 PreparedStatement pstmt = conn.prepareStatement(query);
 
                 
                 
                 pstmt.setInt(1, newPurchaseOrder.getPoNumber());
                 pstmt.setString(2, newPurchaseOrder.getItemDescription());
-                pstmt.setInt(3, newPurchaseOrder.getQty());
-                pstmt.setString(4, newPurchaseOrder.getUnitMeasurement());
-                pstmt.setDouble(5, newPurchaseOrder.getUnitprice());
-                pstmt.setDouble(6, newPurchaseOrder.getVat());
-                 pstmt.setDate(7, newPurchaseOrder.getDateMade());
-                pstmt.setInt(8, newPurchaseOrder.getPreparedBy());
-                 pstmt.setInt(9, newPurchaseOrder.getApprovedBy());
+                pstmt.setString(3, newPurchaseOrder.getSupplier());
+                pstmt.setInt(4, newPurchaseOrder.getQty());
+                pstmt.setString(5, newPurchaseOrder.getUnitMeasurement());
+                pstmt.setDouble(6, newPurchaseOrder.getUnitprice());
+                pstmt.setDouble(7, newPurchaseOrder.getVat());
+                pstmt.setDate(8, newPurchaseOrder.getDateMade());
+                pstmt.setInt(9, newPurchaseOrder.getPreparedBy());
+                pstmt.setInt(10, newPurchaseOrder.getApprovedBy());
+                pstmt.setDate(11, newPurchaseOrder.getDeliverySchedule());
                
                 int rows = pstmt.executeUpdate();
                 conn.close();
@@ -48,20 +51,21 @@ public class PurchaseOrderDAO {
             return false;
 	}
 
-	public ArrayList<PurchaseOrder> GetAllPurchaseOrder(){       
+	public ArrayList<PurchaseOrder> GetAllPurchaseOrder() throws ParseException{       
             
             ArrayList <PurchaseOrder> newPurchaseOrder= new ArrayList<PurchaseOrder>();
             
             try {
                 DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
                 Connection conn = myFactory.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement("select * from purchase_order");
+                PreparedStatement pstmt = conn.prepareStatement("select * from supplier_purchase_order");
                 ResultSet rs = pstmt.executeQuery();
 
                 while (rs.next()) {
                     PurchaseOrder temp = new PurchaseOrder();
                     temp.setPoNumber(rs.getInt("poNumber"));
                     temp.setItemDescription(rs.getString("itemDescription"));
+                    temp.setSupplier(rs.getString("supplier"));
                     temp.setQty(rs.getInt("qty"));
                     temp.setUnitMeasurement(rs.getString("unitMeasurement"));
                     temp.setUnitprice(rs.getDouble("unitPrice"));
@@ -69,6 +73,7 @@ public class PurchaseOrderDAO {
                     temp.setDateMade(rs.getDate("dateMade"));
                     temp.setPreparedBy(rs.getInt("preparedBy"));
                     temp.setApprovedBy(rs.getInt("approvedBy"));
+                    temp.setDeliverySchedule("deliverySchedule");
                     newPurchaseOrder.add(temp);
                 }
                 pstmt.close();

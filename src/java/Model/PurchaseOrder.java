@@ -25,6 +25,8 @@ public class PurchaseOrder {
     private Double Unitprice;
     private Double vat;
     private java.sql.Date dateMade;
+    private String Supplier;
+    private java.sql.Date deliverySchedule;
     
    DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -160,6 +162,34 @@ public class PurchaseOrder {
      */
     public void setDateMade(java.sql.Date dateMade) {
         this.dateMade = dateMade;
+    }
+
+    /**
+     * @return the Supplier
+     */
+    public String getSupplier() {
+        return Supplier;
+    }
+
+    /**
+     * @param Supplier the Supplier to set
+     */
+    public void setSupplier(String Supplier) {
+        this.Supplier = Supplier;
+    }
+
+    /**
+     * @return the deliverySchedule
+     */
+    public java.sql.Date getDeliverySchedule() {
+        return deliverySchedule;
+    }
+
+    /**
+     * @param deliverySchedule the deliverySchedule to set
+     */
+    public void setDeliverySchedule(java.sql.Date deliverySchedule) {
+        this.deliverySchedule = deliverySchedule;
     }
     
   
