@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author gcla109
  */
-public class EncodePickingForm extends BaseServlet {
+public class EncodePickingFormServlet extends BaseServlet {
 
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,7 +39,7 @@ public class EncodePickingForm extends BaseServlet {
             try {
                 pf.setDateMade();
             } catch (ParseException ex) {
-                Logger.getLogger(EncodePickingForm.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(EncodePickingFormServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             pf.setMadeBy(Integer.parseInt(request.getParameter("madeBy")));
             pf.setProductID(Integer.parseInt(request.getParameter("productID")));

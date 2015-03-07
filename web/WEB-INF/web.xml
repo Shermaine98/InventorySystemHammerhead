@@ -129,12 +129,28 @@
         <servlet-class>controller.SupplierServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ViewPickingForm</servlet-name>
-        <servlet-class>controller.ViewPickingForm</servlet-class>
+        <servlet-name>ViewPickingFormServlet</servlet-name>
+        <servlet-class>controller.ViewPickingFormServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EncodePickingForm</servlet-name>
-        <servlet-class>controller.EncodePickingForm</servlet-class>
+        <servlet-name>EncodePickingFormServlet</servlet-name>
+        <servlet-class>controller.EncodePickingFormServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EncodeSubconDeliveryReceiptServlet</servlet-name>
+        <servlet-class>controller.EncodeSubconDeliveryReceiptServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EncodeSubconPurchaseOrderServlet</servlet-name>
+        <servlet-class>controller.EncodeSubconPurchaseOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewSubconPurchaseOrderServlet</servlet-name>
+        <servlet-class>controller.ViewSubconPurchaseOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewSubconDeliveryReceiptServlet</servlet-name>
+        <servlet-class>controller.ViewSubconDeliveryReceiptServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SupplierDeliveryReceiptServlet</servlet-name>
@@ -273,12 +289,28 @@
         <url-pattern>/SupplierServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ViewPickingForm</servlet-name>
-        <url-pattern>/ViewPickingForm</url-pattern>
+        <servlet-name>ViewPickingFormServlet</servlet-name>
+        <url-pattern>/ViewPickingFormServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EncodePickingForm</servlet-name>
-        <url-pattern>/EncodePickingForm</url-pattern>
+        <servlet-name>EncodePickingFormServlet</servlet-name>
+        <url-pattern>/EncodePickingFormServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EncodeSubconDeliveryReceiptServlet</servlet-name>
+        <url-pattern>/EncodeSubconDeliveryReceiptServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EncodeSubconPurchaseOrderServlet</servlet-name>
+        <url-pattern>/EncodeSubconPurchaseOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewSubconPurchaseOrderServlet</servlet-name>
+        <url-pattern>/ViewSubconPurchaseOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewSubconDeliveryReceiptServlet</servlet-name>
+        <url-pattern>/ViewSubconDeliveryReceiptServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SupplierDeliveryReceiptServlet</servlet-name>
