@@ -19,7 +19,7 @@
         <title>Encode Delivery Order</title>
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        
+
     </head>
     <body>  
         <br/><br/><br/>
@@ -27,28 +27,34 @@
     <form method="POST" action="ConsumptionReportServlet">
         <div align="center">
             <table id="dataTable" class="table table-hover" style= "width:800px">
-            
-                     <tr>
-                        <th>Delivery Receipt Number</th>
-                        <th>Production Number</th>
-                        <th>Item Description</th>
-                        <th>Received Date</th>
-                        <th>Checked by</th>
-                        <th>received By</th>
-                        <th>Status</th>
-                        <th>Quantity</th>
-                        <th>Comment</th>
-                    </tr>
-               
-                <%
-                    ArrayList<SupplierDeliveryReceipt> SDeliveryReceipt = (ArrayList<SupplierDeliveryReceipt>) session.getAttribute("SdrList");
+
+
+                <%                   
+               ArrayList<SupplierDeliveryReceipt> SDeliveryReceipt = (ArrayList<SupplierDeliveryReceipt>) session.getAttribute("SdrList");
                     for (int i = 0; i < SDeliveryReceipt.size(); i++) {
                 %>
                 <tr>
                     <td><input type="checkbox" name="chk"/></td> 
- 
+                    <th>Delivery Receipt Number</th>
                     <td><%= SDeliveryReceipt.get(i).getDeliveryReceiptNumber()%></td>
-                    <td><%= SDeliveryReceipt.get(i).getPoNumber()%></td>
+                    <th>Production Number</th>
+                     <td><%= SDeliveryReceipt.get(i).getPoNumber()%></td>
+                </tr>
+                <tr> 
+                    <th>Item Description</th>
+                    <th>Received Date</th>
+                    <th>Checked by</th>
+                    <th>received By</th>
+                    <th>Status</th>
+                    <th>Quantity</th>
+                    <th>Comment</th>
+                </tr>
+                <%for (int y = 0; y < SDeliveryReceipt.size(); y++) {
+                   if (SDeliveryReceipt.get(y).getDeliveryReceiptNumber() == SDeliveryReceipt.get(i).getPoNumber()
+                                && SDeliveryReceipt.get(y).getPoNumber() == SDeliveryReceipt.get(i).getPoNumber()){
+                %>
+                <tr>
+                   
                     <td><%= SDeliveryReceipt.get(i).getItemDescription()%></td>
                     <td><%= SDeliveryReceipt.get(i).getReceivedDate()%></td>
                     <td><%= SDeliveryReceipt.get(i).getCheckedBy()%></td>
@@ -58,6 +64,9 @@
                     <td><%= SDeliveryReceipt.get(i).getComment()%></td>
                 </tr>        
                 <%
+                                i = y;
+                            }
+                        }
                     }
                 %>
             </table>
@@ -72,6 +81,5 @@
     <script src="js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>

@@ -30,6 +30,9 @@
                     <th class="edits"></th>
      
                     <th>Production Number</th>
+                    <th>Product ID</th>
+                    <th>Size</th>
+                    <th>Color</th>
                     <th>Quantity</th>
                      <th>Prepared By </th>
                     <th>Approved By</th>
@@ -42,15 +45,17 @@
                 <tr>
                     <td><input type="checkbox" name="chk"/></td> 
                     <td><%= ConsumptionReport.get(i).getProductionNumber() %></td>
+                    <td><%=ConsumptionReport.get(i).getProductID()%></td>
+                    <td><%=ConsumptionReport.get(i).getSize()%></td>
+                    <td><%=ConsumptionReport.get(i).getColor()%></td>
                     <td><%= ConsumptionReport.get(i).getProdQty()%></td>
                     <td><%= ConsumptionReport.get(i).getPreparedBy()%></td>
                     <td><%= ConsumptionReport.get(i).getApprovedBy()%></td>
-                    <td><%= ConsumptionReport.get(i).getdateMade()%></td>
-                    
-                    
+                    <td><%= ConsumptionReport.get(i).getdateMade()%></td>  
                 </tr>        
                 <%
-                                                              }
+                   
+                    }
                 %>
             </table>
             <br/><br/>

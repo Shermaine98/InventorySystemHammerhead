@@ -26,7 +26,7 @@ public class ProductionInventoryDAO {
             try {
                 DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
                 Connection conn = myFactory.getConnection();
-                String query = "insert into production_inventory(productionNumber, category, drNumber, DateUpdated,"
+                String query = "insert into production_inventory(productionNumber, category, drNumber, dateUpdated,"
                         + "qty,unitMeasurement,approval,note) values (?,?,?,?,?,?,?,?) ";
                 PreparedStatement pstmt = conn.prepareStatement(query);
                 
@@ -64,7 +64,7 @@ public class ProductionInventoryDAO {
                     temp.setProductionNumber(rs.getInt("productionNumber"));
                     temp.setCategory(rs.getString("category"));
                     temp.setDrNumber(rs.getInt("drNumber"));
-                    temp.setDateUpdated();
+                    temp.setDateUpdated(rs.getDate("dateUpdated"));
                     temp.setQty(rs.getInt("qty"));
                     temp.setUnitMeasurement(rs.getString("unitMeasurement"));
                     temp.setApproval(rs.getBoolean("approval"));

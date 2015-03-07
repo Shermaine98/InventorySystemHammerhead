@@ -6,9 +6,14 @@
 package controller;
 
 import Dao.PromoDAO;
+import Dao.SupplierDeliveryReceiptDAO;
 import Model.Promo;
+import Model.SupplierDeliveryReceipt;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -30,25 +35,31 @@ public class SupplierDeliveryReceiptServlet extends BaseServlet {
     
         try {
             
-            Promo promo = new Promo();
-            promo.setEmployeeNumber(Integer.parseInt(request.getParameter("employeeNumber")));
-            promo.setOutlet(request.getParameter("outlet"));
-            promo.setAddress(request.getParameter("address"));
-          
+            SupplierDeliveryReceipt SupplierDeliveryReceipt = new SupplierDeliveryReceipt();
+            SupplierDeliveryReceipt.setPoNumber(Integer.parseInt(request.getParameter("poNumber")));
+            SupplierDeliveryReceipt.setItemDescription(request.getParameter("itemDescription"));
+        try {
+            SupplierDeliveryReceipt.setReceivedDate();
+        } catch (ParseException ex) {
+            Logger.getLogger(SupplierDeliveryReceiptServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        SupplierDeliveryReceipt.setreceivedBy(Integer.parseInt(request.getParameter("receivedBy")));
+        SupplierDeliveryReceipt.setCheckedBy(Integer.parseInt(request.getParameter("checkedBy")));
+        SupplierDeliveryReceipt.setStatus(request.getParameter("status"));
             
-            PromoDAO promoDAO = new PromoDAO();
+            SupplierDeliveryReceiptDAO SupplierDeliveryReceiptDAO = new SupplierDeliveryReceiptDAO();
             
-            if (promoDAO.RegisterPromo(promo)) {
+            if (SupplierDeliveryReceiptDAO.EncodeDeliveryReceipt(SupplierDeliveryReceipt)) {
                 out.print("Valid");
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("");
+                RequestDispatcher rd = context.getRequestDispatcher("/ViewSupplierDeliveryReceipt.jsp");
                 HttpSession session = request.getSession();
-                session.setAttribute("promo", promo);
+                session.setAttribute("SDRreceipt", SupplierDeliveryReceipt);
                 rd.forward(request, response);
             } else {
                 out.print("Invalid");
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("");
+                RequestDispatcher rd = context.getRequestDispatcher("/EncodeSupplierPurchaseOrder.jsp");
                 rd.forward(request, response);
 
             }

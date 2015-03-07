@@ -29,12 +29,14 @@
                 <tr>
                     <th class="edits"></th>
      
-                    <th>Date Updated</th>
-                    <th>Quantity</th>
-                     <th>Unit Measurement </th>
+                    <th>Production Number</th>
+                    <th>Category</th>
                     <th>Delivery Receipt Number</th>
-                    <th>Stock Number</th> 
-                    <th>Category</th>  
+                    <th>Date Updated</th> 
+                    <th>Quantity</th> 
+                    <th>Unit Measurement</th> 
+                    <th>Approval</th> 
+                    <th>Note</th> 
                 </tr>
                 <%
                     ArrayList<ProductionInventory> ProductionInventory = (ArrayList<ProductionInventory>) session.getAttribute("piList");
@@ -42,13 +44,15 @@
                 %>
                 <tr>
                     <td><input type="checkbox" name="chk"/></td> 
+                    <td><%= ProductionInventory.get(i).getProductionNumber()%></td>
+                    <td><%= ProductionInventory.get(i).getCategory()%></td>
+                    <td><%= ProductionInventory.get(i).getDrNumber()%></td>
                     <td><%= ProductionInventory.get(i).getDateUpdated() %></td>
                     <td><%= ProductionInventory.get(i).getQty() %></td>
                     <td><%= ProductionInventory.get(i).getUnitMeasurement() %></td>
-                    <td><%= ProductionInventory.get(i).getDeliveryReceiptNumber() %></td>
-                    <td><%= ProductionInventory.get(i).getStockNumber()%></td>
-                    <td><%= ProductionInventory.get(i).getCategory()%></td>
-                    
+                    <td><%= ProductionInventory.get(i).isApproval()%></td>
+                    <td><%= ProductionInventory.get(i).getNote()%></td>
+                                       
                 </tr>        
                 <%
                                                               }

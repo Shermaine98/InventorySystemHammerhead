@@ -30,10 +30,10 @@
                         <ul class="dropdown-menu" role="menu">
                             <li class="divider"></li>
                             <li><a href="/Hammerhead/ViewPurchaseOrderServlet">View Supplier Purchase Order</a></li>   
-                            <li><a href="EncodePurchaseOrder.jsp">Encode Supplier Purchase Order</a></li> 
+                            <li><a href="EncodeSupplierPurchaseOrder.jsp">Encode Supplier Purchase Order</a></li> 
                             <li class="divider"></li>
                             <li><a href="/Hammerhead/ViewSupplierDeliveryReceiptServlet">View Supplier Delivery Receipt</a></li>
-                            <li><a href="EncodeDeliveryReceipt.jsp">Encode Supplier Delivery Receipt</a></li>
+                            <li><a href="EncodeSupplierDeliveryReceipt.jsp">Encode Supplier Delivery Receipt</a></li>
                             <li class="divider"></li>
                             <li><a href="EncodeConsumptionReport.jsp">Encode Consumption Report</a></li>
                             <li><a href="/Hammerhead/ViewConsumptionReportServlet">View Consumption Reports</a></li>
@@ -42,7 +42,7 @@
                             <li><a href="/Hammerhead/ViewCuttingReportServlet">View Cutting Reports</a></li>
                             <li class="divider"></li>
                             <li><a href="EncodeSupplier.jsp">Encode Supplier</a></li>
-                            <li><a href="">View Supplier</a></li>
+                            <li><a href="/Hammerhead/ViewSupplierServlet">View Supplier</a></li>
                         </ul>
                     </li>
 

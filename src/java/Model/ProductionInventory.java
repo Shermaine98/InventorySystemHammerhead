@@ -85,6 +85,10 @@ public class ProductionInventory {
         java.sql.Date sqlreceivedDate1 = new java.sql.Date(updatedDate1.getTime());
         this.dateUpdated = sqlreceivedDate1;
     }
+    
+       public void setDateUpdated(java.sql.Date dateUpdated) {
+        this.dateUpdated = dateUpdated;
+    }
 
     /**
      * @return the qty

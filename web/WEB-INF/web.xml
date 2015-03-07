@@ -121,14 +121,6 @@
         <servlet-class>controller.ViewCRtoPIServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ViewSupplierServlet</servlet-name>
-        <servlet-class>controller.ViewSupplierServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SupplierServlet</servlet-name>
-        <servlet-class>controller.SupplierServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ViewPickingFormServlet</servlet-name>
         <servlet-class>controller.ViewPickingFormServlet</servlet-class>
     </servlet>
@@ -159,6 +151,10 @@
     <servlet>
         <servlet-name>ViewSupplierDeliveryReceiptServlet</servlet-name>
         <servlet-class>controller.ViewSupplierDeliveryReceiptServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewSupplierServlet</servlet-name>
+        <servlet-class>controller.ViewSupplierServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
@@ -281,14 +277,6 @@
         <url-pattern>/ViewCRtoPI</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ViewSupplierServlet</servlet-name>
-        <url-pattern>/ViewSupplierServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SupplierServlet</servlet-name>
-        <url-pattern>/SupplierServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ViewPickingFormServlet</servlet-name>
         <url-pattern>/ViewPickingFormServlet</url-pattern>
     </servlet-mapping>
@@ -319,6 +307,10 @@
     <servlet-mapping>
         <servlet-name>ViewSupplierDeliveryReceiptServlet</servlet-name>
         <url-pattern>/ViewSupplierDeliveryReceiptServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewSupplierServlet</servlet-name>
+        <url-pattern>/ViewSupplierServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -28,7 +28,7 @@ public class RefSupplierDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "insert into REF-supplier"
+            String query = "insert into ref-supplier"
                     + "(supplierID,itemDescription,companyName,companyAddress,contactPerson,contactNumber) "
                     + "values (?,?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -55,7 +55,7 @@ public class RefSupplierDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM REF-supplier");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM ref-supplier");
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {

@@ -11,7 +11,7 @@
 <%@include file="security.jsp" %>
 <!DOCTYPE html>
 <html>
-    
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,118 +19,56 @@
         <title>Encode Delivery Order</title>
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
-    
-        <style>
-            td.edits {
-                text-align: center;
-            }
-            th.edits {
-                text-align: center;
-            }
-        </style>
-
-        <script>
-            function addRow(tableID) {
-
-                var table = document.getElementById(tableID);
-
-                var rowCount = table.rows.length;
-                var row = table.insertRow(rowCount);
-
-                var colCount = table.rows[0].cells.length;
-
-                for (var i = 0; i < colCount; i++) {
-
-                    var newcell = row.insertCell(i);
-
-                    newcell.innerHTML = table.rows[0].cells[i].innerHTML;
-                    //alert(newcell.childNodes);
-                    switch (newcell.childNodes[0].type) {
-                        case "text":
-                            newcell.childNodes[0].value = "";
-                            break;
-                        case "checkbox":
-                            newcell.childNodes[0].checked = false;
-                            break;
-                        case "select-one":
-                            newcell.childNodes[0].selectedIndex = 0;
-                            break;
-                    }
-                }
-            }
-
-            function deleteRow(tableID) {
-                try {
-                    var table = document.getElementById(tableID);
-                    var rowCount = table.rows.length;
-
-                    for (var i = 0; i < rowCount; i++) {
-                        var row = table.rows[i];
-                        var chkbox = row.cells[0].childNodes[0];
-                        if (null != chkbox && true == chkbox.checked) {
-                            if (rowCount <= 1) {
-                                alert("Cannot delete all the rows.");
-                                break;
-                            }
-                            table.deleteRow(i);
-                            rowCount--;
-                            i--;
-                        }
 
 
-                    }
-                } catch (e) {
-                    alert(e);
-                }
-            }
-
-        </script>
     </head>
     <body>  
-    <br/><br/><br/>
+        <br/><br/><br/>
     <center><h2>Add Item</h2></center>
-        <form method="POST" action="ConsumptionReportServlet">
-            <div align="center">
-                <table id="dataTable" class="table table-hover" style= "width:800px ">
+    <form method="POST" action="ConsumptionReportServlet">
+        <div align="center">
+            <table id="dataTable" class="table table-hover" style= "width:800px ">
                 <tr>
                     <th class="edits"></th>
-     
-                   <th>Stock Number</th>
-                        <th>Category</th>
-                        <th>Delivery Receipt Number</th>
-                        <th>Cutting Master</th>
-                        <th>Raw Quantity</th>
-                        <th>Final Quantity</th>
+
+                    <th>Production Number</th>
+                    <th>Category</th>
+                    <th>Delivery Receipt Number</th>
+                    <th>Cutting Master</th>
+                    <th>Raw Quantity</th>
+                    <th>Calculated Quantity</th>
+                    <th>Actual Quantity</th>
+                    <th>Comment</th>
                 </tr>
-                <%
-                    ArrayList<CuttingReport> CuttingReport = (ArrayList<CuttingReport>) session.getAttribute("cutrList");
+                <%                    ArrayList<CuttingReport> CuttingReport = (ArrayList<CuttingReport>) session.getAttribute("cutrList");
                     for (int i = 0; i < CuttingReport.size(); i++) {
                 %>
                 <tr>
                     <td><input type="checkbox" name="chk"/></td> 
-                    <td><%= CuttingReport.get(i).getStockNumber()%></td>
+                    <td><%= CuttingReport.get(i).getProductionNumber()%></td>
                     <td><%= CuttingReport.get(i).getCategory()%></td>
-                    <td><%= CuttingReport.get(i).getDeliveryReceiptNumber()%></td>
+                    <td><%= CuttingReport.get(i).getDrNumber()%></td>
                     <td><%= CuttingReport.get(i).getCuttingMaster()%></td>
                     <td><%= CuttingReport.get(i).getRawQty()%></td>
-                     <td><%= CuttingReport.get(i).getFinalQty()%></td>
-                                     
+                    <td><%= CuttingReport.get(i).getCalculatedQty()%></td>
+                    <td><%= CuttingReport.get(i).getActualQty()%></td>
+                    <td><%= CuttingReport.get(i).getComment()%></td>
+
                 </tr>        
                 <%
-                                                              }
+                    }
                 %>
             </table>
-                
-                <br/><br/>
-                <input type="submit" class="btn btn-danger" value="Submit">
-                <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
-            </div>
-        </form>
-    
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="js/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-    </body>
+
+            <br/><br/>
+            <input type="submit" class="btn btn-danger" value="Submit">
+            <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
+        </div>
+    </form>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
 </html>

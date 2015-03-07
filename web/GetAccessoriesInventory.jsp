@@ -32,8 +32,11 @@
                    <th>Category</th> 
                    <th>Accessory Description</th>            
                    <th>Delivery Receipt Number</th>
+                   <th>Date Updated</th>
                    <th>Quantity</th>
                    <th>Unit Measurement</th> 
+                   <th>Approval</th>
+                   <th>Note</th>
                     
                 </tr>
                 <%
@@ -45,8 +48,11 @@
                     <td><%= AccessoriesInventory.get(i).getCategory()%></td>
                     <td><%= AccessoriesInventory.get(i).getAccessoryDescription()%></td>
                     <td><%= AccessoriesInventory.get(i).getDeliveryReceiptNumber()%></td>
+                    <td><td><%= AccessoriesInventory.get(i).getDateUpdated()%></td>
                     <td><%= AccessoriesInventory.get(i).getQty()%></td>
                     <td><%= AccessoriesInventory.get(i).getUnitMeasurement()%></td>
+                    <td><%= AccessoriesInventory.get(i).isApproval()%></td>
+                    <td><%= AccessoriesInventory.get(i).getNote()%></td>
                  
                     
                 </tr>        

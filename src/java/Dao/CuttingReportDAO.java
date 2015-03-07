@@ -64,9 +64,9 @@ public class CuttingReportDAO {
 
                 while (rs.next()) {
                     CuttingReport temp = new CuttingReport();
-                    temp.setProductionNumber(rs.getInt("stockNumber"));
+                    temp.setProductionNumber(rs.getInt("productionNumber"));
                     temp.setCategory(rs.getString("category"));
-                    temp.setDrNumber(rs.getInt("deliveryReceiptNumber"));
+                    temp.setDrNumber(rs.getInt("drNumber"));
                     temp.setCuttingMaster(rs.getInt("cuttingMaster"));
                     temp.setRawQty(rs.getInt("rawQty"));
                     temp.setCalculatedQty(rs.getInt("calculatedQty"));
