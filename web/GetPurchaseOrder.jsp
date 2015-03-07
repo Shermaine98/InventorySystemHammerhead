@@ -33,6 +33,7 @@
                     <th class = "edits">Date Made</th>
                     <th class = "edits">Prepared By</th>
                     <th class = "edits">Approved By</th>
+                    <th class = "edits">Delivery Schedule</th>
                 </tr>
                 <%   
                     ArrayList<PurchaseOrder> PurchaseOrder = (ArrayList<PurchaseOrder>) session.getAttribute("poList");
