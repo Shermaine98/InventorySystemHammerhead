@@ -20,63 +20,46 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <style>
-         
+
         </style>
 
         <script>
-         
-         //retrieve();
-         
-         function retrieve(){
-             var selectedItem = readCookie("selectedItem");
-             var select = document.getElementById("selected");
-             select[2].selected = true;
-         }
-         
-            function selected(){
-                
-                var selected = document.getElementbyId('selected');
-                //var selectedItem = 
-                selected.options[1].selected = true;
-                //createCookie("selectedItem", selectItem);
-                return selected;
-            }
-            
-            window.onload = function() {
-               //when the document is finished loading, replace everything
-               //between the <a ...> </a> tags with the value of splitText
-               //document.getElementById("selected").value = retrieve();
-            } 
-            /*
-            document.getElementById("lala").innerHTML = retrieve();           
-            */
+            $(document).ready(function () {
+                $("selected").on("click", function () {
+
+                    $("center").load("center.html");
+                });
+            });
         </script>
     </head>
     <body>  
         <br/><br/><br/>
 
         <div id="refresh" align="center">
-            <%            
-                       int y= -1;
-                ArrayList<PurchaseOrder> PurchaseOrder = (ArrayList<PurchaseOrder>) session.getAttribute("poList");
+            <%                ArrayList<PurchaseOrder> PurchaseOrder = (ArrayList<PurchaseOrder>) session.getAttribute("poList");
             %>
-            
-            <select name="selected" onchange="window.location.reload() "> 
-                <!--<option value="PleaseChoose"></option>-->
+
+            <select name="selected" > 
+                <option>choose</option>
                 <%
-            for (int i = 0; i < PurchaseOrder.size(); i++) {
-            %>
-                <option value="<% y = i; %>"> <%=PurchaseOrder.get(i).getPoNumber()%></option>
-            <%
-                }
-            %> 
+                    for (int i = 0; i < PurchaseOrder.size(); i++) {
+                %>
+                <option value="<%=PurchaseOrder.get(i).getPoNumber()%>"> <%=PurchaseOrder.get(i).getPoNumber()%></option>
+                <%
+                    }
+                %> 
             </select>
-            
-            
+
         </div>
+
     <center><h2>Encode Delivery Receipt</h2></center>
-    <form method="POST" action="ConsumptionReportServlet">
-        <div align="center">
+    <div id= "center" align="center">
+        <form method="POST" action="ConsumptionReportServlet">
+
+            <%
+                int y = 0;
+            %>
+
             <table id="dataTable" class="table table-hover" style= "width:800px">
                 <tr>
                     <th class = "edits">Purchase Order</th>
@@ -100,7 +83,7 @@
                     <td><%= PurchaseOrder.get(y).getPreparedBy()%></td>
                 </tr>
             </table>
-            
+
             <table class="tableContainer" width="70%">
                 <thead class="fixedHeader">
                     <tr>
@@ -122,8 +105,9 @@
             <br/><br/>
             <input type="submit" class="btn btn-danger" value="Submit">
             <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
-        </div>
-    </form>
+
+        </form>
+    </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </body>
