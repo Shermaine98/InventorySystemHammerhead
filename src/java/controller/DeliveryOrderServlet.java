@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -35,31 +34,25 @@ public class DeliveryOrderServlet extends BaseServlet {
 
             String[] deliveryOrderNumber = request.getParameterValues("deliveryOrderNumber");
             String[] promo = request.getParameterValues("promo");
-            String[] outlet = request.getParameterValues("outlet");
-            String[] productionNumber = request.getParameterValues("productionNumber");
-            String[] sex = request.getParameterValues("sex");
-            String[] itemDescription = request.getParameterValues("itemDescription");
-            String[] ageGroup = request.getParameterValues("ageGroup");
-            String[] color = request.getParameterValues("color");
+            String[] ProductID = request.getParameterValues("ProductID");
             String[] size = request.getParameterValues("size");
-            String[] qty = request.getParameterValues("qty");
-            String[] received = request.getParameterValues("received");
+            String[] color = request.getParameterValues("color");
+            String[] deliveryQty = request.getParameterValues("deliveryQty");
+            String[] approved = request.getParameterValues("approved");
+            String[] approvedBy = request.getParameterValues("approvedBy");
             String[] preparedBy = request.getParameterValues("preparedBy");
 
             boolean x = false;
 
             for (int i = 0; i < deliveryOrderNumber.length; i++) {
-                deliveryOrder.setDeliveryOrderNumber(Integer.parseInt(deliveryOrderNumber[i]));
+              
                 deliveryOrder.setPromo(Integer.parseInt(promo[i]));
-                deliveryOrder.setOutlet(outlet[i]);
-                deliveryOrder.setProductionNumber(Integer.parseInt(productionNumber[i]));
-                deliveryOrder.setSex(sex[i]);
-                deliveryOrder.setItemDescription(itemDescription[i]);
-                deliveryOrder.setAgeGroup(ageGroup[i]);
-                deliveryOrder.setColor(color[i]);
+                deliveryOrder.setProductID(Integer.parseInt(ProductID[i]));
                 deliveryOrder.setSize(size[i]);
-                deliveryOrder.setQty(Integer.parseInt(qty[i]));
-                deliveryOrder.setReceive(received[i]);
+                deliveryOrder.setColor(color[i]);
+                deliveryOrder.setDeliveryQty(Integer.parseInt(deliveryQty[i]));
+                deliveryOrder.setApproved(Boolean.parseBoolean(approved[i]));
+                deliveryOrder.setApprovedBy(Integer.parseInt(approvedBy[i]));
                 deliveryOrder.setPreparedBy(Integer.parseInt(preparedBy[i]));
 
                 if (deliveryOrderDAO.EncodeDeliveryOrder(deliveryOrder)) {

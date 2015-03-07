@@ -34,7 +34,7 @@ public class PromoServlet extends BaseServlet {
             promo.setEmployeeNumber(Integer.parseInt(request.getParameter("employeeNumber")));
             promo.setOutlet(request.getParameter("outlet"));
             promo.setAddress(request.getParameter("address"));
-            promo.setCity(request.getParameter("city"));
+          
             
             PromoDAO promoDAO = new PromoDAO();
             

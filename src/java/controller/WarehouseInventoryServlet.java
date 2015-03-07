@@ -33,18 +33,20 @@ public class WarehouseInventoryServlet extends BaseServlet {
         try {
             
             WarehouseInventory warehouseInventory = new WarehouseInventory();
+            warehouseInventory.setDrNumber(Integer.parseInt("drNumber"));
             warehouseInventory.setProductionNumber(Integer.parseInt(request.getParameter("productionNumber")));
-            warehouseInventory.setSex(request.getParameter("sex"));
-            warehouseInventory.setItemDescription(request.getParameter("itemDescription"));
-            warehouseInventory.setAgeGroup(request.getParameter("ageGroup"));
-            warehouseInventory.setColor(request.getParameter("color"));
+            warehouseInventory.setProductID(Integer.parseInt(request.getParameter("productID")));
             warehouseInventory.setSize(request.getParameter("size"));
+            warehouseInventory.setColor(request.getParameter("color"));
+            warehouseInventory.setQty(Integer.parseInt(request.getParameter("qty")));
+            warehouseInventory.setApproval(Boolean.parseBoolean(request.getParameter("approval")));
         try {
             warehouseInventory.setDateUpdated();
         } catch (ParseException ex) {
             Logger.getLogger(WarehouseInventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-            warehouseInventory.setQty(Integer.parseInt(request.getParameter("Quantity")));
+        
+            warehouseInventory.setNote(request.getParameter("Quantity"));
             
             WarehouseInventoryDAO WIDAO = new WarehouseInventoryDAO();
             

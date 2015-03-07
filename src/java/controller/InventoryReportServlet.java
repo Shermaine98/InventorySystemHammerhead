@@ -34,22 +34,23 @@ public class InventoryReportServlet extends BaseServlet {
             
             InventoryReport inventoryReport = new InventoryReport();
             inventoryReport.setPromo(Integer.parseInt(request.getParameter("promo")));
-            inventoryReport.setOutlet(request.getParameter("outlet"));
         try {
             inventoryReport.setDateMade();
         } catch (ParseException ex) {
             Logger.getLogger(InventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-            inventoryReport.setProductionNumber(Integer.parseInt(request.getParameter("productionNumber")));
-            inventoryReport.setSex(request.getParameter("sex"));
-            inventoryReport.setItemDescription(request.getParameter("itemDescription"));
-            inventoryReport.setAgeGroup(request.getParameter("ageGroup"));
-            inventoryReport.setColor(request.getParameter("color"));
-            inventoryReport.setSize(request.getParameter("size"));
+            inventoryReport.setProductID(Integer.parseInt(request.getParameter("productID")));
             inventoryReport.setRemainingQuantity(Integer.parseInt(request.getParameter("remainingQty")));
             inventoryReport.setSoldQty(Integer.parseInt(request.getParameter("soldQty")));
             inventoryReport.setPulledOutQty(Integer.parseInt(request.getParameter("pulledOutQty")));
-            
+            inventoryReport.setProductionNumber(Integer.parseInt(request.getParameter("ProductionNumber")));
+            inventoryReport.setColor(request.getParameter("color"));
+            inventoryReport.setSize(request.getParameter("size"));
+        try {
+            inventoryReport.setDateMade();
+        } catch (ParseException ex) {
+            Logger.getLogger(InventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
             InventoryReportDAO IRDAO = new InventoryReportDAO();
             
             if (IRDAO.EncodeInventoryReport(inventoryReport)) {

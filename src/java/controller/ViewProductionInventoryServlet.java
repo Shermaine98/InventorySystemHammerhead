@@ -8,7 +8,10 @@ package controller;
 import Dao.ProductionInventoryDAO;
 import Model.ProductionInventory;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -24,6 +27,7 @@ public class ViewProductionInventoryServlet extends BaseServlet {
 
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
             ProductionInventoryDAO PIDAO = new ProductionInventoryDAO();
             ArrayList<ProductionInventory> piList = PIDAO.MonitorProductionInventory();
             
@@ -32,6 +36,9 @@ public class ViewProductionInventoryServlet extends BaseServlet {
             RequestDispatcher rd = context.getRequestDispatcher("/GetProductionInventory.jsp");
             session.setAttribute("piList", piList);
             rd.forward(request, response);         
+        } catch (ParseException ex) {
+            Logger.getLogger(ViewProductionInventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
           
     }
 }

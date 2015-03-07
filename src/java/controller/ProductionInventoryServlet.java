@@ -38,11 +38,14 @@ public class ProductionInventoryServlet extends BaseServlet {
         } catch (ParseException ex) {
             Logger.getLogger(ProductionInventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+            productionInventory.setProductionNumber(Integer.parseInt(request.getParameter("productionNumber")));
+            productionInventory.setCategory(request.getParameter("category"));
+            productionInventory.setDrNumber(Integer.parseInt(request.getParameter("DeliveryReceiptNumber")));
             productionInventory.setQty(Integer.parseInt(request.getParameter("qty")));
             productionInventory.setUnitMeasurement(request.getParameter("unitMeasurement"));
-            productionInventory.setDeliveryReceiptNumber(Integer.parseInt(request.getParameter("deliveryReceiptNumber")));
-            productionInventory.setStockNumber(Integer.parseInt(request.getParameter("stockNumber")));
-            productionInventory.setCategory(request.getParameter("category"));
+            productionInventory.setApproval(Boolean.parseBoolean(request.getParameter("Approval")));
+            productionInventory.setNote(request.getParameter("note"));
+           
             
             ProductionInventoryDAO PIDAO = new ProductionInventoryDAO();
             

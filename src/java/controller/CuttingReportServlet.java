@@ -9,11 +9,9 @@ import Dao.CuttingReportDAO;
 import Model.CuttingReport;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -30,12 +28,14 @@ public class CuttingReportServlet extends BaseServlet {
         PrintWriter out = response.getWriter();
         try {
             CuttingReport cuttingReport = new CuttingReport();
-            cuttingReport.setStockNumber(Integer.parseInt(request.getParameter("stockNumber")));
-            cuttingReport.setCategory(request.getParameter("category"));
-            cuttingReport.setDeliveryReceiptNumber(Integer.parseInt(request.getParameter("deliveryReceiptNumber")));
+            
+            cuttingReport.setCategory(request.getParameter("category")); 
+            cuttingReport.setDrNumber(Integer.parseInt(request.getParameter("drNumber")));
             cuttingReport.setCuttingMaster(Integer.parseInt(request.getParameter("cuttingMaster")));
             cuttingReport.setRawQty(Integer.parseInt(request.getParameter("rawQty")));
-            cuttingReport.setFinalQty(Integer.parseInt(request.getParameter("finalQty")));
+            cuttingReport.setCalculatedQty(Integer.parseInt(request.getParameter("calculatedQty")));
+            cuttingReport.setActualQty(Integer.parseInt(request.getParameter("actualQty")));
+            cuttingReport.setComment(request.getParameter("comment"));
             
             CuttingReportDAO cuttingReportDAO = new CuttingReportDAO();
             if (cuttingReportDAO.EncodeCuttingReport(cuttingReport)) {

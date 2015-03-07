@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,19 +32,26 @@ public class ConsumptionReportToProductionInventoryServlet extends BaseServlet {
             ConsumptionReportToProductionInventoryDAO CRtoPIDAO = new ConsumptionReportToProductionInventoryDAO();
 
             String[] productionNumber = request.getParameterValues("productionNumber");
-            String[] stockNumber = request.getParameterValues("stockNumber");
             String[] category = request.getParameterValues("category");
+            String [] DrNuber = request.getParameterValues("DrNumber");
+            String [] productID = request.getParameterValues("ProductID");
+            String[] size = request.getParameterValues("size");
+            String[] color = request.getParameterValues("color");
             String[] consumption = request.getParameterValues("consumption");
             String[] unit = request.getParameterValues("unit");
-
+            String[] productionQty = request.getParameterValues("prodcutionQty");
             boolean x = false;
 
             for (int i = 0; i < productionNumber.length; i++) {
                 CRtoPI.setProductionNumber(Integer.parseInt(productionNumber[i]));
-                CRtoPI.setStockNumber(Integer.parseInt(stockNumber[i]));
                 CRtoPI.setCategory(category[i]);
+                CRtoPI.setDrNumber(Integer.parseInt(DrNuber[i]));
+                CRtoPI.setProductID(Integer.parseInt(productID[i]));
+                CRtoPI.setSize(size[i]);
+                CRtoPI.setColor(color[i]);
                 CRtoPI.setConsumption(Integer.parseInt(consumption[i]));
-                CRtoPI.setUnitMeasurement(unit[i]);
+                CRtoPI.setUnit(unit[i]);
+                CRtoPI.setProductionQty(Integer.parseInt(productionQty[i]));
 
                 if (CRtoPIDAO.EncodeCRTAI(CRtoPI)) {
                     x = true;

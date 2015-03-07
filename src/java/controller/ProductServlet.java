@@ -31,9 +31,9 @@ public class ProductServlet extends BaseServlet {
         try {
             
             Product product = new Product();
-            product.setProductionNumber(Integer.parseInt(request.getParameter("productionNumber")));
+         
             product.setSex(request.getParameter("sex"));
-            product.setItemDescription(request.getParameter("itemDescription"));
+            product.setProductDescription(request.getParameter("ProductDescription"));
             product.setAgeGroup(request.getParameter("ageGroup"));
             product.setColor(request.getParameter("color"));
             product.setSize(request.getParameter("size"));
