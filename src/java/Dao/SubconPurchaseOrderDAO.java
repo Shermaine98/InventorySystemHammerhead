@@ -82,7 +82,7 @@ public class SubconPurchaseOrderDAO {
                 newSubconPurchaseOrder.setDateMade();
                 newSubconPurchaseOrder.setPreparedBy(rs.getInt("preparedBy"));
                 newSubconPurchaseOrder.setApprovedBy(rs.getInt("ApprovedBy"));
-                newSubconPurchaseOrder.setDeliverySchedule();
+                newSubconPurchaseOrder.setDeliverySchedule(rs.getDate("deliverySchedule"));
                 
                 SubconPurchaseOrder.add(newSubconPurchaseOrder);
 

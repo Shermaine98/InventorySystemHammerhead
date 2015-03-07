@@ -117,6 +117,10 @@ public class SubconDeliveryReceipt {
         java.sql.Date sqlreceivedDate1 = new java.sql.Date(receivedDate1.getTime());
         this.dateRecieved = sqlreceivedDate1;
     }
+    
+    public void setDateReceived(java.sql.Date dateReceived) {
+        this.dateRecieved = dateRecieved;
+    }
 
     /**
      * @return the checkedBy
