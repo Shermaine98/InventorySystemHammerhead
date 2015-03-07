@@ -10,39 +10,27 @@ package Model;
  */
 
 public class CuttingReport {
-    private int cuttingMaster;
-    private int stockNumber;
+    private int productionNumber;
     private String category;
-    private int deliveryReceiptNumber;
+    private int drNumber;
+    private int cuttingMaster;
     private int rawQty;
-    private int finalQty;
+    private int calculatedQty;
+    private int actualQty;
+    private String comment;
 
     /**
-     * @return the cuttingMaster
+     * @return the productionNumber
      */
-    public int getCuttingMaster() {
-        return cuttingMaster;
+    public int getProductionNumber() {
+        return productionNumber;
     }
 
     /**
-     * @param cuttingMaster the cuttingMaster to set
+     * @param productionNumber the productionNumber to set
      */
-    public void setCuttingMaster(int cuttingMaster) {
-        this.cuttingMaster = cuttingMaster;
-    }
-
-    /**
-     * @return the stockNumber
-     */
-    public int getStockNumber() {
-        return stockNumber;
-    }
-
-    /**
-     * @param stockNumber the stockNumber to set
-     */
-    public void setStockNumber(int stockNumber) {
-        this.stockNumber = stockNumber;
+    public void setProductionNumber(int productionNumber) {
+        this.productionNumber = productionNumber;
     }
 
     /**
@@ -60,17 +48,31 @@ public class CuttingReport {
     }
 
     /**
-     * @return the deliveryReceiptNumber
+     * @return the drNumber
      */
-    public int getDeliveryReceiptNumber() {
-        return deliveryReceiptNumber;
+    public int getDrNumber() {
+        return drNumber;
     }
 
     /**
-     * @param deliveryReceiptNumber the deliveryReceiptNumber to set
+     * @param drNumber the drNumber to set
      */
-    public void setDeliveryReceiptNumber(int deliveryReceiptNumber) {
-        this.deliveryReceiptNumber = deliveryReceiptNumber;
+    public void setDrNumber(int drNumber) {
+        this.drNumber = drNumber;
+    }
+
+    /**
+     * @return the cuttingMaster
+     */
+    public int getCuttingMaster() {
+        return cuttingMaster;
+    }
+
+    /**
+     * @param cuttingMaster the cuttingMaster to set
+     */
+    public void setCuttingMaster(int cuttingMaster) {
+        this.cuttingMaster = cuttingMaster;
     }
 
     /**
@@ -88,16 +90,44 @@ public class CuttingReport {
     }
 
     /**
-     * @return the finalQty
+     * @return the calculatedQty
      */
-    public int getFinalQty() {
-        return finalQty;
+    public int getCalculatedQty() {
+        return calculatedQty;
     }
 
     /**
-     * @param finalQty the finalQty to set
+     * @param calculatedQty the calculatedQty to set
      */
-    public void setFinalQty(int finalQty) {
-        this.finalQty = finalQty;
+    public void setCalculatedQty(int calculatedQty) {
+        this.calculatedQty = calculatedQty;
+    }
+
+    /**
+     * @return the actualQty
+     */
+    public int getActualQty() {
+        return actualQty;
+    }
+
+    /**
+     * @param actualQty the actualQty to set
+     */
+    public void setActualQty(int actualQty) {
+        this.actualQty = actualQty;
+    }
+    
+    /**
+     * @return the comment
+     */
+    public String getComment() {
+        return comment;
+    }
+
+    /**
+     * @param comment the comment to set
+     */
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

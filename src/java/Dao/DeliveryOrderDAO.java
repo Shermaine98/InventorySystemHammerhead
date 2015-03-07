@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Model.DeliveryOrder;
+import java.text.ParseException;
 
 /**
  *
@@ -30,22 +31,20 @@ public class DeliveryOrderDAO {
                 DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
                 Connection conn = myFactory.getConnection();
                 String query = "insert into delivery_order"
-                        + "(deliveryOrderNumber,promo,outlet,productionNumber,sex,itemDescription,"
-                        + "ageGroup,color,size,qty,recieved,preparedBy) values (?,?,?,?,?,?,?,?,?,?,?,?) ";
+                        + "(doNumber, promo, dateMade, productID, size, color, deliveryQty, "
+                        + "approved, preparedBy, approvedBy) values (?,?,?,?,?,?,?,?,?,?) ";
                 PreparedStatement pstmt = conn.prepareStatement(query);
 
-                pstmt.setInt(1, newDeliveryOrder.getDeliveryOrderNumber());
+                pstmt.setInt(1, newDeliveryOrder.getDoNumber());
                 pstmt.setInt(2, newDeliveryOrder.getPromo());
-                pstmt.setString(3, newDeliveryOrder.getOutlet());
-                pstmt.setInt(4, newDeliveryOrder.getProductionNumber());
-                pstmt.setString(5, newDeliveryOrder.getSex());
-                pstmt.setString(6, newDeliveryOrder.getItemDescription());
-                pstmt.setString(7, newDeliveryOrder.getAgeGroup());
-                pstmt.setString(8, newDeliveryOrder.getColor());
-                pstmt.setString(9, newDeliveryOrder.getSize());
-                pstmt.setInt(10, newDeliveryOrder.getQty());
-                pstmt.setString(11, newDeliveryOrder.getReceive());
-                pstmt.setInt(12, newDeliveryOrder.getPreparedBy());
+                pstmt.setDate(3, newDeliveryOrder.getDateMade());
+                pstmt.setInt(4, newDeliveryOrder.getProductID());
+                pstmt.setString(5, newDeliveryOrder.getSize());
+                pstmt.setString(6, newDeliveryOrder.getColor());
+                pstmt.setInt(7, newDeliveryOrder.getDeliveryQty());
+                pstmt.setBoolean(8, newDeliveryOrder.isApproved());
+                pstmt.setInt(9, newDeliveryOrder.getPreparedBy());
+                pstmt.setInt(10, newDeliveryOrder.getApprovedBy());
                
                 int rows = pstmt.executeUpdate();
                 conn.close();
@@ -56,7 +55,7 @@ public class DeliveryOrderDAO {
             return false;
 	}
 
-	public ArrayList<DeliveryOrder> GetDeliveryOrderList(){       
+	public ArrayList<DeliveryOrder> GetDeliveryOrderList() throws ParseException{       
             
             ArrayList <DeliveryOrder> DeliveryOrder = new ArrayList<DeliveryOrder>();
             
@@ -68,18 +67,16 @@ public class DeliveryOrderDAO {
 
                 while (rs.next()) {
                     DeliveryOrder temp = new DeliveryOrder();
-                    temp.setDeliveryOrderNumber(rs.getInt("deliveryOrderNumber"));
+                    temp.setDoNumber(rs.getInt("doNumber"));
                     temp.setPromo(rs.getInt("promo"));
-                    temp.setOutlet(rs.getString("outlet"));
-                    temp.setProductionNumber(rs.getInt("productionNumber"));
-                    temp.setSex(rs.getString("sex"));
-                    temp.setItemDescription(rs.getString("itemDescription"));
-                    temp.setAgeGroup(rs.getString("ageGroup"));
-                    temp.setColor(rs.getString("color"));
+                    temp.setDateMade();
+                    temp.setProductID(rs.getInt("productID"));
                     temp.setSize(rs.getString("size"));
-                    temp.setQty(rs.getInt("qty"));
-                    temp.setReceive(rs.getString("received"));
+                    temp.setColor(rs.getString("color"));
+                    temp.setDeliveryQty(rs.getInt("deliveryQty"));
+                    temp.setApproved(rs.getBoolean("approved"));
                     temp.setPreparedBy(rs.getInt("preparedBy"));
+                    temp.setApprovedBy(rs.getInt("approvedBy"));
                     
                     DeliveryOrder.add(temp);
                 }

@@ -15,8 +15,10 @@ import java.text.SimpleDateFormat;
 
 public class DeliverySchedule {
     private int deliveryOrderNumber;
+    private int promo;
     private int preparedBy;
     private int driver;
+    private int boxQty;
     private java.sql.Date date;
     
      DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -84,6 +86,34 @@ public class DeliverySchedule {
         java.util.Date date1 = formatter.parse(df.format(date0));
         java.sql.Date sqlordate11 = new java.sql.Date(date1.getTime());
         this.date = sqlordate11;
+    }
+
+    /**
+     * @return the promo
+     */
+    public int getPromo() {
+        return promo;
+    }
+
+    /**
+     * @param promo the promo to set
+     */
+    public void setPromo(int promo) {
+        this.promo = promo;
+    }
+
+    /**
+     * @return the boxQty
+     */
+    public int getBoxQty() {
+        return boxQty;
+    }
+
+    /**
+     * @param boxQty the boxQty to set
+     */
+    public void setBoxQty(int boxQty) {
+        this.boxQty = boxQty;
     }
     
    

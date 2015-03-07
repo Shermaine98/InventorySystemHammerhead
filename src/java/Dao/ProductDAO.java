@@ -26,15 +26,16 @@ public class ProductDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "insert into product(productionNumber,sex,itemDescription,ageGroup,color,size,unitPrice) values (?,?,?,?,?,?,?)";
+            String query = "insert into product(productID, "
+                    + "size, color, productDescription, ageGroup, sex, unitPrice) values (?,?,?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
-            pstmt.setInt(1, newProduct.getProductionNumber());
-            pstmt.setString(2, newProduct.getSex());
-            pstmt.setString(3, newProduct.getItemDescription());
-            pstmt.setString(4, newProduct.getAgeGroup());
-            pstmt.setString(5, newProduct.getColor());
-            pstmt.setString(6, newProduct.getSize());
+            pstmt.setInt(1, newProduct.getProductID());
+            pstmt.setString(2, newProduct.getSize());
+            pstmt.setString(3, newProduct.getColor());
+            pstmt.setString(4, newProduct.getProductDescription());
+            pstmt.setString(5, newProduct.getAgeGroup());
+            pstmt.setString(6, newProduct.getSex());
             pstmt.setDouble(7, newProduct.getUnitPrice());
 
             int rows = pstmt.executeUpdate();
@@ -57,12 +58,12 @@ public class ProductDAO {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 Product newProduct = new Product();
-                newProduct.setProductionNumber(rs.getInt("productionNumber"));
-                newProduct.setSex(rs.getString("sex"));
-                newProduct.setItemDescription(rs.getString("itemDescription"));
-                newProduct.setAgeGroup(rs.getString("ageGroup"));
-                newProduct.setColor(rs.getString("color"));
+                newProduct.setProductID(rs.getInt("productID"));
                 newProduct.setSize(rs.getString("size"));
+                newProduct.setColor(rs.getString("Color"));
+                newProduct.setProductDescription(rs.getString("productDescription"));
+                newProduct.setAgeGroup(rs.getString("ageGroup"));
+                newProduct.setSex(rs.getString("sex"));
                 newProduct.setUnitPrice(rs.getDouble("unitPrice"));
 
                 Product.add(newProduct);

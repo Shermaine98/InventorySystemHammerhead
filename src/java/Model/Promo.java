@@ -13,7 +13,6 @@ public class Promo {
     private int employeeNumber;
     private String outlet;
     private String address;
-    private String city;
 
     /**
      * @return the employeeNumber
@@ -55,19 +54,5 @@ public class Promo {
      */
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    /**
-     * @return the city
-     */
-    public String getCity() {
-        return city;
-    }
-
-    /**
-     * @param city the city to set
-     */
-    public void setCity(String city) {
-        this.city = city;
     }
 }

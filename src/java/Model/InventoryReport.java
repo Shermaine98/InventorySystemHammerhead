@@ -16,15 +16,12 @@ import java.text.SimpleDateFormat;
 public class InventoryReport {
     
     private int promo;
+    private int productID;
     private int remainingQuantity;
     private int soldQty;
     private int pulledOutQty;
     private int ProductionNumber;
-    private String outlet;
-    private String sex;
     private String size;
-    private String itemDescription;
-    private String ageGroup;
     private String color;
     private java.sql.Date dateMade;
     
@@ -101,34 +98,6 @@ public class InventoryReport {
     }
 
     /**
-     * @return the outlet
-     */
-    public String getOutlet() {
-        return outlet;
-    }
-
-    /**
-     * @param outlet the outlet to set
-     */
-    public void setOutlet(String outlet) {
-        this.outlet = outlet;
-    }
-
-    /**
-     * @return the sex
-     */
-    public String getSex() {
-        return sex;
-    }
-
-    /**
-     * @param sex the sex to set
-     */
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    /**
      * @return the size
      */
     public String getSize() {
@@ -140,34 +109,6 @@ public class InventoryReport {
      */
     public void setSize(String size) {
         this.size = size;
-    }
-
-    /**
-     * @return the itemDescription
-     */
-    public String getItemDescription() {
-        return itemDescription;
-    }
-
-    /**
-     * @param itemDescription the itemDescription to set
-     */
-    public void setItemDescription(String itemDescription) {
-        this.itemDescription = itemDescription;
-    }
-
-    /**
-     * @return the ageGroup
-     */
-    public String getAgeGroup() {
-        return ageGroup;
-    }
-
-    /**
-     * @param ageGroup the ageGroup to set
-     */
-    public void setAgeGroup(String ageGroup) {
-        this.ageGroup = ageGroup;
     }
 
     /**
@@ -205,6 +146,20 @@ public class InventoryReport {
      */
     public void setDateMade(java.sql.Date dateMade) {
         this.dateMade = dateMade;
+    }
+
+    /**
+     * @return the productID
+     */
+    public int getProductID() {
+        return productID;
+    }
+
+    /**
+     * @param productID the productID to set
+     */
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
             
 }

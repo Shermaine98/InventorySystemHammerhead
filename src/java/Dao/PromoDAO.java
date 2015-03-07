@@ -27,12 +27,13 @@ public class PromoDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             int rows;
             try (Connection conn = myFactory.getConnection()) {
-                String query = "insert into promo(employeeNumber, outlet,address,city) values (?,?,?,?)";
+                String query = "insert into promo"
+                        + "(employeeID, outlet,address) "
+                        + "values (?,?,?)";
                 PreparedStatement pstmt = conn.prepareStatement(query);
                 pstmt.setInt(1, newPromo.getEmployeeNumber());
                 pstmt.setString(2, newPromo.getOutlet());
                 pstmt.setString(3, newPromo.getAddress());
-                pstmt.setString(3, newPromo.getCity());
                 rows = pstmt.executeUpdate();
             }
             return rows == 1;
@@ -52,10 +53,9 @@ public class PromoDAO {
                 ResultSet rs = pstmt.executeQuery();
                 while (rs.next()) {
                     Promo newPromo = new Promo();
-                    newPromo.setEmployeeNumber(rs.getInt("employeeNumber"));
+                    newPromo.setEmployeeNumber(rs.getInt("employeeID"));
                     newPromo.setOutlet(rs.getString("outlet"));
                     newPromo.setAddress(rs.getString("address"));
-                    newPromo.setCity(rs.getString("city"));
                     Promo.add(newPromo);
                     
                 }              }

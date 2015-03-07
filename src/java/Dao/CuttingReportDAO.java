@@ -29,17 +29,19 @@ public class CuttingReportDAO {
             try {
                 DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
                 Connection conn = myFactory.getConnection();
-                String query = "insert into cuttingReport"
-                        + "(stockNumber,category,deliveryReceiptNumber,cuttingMaster,rawQty,finalQty) "
-                        + "values (?,?,?,?,?,?) ";
+                String query = "insert into cutting_report"
+                        + "(productionNumber,category,drNumber,cuttingMaster,rawQty,calculatedQty,actualQty,comment) "
+                        + "values (?,?,?,?,?,?,?,?) ";
                 PreparedStatement pstmt = conn.prepareStatement(query);
 
-                pstmt.setInt(1, newCuttingReport.getStockNumber());
+                pstmt.setInt(1, newCuttingReport.getProductionNumber());
                 pstmt.setString(2, newCuttingReport.getCategory());
-                pstmt.setInt(3, newCuttingReport.getDeliveryReceiptNumber());
+                pstmt.setInt(3, newCuttingReport.getDrNumber());
                 pstmt.setInt(4, newCuttingReport.getCuttingMaster());
                 pstmt.setInt(5, newCuttingReport.getRawQty());
-                pstmt.setInt(6, newCuttingReport.getFinalQty());
+                pstmt.setInt(6, newCuttingReport.getCalculatedQty());
+                pstmt.setInt(7, newCuttingReport.getActualQty());
+                pstmt.setString(8, newCuttingReport.getComment());
                
                 int rows = pstmt.executeUpdate();
                 conn.close();
@@ -57,17 +59,19 @@ public class CuttingReportDAO {
             try {
                 DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
                 Connection conn = myFactory.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement("select * from cuttingReport");
+                PreparedStatement pstmt = conn.prepareStatement("select * from cutting_report");
                 ResultSet rs = pstmt.executeQuery();
 
                 while (rs.next()) {
                     CuttingReport temp = new CuttingReport();
-                    temp.setStockNumber(rs.getInt("stockNumber"));
+                    temp.setProductionNumber(rs.getInt("stockNumber"));
                     temp.setCategory(rs.getString("category"));
-                    temp.setDeliveryReceiptNumber(rs.getInt("deliveryReceiptNumber"));
+                    temp.setDrNumber(rs.getInt("deliveryReceiptNumber"));
                     temp.setCuttingMaster(rs.getInt("cuttingMaster"));
                     temp.setRawQty(rs.getInt("rawQty"));
-                    temp.setFinalQty(rs.getInt("finalQty"));
+                    temp.setCalculatedQty(rs.getInt("calculatedQty"));
+                    temp.setActualQty(rs.getInt("actualQty"));
+                    temp.setComment(rs.getString("comment"));
                     
                     CuttingReport.add(temp);
                 }

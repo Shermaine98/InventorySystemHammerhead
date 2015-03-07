@@ -30,14 +30,18 @@ public class ConsumptionReportToProductionInventoryDAO {
                 DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
                 Connection conn = myFactory.getConnection();
                 String query = "insert into CR_to_PI"
-                        + "(productionNumber,stockNumber,category,consumption,unit) values (?,?,?,?,?) ";
+                        + "(productionNumber, category, drNumber, productID, size, "
+                        + "color, consumption, unit, productionQty) values (?,?,?,?,?,?,?,?,?) ";
                 PreparedStatement pstmt = conn.prepareStatement(query);
 
                 pstmt.setInt(1, newCRTPI.getProductionNumber());
-                pstmt.setInt(3, newCRTPI.getStockNumber());
                 pstmt.setString(2, newCRTPI.getCategory());
-                pstmt.setInt(4, newCRTPI.getConsumption());
-                pstmt.setString(5, newCRTPI.getUnitMeasurement());
+                pstmt.setInt(3, newCRTPI.getProductID());
+                pstmt.setString(4, newCRTPI.getSize());
+                pstmt.setString(5, newCRTPI.getColor());
+                pstmt.setInt(6, newCRTPI.getConsumption());
+                pstmt.setString(7, newCRTPI.getUnit());
+                pstmt.setInt(8, newCRTPI.getProductionQty());
                
                 int rows = pstmt.executeUpdate();
                 conn.close();
@@ -61,10 +65,14 @@ public class ConsumptionReportToProductionInventoryDAO {
                 while (rs.next()) {
                     ConsumptionReportToProductionInventory temp = new ConsumptionReportToProductionInventory();
                     temp.setProductionNumber(rs.getInt("deliveryReceiptNumber"));
-                    temp.setStockNumber(rs.getInt("stockNumber"));
                     temp.setCategory(rs.getString("category"));
+                    temp.setDrNumber(rs.getInt("drNumber"));
+                    temp.setProductID(rs.getInt("productID"));
+                    temp.setSize(rs.getString("size"));
+                    temp.setColor(rs.getString("color"));
                     temp.setConsumption(rs.getInt("consumption"));
-                    temp.setUnitMeasurement(rs.getString("unitMeasurement"));
+                    temp.setUnit(rs.getString("unit"));
+                    temp.setProductionQty(rs.getInt("productionQty"));
                     
                     CuttingReportToProductionInventory.add(temp);
                 }

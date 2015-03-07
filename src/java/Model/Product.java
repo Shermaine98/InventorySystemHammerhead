@@ -11,28 +11,15 @@ package Model;
 
 public class Product {
 
-    private int productionNumber;
+    private int productID;
     private String sex;
-    private String ItemDescription;
+    private String productDescription;
     private String ageGroup;
     private String color;
     private String size;
     private double UnitPrice;
 
-    /**
-     * @return the productionNumber
-     */
-    public int getProductionNumber() {
-        return productionNumber;
-    }
-
-    /**
-     * @param productionNumber the productionNumber to set
-     */
-    public void setProductionNumber(int productionNumber) {
-        this.productionNumber = productionNumber;
-    }
-
+ 
     /**
      * @return the sex
      */
@@ -50,15 +37,15 @@ public class Product {
     /**
      * @return the ItemDescription
      */
-    public String getItemDescription() {
-        return ItemDescription;
+    public String getProductDescription() {
+        return productDescription;
     }
 
     /**
      * @param ItemDescription the ItemDescription to set
      */
-    public void setItemDescription(String ItemDescription) {
-        this.ItemDescription = ItemDescription;
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
     }
 
     /**
@@ -116,4 +103,19 @@ public class Product {
     public void setUnitPrice(double UnitPrice) {
         this.UnitPrice = UnitPrice;
     }
+
+    /**
+     * @return the productID
+     */
+    public int getProductID() {
+        return productID;
+    }
+
+    /**
+     * @param productID the productID to set
+     */
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+    
 }

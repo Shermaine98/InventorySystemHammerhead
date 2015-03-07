@@ -28,25 +28,26 @@ public class WarehouseInventoryDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "insert into warehouse_inventory(productionNumber,sex,itemDescription,ageGroup,color,size,dateUpdated,qty) values (?,?,?,?,?,?,?,?)";
+            String query = "insert into warehouse_inventory"
+                    + "(drNumber,productionNumber,productID,size,dateUpdated,qty,approval,note) "
+                    + "values (?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(query);
-
-       
-            pstmt.setInt(1, newWarehouseInventory.getProductionNumber());
-            pstmt.setString(2, newWarehouseInventory.getSex());
-            pstmt.setString(3, newWarehouseInventory.getItemDescription());
-            pstmt.setString(4, newWarehouseInventory.getAgeGroup());
-            pstmt.setString(5, newWarehouseInventory.getColor());
-            pstmt.setString(6, newWarehouseInventory.getSize());
-            pstmt.setDate(7, newWarehouseInventory.getDateUpdated());
-            pstmt.setInt(8, newWarehouseInventory.getQty());
+            
+            pstmt.setInt(1, newWarehouseInventory.getDrNumber());
+            pstmt.setInt(2, newWarehouseInventory.getProductionNumber());
+            pstmt.setInt(3, newWarehouseInventory.getProductID());
+            pstmt.setString(4, newWarehouseInventory.getSize());
+            pstmt.setDate(5, newWarehouseInventory.getDateUpdated());
+            pstmt.setInt(6, newWarehouseInventory.getQty());
+            pstmt.setBoolean(7, newWarehouseInventory.isApproval());
+            pstmt.setString(8, newWarehouseInventory.getNote());
             
 
             int rows = pstmt.executeUpdate();
             conn.close();
             return rows == 1;
         } catch (SQLException ex) {
-            Logger.getLogger(InventoryReportDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(WarehouseInventoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -61,18 +62,18 @@ public class WarehouseInventoryDAO {
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                WarehouseInventory newwarehouseInventory = new WarehouseInventory();
-               
-                newwarehouseInventory.setProductionNumber(rs.getInt("productionNumber"));
-                newwarehouseInventory.setSex(rs.getString("sex"));
-                newwarehouseInventory.setItemDescription(rs.getString("itemDescription"));
-                newwarehouseInventory.setAgeGroup(rs.getString("ageGroup"));
-                newwarehouseInventory.setColor(rs.getString("color"));
-                newwarehouseInventory.setSize(rs.getString("size"));
-                newwarehouseInventory.setDateUpdated(rs.getDate("dateUpdated"));
-                newwarehouseInventory.setQty(rs.getInt("qty"));
-
-                warehouseInventory.add(newwarehouseInventory);
+                WarehouseInventory newWarehouseInventory = new WarehouseInventory();
+                
+                newWarehouseInventory.setDrNumber(rs.getInt("drNumber"));
+                newWarehouseInventory.setProductionNumber(rs.getInt("productionNumber"));
+                newWarehouseInventory.setProductID(rs.getInt("productID"));
+                newWarehouseInventory.setSize(rs.getString("size"));
+                newWarehouseInventory.setDateUpdated(rs.getDate("dateUpdated"));
+                newWarehouseInventory.setQty(rs.getInt("qty"));
+                newWarehouseInventory.setApproval(rs.getBoolean("approval"));
+                newWarehouseInventory.setNote(rs.getString("note"));
+                
+                warehouseInventory.add(newWarehouseInventory);
 
             }
 
