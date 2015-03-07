@@ -128,6 +128,14 @@
         <servlet-name>ViewCRtoPI</servlet-name>
         <servlet-class>controller.ViewCRtoPIServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewPickingForm</servlet-name>
+        <servlet-class>controller.ViewPickingForm</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EncodePickingForm</servlet-name>
+        <servlet-class>controller.EncodePickingForm</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
         <url-pattern>/BaseServlet</url-pattern>
@@ -255,6 +263,14 @@
     <servlet-mapping>
         <servlet-name>ViewCRtoPI</servlet-name>
         <url-pattern>/ViewCRtoPI</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewPickingForm</servlet-name>
+        <url-pattern>/ViewPickingForm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EncodePickingForm</servlet-name>
+        <url-pattern>/EncodePickingForm</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
