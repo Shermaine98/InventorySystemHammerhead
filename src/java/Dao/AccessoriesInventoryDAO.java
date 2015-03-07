@@ -25,18 +25,19 @@ public class AccessoriesInventoryDAO {
             try {
                 DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
                 Connection conn = myFactory.getConnection();
-                String query = "insert into accessories_inventory(category,accessoryDescrption,dateUpdated,deliveryReceiptNumber,qty,unitMeasurement) values (?,?,?,?,?,?) ";
+                String query = "insert into accessories_inventory"
+                        + "(category,accessoryDescrption,deliveryReceiptNumber,dateUpdated,qty,unitMeasurement,approval,note) "
+                        + "values (?,?,?,?,?,?,?,?) ";
                 PreparedStatement pstmt = conn.prepareStatement(query);
 
-                
-                
                 pstmt.setString(1, newAccessoriesInventory.getCategory());
                 pstmt.setString(2, newAccessoriesInventory.getAccessoryDescription());
-                pstmt.setDate(3, newAccessoriesInventory.getDateUpdated());
-                pstmt.setInt(4, newAccessoriesInventory.getDeliveryReceiptNumber());
+                pstmt.setInt(3, newAccessoriesInventory.getDeliveryReceiptNumber());
+                pstmt.setDate(4, newAccessoriesInventory.getDateUpdated());
                 pstmt.setInt(5, newAccessoriesInventory.getQty());
-                 pstmt.setString(6, newAccessoriesInventory.getUnitMeasurement());
-               
+                pstmt.setString(6, newAccessoriesInventory.getUnitMeasurement());
+                pstmt.setBoolean(7, newAccessoriesInventory.isApproval());
+                pstmt.setString(8, newAccessoriesInventory.getNote());
                
                 int rows = pstmt.executeUpdate();
                 conn.close();
@@ -60,12 +61,14 @@ public class AccessoriesInventoryDAO {
                 while (rs.next()) {
                     AccessoriesInventory temp = new AccessoriesInventory();
                     temp.setCategory(rs.getString("category"));
-                    temp.setAccessoryDescription(rs.getString("accessoryDescrption"));
+                    temp.setAccessoryDescription(rs.getString("accessoryDescription"));
+                    temp.setDeliveryReceiptNumber(rs.getInt("drNumber"));
                     temp.setDateUpdated(rs.getDate("dateUpdated"));
-                    temp.setDeliveryReceiptNumber(rs.getInt("deliveryReceiptNumber"));
                     temp.setQty(rs.getInt("qty"));
                     temp.setUnitMeasurement(rs.getString("unitMeasurement"));
-                    
+                    temp.setApproval(rs.getBoolean("approval"));
+                    temp.setNote(rs.getString("note"));
+                
                     AccessoriesInventory.add(temp);
                 }
                 pstmt.close();

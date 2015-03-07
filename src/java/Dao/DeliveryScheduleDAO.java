@@ -30,13 +30,14 @@ public class DeliveryScheduleDAO {
                 DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
                 Connection conn = myFactory.getConnection();
                 String query = "insert into delivery_schedule"
-                        + "(deliveryOrderNumber,schedule,preparedBy,driver) values (?,?,?,?) ";
+                        + "(doNumber,promo,driver,dateMade,boxQty) values (?,?,?,?,?) ";
                 PreparedStatement pstmt = conn.prepareStatement(query);
 
                 pstmt.setInt(1, newDeliverySchedule.getDeliveryOrderNumber());
-                pstmt.setDate(2, newDeliverySchedule.getDate());
-                pstmt.setInt(3, newDeliverySchedule.getPreparedBy());
-                pstmt.setInt(4, newDeliverySchedule.getDriver());
+                pstmt.setInt(2, newDeliverySchedule.getPromo());
+                pstmt.setInt(3, newDeliverySchedule.getDriver());
+                pstmt.setDate(4, newDeliverySchedule.getDate());
+                pstmt.setInt(5, newDeliverySchedule.getBoxQty());
                
                 int rows = pstmt.executeUpdate();
                 conn.close();
@@ -63,6 +64,12 @@ public class DeliveryScheduleDAO {
                     temp.setDate(rs.getDate("schedule"));
                     temp.setPreparedBy(rs.getInt("preparedBy"));
                     temp.setDriver(rs.getInt("driver"));
+                    
+                    temp.setDeliveryOrderNumber(rs.getInt("deliveryOrderNumber"));
+                    temp.setPromo(rs.getInt("promo"));
+                    temp.setDriver(rs.getInt("driver"));
+                    temp.setDate(rs.getDate("dateMade"));
+                    temp.setBoxQty(rs.getInt("boxQty"));
                     
                     DeliverySchedule.add(temp);
                 }

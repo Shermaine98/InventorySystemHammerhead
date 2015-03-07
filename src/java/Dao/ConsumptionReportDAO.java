@@ -30,14 +30,18 @@ public class ConsumptionReportDAO {
                 DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
                 Connection conn = myFactory.getConnection();
                 String query = "insert into consumption_report"
-                        + "(productionNumber, productionQty, preparedBy, approvedBy, dateMade) values (?,?,?,?,?) ";
+                        + "(productionNumber, productID, size, color, qty, "
+                        + "preparedBy, approvedBy, dateMade) values (?,?,?,?,?,?,?,?)";
                 PreparedStatement pstmt = conn.prepareStatement(query);
 
                 pstmt.setInt(1, newConsumptionReport.getProductionNumber());
-                pstmt.setInt(2, newConsumptionReport.getProdQty());
-                pstmt.setInt(3, newConsumptionReport.getPreparedBy());
-                pstmt.setInt(4, newConsumptionReport.getApprovedBy());
-                pstmt.setDate(5, newConsumptionReport.getdateMade());
+                pstmt.setInt(2, newConsumptionReport.getProductID());
+                pstmt.setString(3, newConsumptionReport.getSize());
+                pstmt.setString(4, newConsumptionReport.getColor());
+                pstmt.setInt(5, newConsumptionReport.getProdQty());
+                pstmt.setInt(6, newConsumptionReport.getPreparedBy());
+                pstmt.setInt(7, newConsumptionReport.getApprovedBy());
+                pstmt.setDate(8, newConsumptionReport.getdateMade());
                
                 int rows = pstmt.executeUpdate();
                 conn.close();
@@ -61,7 +65,10 @@ public class ConsumptionReportDAO {
                 while (rs.next()) {
                     ConsumptionReport temp = new ConsumptionReport();
                     temp.setProductionNumber(rs.getInt("productionNumber"));
-                    temp.setProdQty(rs.getInt("productionQty"));
+                    temp.setProductID(rs.getInt("productID"));
+                    temp.setSize(rs.getString("size"));
+                    temp.setColor(rs.getString("color"));
+                    temp.setProdQty(rs.getInt("qty"));
                     temp.setPreparedBy(rs.getInt("preparedBy"));
                     temp.setApprovedBy(rs.getInt("approvedBy"));
                     temp.setdateMade(rs.getDate("dateMade"));

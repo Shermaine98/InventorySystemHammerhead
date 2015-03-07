@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,15 +26,18 @@ public class ProductionInventoryDAO {
             try {
                 DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
                 Connection conn = myFactory.getConnection();
-                String query = "insert into production_inventory(DateUpdated,qty,unitMeasurement,deliveryReceiptNumber,stockNumber,category) values (?,?,?,?,?,?) ";
+                String query = "insert into production_inventory(productionNumber, category, drNumber, DateUpdated,"
+                        + "qty,unitMeasurement,approval,note) values (?,?,?,?,?,?,?,?) ";
                 PreparedStatement pstmt = conn.prepareStatement(query);
                 
-                pstmt.setDate(1, newProductionInventory.getDateUpdated());
-                pstmt.setInt(2, newProductionInventory.getQty());
-                pstmt.setString(3, newProductionInventory.getUnitMeasurement());
-                pstmt.setInt(4, newProductionInventory.getDeliveryReceiptNumber());
-                pstmt.setInt(5, newProductionInventory.getStockNumber());
-                 pstmt.setString(6, newProductionInventory.getCategory());
+                pstmt.setInt(1, newProductionInventory.getProductionNumber());
+                pstmt.setString(2, newProductionInventory.getCategory());
+                pstmt.setInt(3, newProductionInventory.getDrNumber());
+                pstmt.setDate(4, newProductionInventory.getDateUpdated());
+                pstmt.setInt(5, newProductionInventory.getQty());
+                pstmt.setString(6, newProductionInventory.getUnitMeasurement());
+                pstmt.setBoolean(7, newProductionInventory.isApproval());
+                pstmt.setString(8, newProductionInventory.getNote());
                
                
                 int rows = pstmt.executeUpdate();
@@ -45,7 +49,7 @@ public class ProductionInventoryDAO {
             return false;
 	}
 
-	public ArrayList<ProductionInventory> MonitorProductionInventory(){       
+	public ArrayList<ProductionInventory> MonitorProductionInventory() throws ParseException{       
             
             ArrayList <ProductionInventory> ProductionInventory = new ArrayList<ProductionInventory>();
             
@@ -57,12 +61,14 @@ public class ProductionInventoryDAO {
 
                 while (rs.next()) {
                     ProductionInventory temp = new ProductionInventory();
-                    temp.setDateUpdated(rs.getDate("DateUpdated"));
+                    temp.setProductionNumber(rs.getInt("productionNumber"));
+                    temp.setCategory(rs.getString("category"));
+                    temp.setDrNumber(rs.getInt("drNumber"));
+                    temp.setDateUpdated();
                     temp.setQty(rs.getInt("qty"));
                     temp.setUnitMeasurement(rs.getString("unitMeasurement"));
-                    temp.setDeliveryReceiptNumber(rs.getInt("deliveryReceiptNumber"));
-                    temp.setStockNumber(rs.getInt("stockNumber"));
-                    temp.setCategory(rs.getString("category"));
+                    temp.setApproval(rs.getBoolean("approval"));
+                    temp.setNote(rs.getString("note"));
                     
                     ProductionInventory.add(temp);
                 }

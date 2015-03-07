@@ -14,16 +14,17 @@ import java.text.SimpleDateFormat;
  */
 
 public class WarehouseInventory {
+    private int drNumber;
     private int productionNumber;
-    private int qty;
-    private String sex;
-    private String itemDescription;
-    private String ageGroup;
-    private String Color;
+    private int productID;
     private String size;
+    private String color;
+    private int qty;
+    private boolean approval;
     private java.sql.Date dateUpdated;
+    private String note;
     
-    DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
      * @return the productionNumber
@@ -52,63 +53,7 @@ public class WarehouseInventory {
     public void setQty(int qty) {
         this.qty = qty;
     }
-
-    /**
-     * @return the sex
-     */
-    public String getSex() {
-        return sex;
-    }
-
-    /**
-     * @param sex the sex to set
-     */
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    /**
-     * @return the itemDescription
-     */
-    public String getItemDescription() {
-        return itemDescription;
-    }
-
-    /**
-     * @param itemDescription the itemDescription to set
-     */
-    public void setItemDescription(String itemDescription) {
-        this.itemDescription = itemDescription;
-    }
-
-    /**
-     * @return the ageGroup
-     */
-    public String getAgeGroup() {
-        return ageGroup;
-    }
-
-    /**
-     * @param ageGroup the ageGroup to set
-     */
-    public void setAgeGroup(String ageGroup) {
-        this.ageGroup = ageGroup;
-    }
-
-    /**
-     * @return the Color
-     */
-    public String getColor() {
-        return Color;
-    }
-
-    /**
-     * @param Color the Color to set
-     */
-    public void setColor(String Color) {
-        this.Color = Color;
-    }
-
+    
     /**
      * @return the size
      */
@@ -135,7 +80,7 @@ public class WarehouseInventory {
         @SuppressWarnings("deprecation")
         java.util.Date dateUpdated0 = new java.util.Date();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        java.util.Date dateUpdated1 = formatter.parse(df.format(dateUpdated0));
+        java.util.Date dateUpdated1 = getFormatter().parse(df.format(dateUpdated0));
         java.sql.Date sqlorderdate11 = new java.sql.Date(dateUpdated1.getTime());
         this.dateUpdated = sqlorderdate11;
     }
@@ -144,6 +89,90 @@ public class WarehouseInventory {
      */
     public void setDateUpdated(java.sql.Date dateUpdated) {
         this.dateUpdated = dateUpdated;
+    }
+
+    /**
+     * @return the drNumber
+     */
+    public int getDrNumber() {
+        return drNumber;
+    }
+
+    /**
+     * @param drNumber the drNumber to set
+     */
+    public void setDrNumber(int drNumber) {
+        this.drNumber = drNumber;
+    }
+
+    /**
+     * @return the productID
+     */
+    public int getProductID() {
+        return productID;
+    }
+
+    /**
+     * @param productID the productID to set
+     */
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+
+    /**
+     * @return the approval
+     */
+    public boolean isApproval() {
+        return approval;
+    }
+
+    /**
+     * @param approval the approval to set
+     */
+    public void setApproval(boolean approval) {
+        this.approval = approval;
+    }
+
+    /**
+     * @return the formatter
+     */
+    public DateFormat getFormatter() {
+        return formatter;
+    }
+
+    /**
+     * @param formatter the formatter to set
+     */
+    public void setFormatter(DateFormat formatter) {
+        this.formatter = formatter;
+    }
+
+    /**
+     * @return the color
+     */
+    public String getColor() {
+        return color;
+    }
+
+    /**
+     * @param color the color to set
+     */
+    public void setColor(String color) {
+        this.color = color;
+    }
+    
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * @param note the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
     }
     
 }

@@ -20,6 +20,8 @@ public class AccessoriesInventory {
     private java.sql.Date DateUpdated;
     private int deliveryReceiptNumber;
     private int qty;
+    private boolean approval;
+    private String note;
     
     DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -115,5 +117,31 @@ public class AccessoriesInventory {
         this.qty = qty;
     }
 
-    
+    /**
+     * @return the approval
+     */
+    public boolean isApproval() {
+        return approval;
+    }
+
+    /**
+     * @param approval the approval to set
+     */
+    public void setApproval(boolean approval) {
+        this.approval = approval;
+    }
+
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * @param note the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
 }

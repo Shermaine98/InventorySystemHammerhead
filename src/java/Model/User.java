@@ -1,5 +1,9 @@
 package Model;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 /**
  *
  * @author Atayan
@@ -14,9 +18,14 @@ public class User {
     private int employeeNumber;
     private String lastName;
     private String firstName;
+    private String position;
+    private java.sql.Date birthDate;
+    private java.sql.Date entryDate;
+    private java.sql.Date leftDate;
     private String userName;
     private String password;
-    private String position;
+    
+    DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
      * @return the employeeNumber
@@ -101,6 +110,62 @@ public class User {
     public void setPosition(String position) {
         this.position = position;
     }
+
+    /**
+     * @return the birthDate
+     */
+    public java.sql.Date getBirthDate() {
+        return birthDate;
+    }
+
+    /**
+     * @param birthDate the birthDate to set
+     */
+    public void setBirthDate() throws ParseException{
+        @SuppressWarnings("deprecation")
+        java.util.Date birthDate0 = new java.util.Date();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date birthDate1 = formatter.parse(df.format(birthDate0));
+        java.sql.Date sqlreceivedDate1 = new java.sql.Date(birthDate1.getTime());
+        this.birthDate = sqlreceivedDate1;
+    }
+
+    /**
+     * @return the entryDate
+     */
+    public java.sql.Date getEntryDate() {
+        return entryDate;
+    }
+
+    /**
+     * @param entryDate the entryDate to set
+     */
+    public void setEntryDate() throws ParseException{
+        @SuppressWarnings("deprecation")
+        java.util.Date entryDate0 = new java.util.Date();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date entryDate1 = formatter.parse(df.format(entryDate0));
+        java.sql.Date sqlreceivedDate1 = new java.sql.Date(entryDate1.getTime());
+        this.birthDate = sqlreceivedDate1;
+    }
     
+    /**
+     * @return the leftDate
+     */
+    public java.sql.Date getLeftDate() {
+        return leftDate;
+    }
+
+    /**
+     * @param leftDate the leftDate to set
+     */
+    public void setLeftDate() throws ParseException{
+        @SuppressWarnings("deprecation")
+        java.util.Date leftDate0 = new java.util.Date();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date leftDate1 = formatter.parse(df.format(leftDate0));
+        java.sql.Date sqlreceivedDate1 = new java.sql.Date(leftDate1.getTime());
+        this.leftDate = sqlreceivedDate1;
+    }
     
 }

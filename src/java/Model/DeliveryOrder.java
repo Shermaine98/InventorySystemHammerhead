@@ -1,5 +1,9 @@
 package Model;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 /**
  *
  * @author Atayan
@@ -9,32 +13,31 @@ package Model;
  *
  */
 public class DeliveryOrder {
-
-    private int DeliveryOrderNumber;
+    private int doNumber;
     private int promo;
-    private int productionNumber;
-    private int qty;
-    private int preparedBy;
-    private String Outlet;
-    private String itemDescription;
-    private String ageGroup;
-    private String color;
+    private java.sql.Date dateMade;
+    private int productID;
     private String size;
-    private String sex;
-    private String receive;
+    private String color;
+    private int deliveryQty;
+    private boolean approved;
+    private int preparedBy;
+    private int approvedBy;
 
+    DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    
     /**
-     * @return the DeliveryOrderNumber
+     * @return the doNumber
      */
-    public int getDeliveryOrderNumber() {
-        return DeliveryOrderNumber;
+    public int getDoNumber() {
+        return doNumber;
     }
 
     /**
-     * @param DeliveryOrderNumber the DeliveryOrderNumber to set
+     * @param doNumber the doNumber to set
      */
-    public void setDeliveryOrderNumber(int DeliveryOrderNumber) {
-        this.DeliveryOrderNumber = DeliveryOrderNumber;
+    public void setDoNumber(int doNumber) {
+        this.doNumber = doNumber;
     }
 
     /**
@@ -52,101 +55,36 @@ public class DeliveryOrder {
     }
 
     /**
-     * @return the productionNumber
+     * @return the dateMade
      */
-    public int getProductionNumber() {
-        return productionNumber;
+    public java.sql.Date getDateMade() {
+        return dateMade;
     }
 
     /**
-     * @param productionNumber the productionNumber to set
+     * @param dateMade the dateMade to set
      */
-    public void setProductionNumber(int productionNumber) {
-        this.productionNumber = productionNumber;
+    public void setDateMade() throws ParseException{
+        @SuppressWarnings("deprecation")
+        java.util.Date madeDate0 = new java.util.Date();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date madeDate1 = formatter.parse(df.format(madeDate0));
+        java.sql.Date sqlreceivedDate1 = new java.sql.Date(madeDate1.getTime());
+        this.dateMade = sqlreceivedDate1;
     }
 
     /**
-     * @return the qty
+     * @return the productID
      */
-    public int getQty() {
-        return qty;
+    public int getProductID() {
+        return productID;
     }
 
     /**
-     * @param qty the qty to set
+     * @param productID the productID to set
      */
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
-
-    /**
-     * @return the preparedBy
-     */
-    public int getPreparedBy() {
-        return preparedBy;
-    }
-
-    /**
-     * @param preparedBy the preparedBy to set
-     */
-    public void setPreparedBy(int preparedBy) {
-        this.preparedBy = preparedBy;
-    }
-
-    /**
-     * @return the Outlet
-     */
-    public String getOutlet() {
-        return Outlet;
-    }
-
-    /**
-     * @param Outlet the Outlet to set
-     */
-    public void setOutlet(String Outlet) {
-        this.Outlet = Outlet;
-    }
-
-    /**
-     * @return the itemDescription
-     */
-    public String getItemDescription() {
-        return itemDescription;
-    }
-
-    /**
-     * @param itemDescription the itemDescription to set
-     */
-    public void setItemDescription(String itemDescription) {
-        this.itemDescription = itemDescription;
-    }
-
-    /**
-     * @return the ageGroup
-     */
-    public String getAgeGroup() {
-        return ageGroup;
-    }
-
-    /**
-     * @param ageGroup the ageGroup to set
-     */
-    public void setAgeGroup(String ageGroup) {
-        this.ageGroup = ageGroup;
-    }
-
-    /**
-     * @return the color
-     */
-    public String getColor() {
-        return color;
-    }
-
-    /**
-     * @param color the color to set
-     */
-    public void setColor(String color) {
-        this.color = color;
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
     /**
@@ -164,30 +102,72 @@ public class DeliveryOrder {
     }
 
     /**
-     * @return the sex
+     * @return the color
      */
-    public String getSex() {
-        return sex;
+    public String getColor() {
+        return color;
     }
 
     /**
-     * @param sex the sex to set
+     * @param color the color to set
      */
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setColor(String color) {
+        this.color = color;
     }
 
     /**
-     * @return the receive
+     * @return the deliveryQty
      */
-    public String getReceive() {
-        return receive;
+    public int getDeliveryQty() {
+        return deliveryQty;
     }
 
     /**
-     * @param receive the receive to set
+     * @param deliveryQty the deliveryQty to set
      */
-    public void setReceive(String receive) {
-        this.receive = receive;
+    public void setDeliveryQty(int deliveryQty) {
+        this.deliveryQty = deliveryQty;
+    }
+
+    /**
+     * @return the approved
+     */
+    public boolean isApproved() {
+        return approved;
+    }
+
+    /**
+     * @param approved the approved to set
+     */
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
+
+    /**
+     * @return the preparedBy
+     */
+    public int getPreparedBy() {
+        return preparedBy;
+    }
+
+    /**
+     * @param preparedBy the preparedBy to set
+     */
+    public void setPreparedBy(int preparedBy) {
+        this.preparedBy = preparedBy;
+    }
+
+    /**
+     * @return the approvedBy
+     */
+    public int getApprovedBy() {
+        return approvedBy;
+    }
+
+    /**
+     * @param approvedBy the approvedBy to set
+     */
+    public void setApprovedBy(int approvedBy) {
+        this.approvedBy = approvedBy;
     }
 }

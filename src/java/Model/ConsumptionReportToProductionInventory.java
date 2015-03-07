@@ -11,10 +11,14 @@ package Model;
 public class ConsumptionReportToProductionInventory {
 
     private int productionNumber;
-    private int stockNumber;
-    private int consumption;
     private String category;
-    private String unitMeasurement;
+    private int drNumber;
+    private int productID;
+    private String size;
+    private String color;
+    private int consumption;
+    private String unit;
+    private int productionQty;
 
     /**
      * @return the productionNumber
@@ -28,34 +32,6 @@ public class ConsumptionReportToProductionInventory {
      */
     public void setProductionNumber(int productionNumber) {
         this.productionNumber = productionNumber;
-    }
-
-    /**
-     * @return the stockNumber
-     */
-    public int getStockNumber() {
-        return stockNumber;
-    }
-
-    /**
-     * @param stockNumber the stockNumber to set
-     */
-    public void setStockNumber(int stockNumber) {
-        this.stockNumber = stockNumber;
-    }
-
-    /**
-     * @return the consumption
-     */
-    public int getConsumption() {
-        return consumption;
-    }
-
-    /**
-     * @param consumption the consumption to set
-     */
-    public void setConsumption(int consumption) {
-        this.consumption = consumption;
     }
 
     /**
@@ -73,16 +49,100 @@ public class ConsumptionReportToProductionInventory {
     }
 
     /**
-     * @return the unitMeasurement
+     * @return the drNumber
      */
-    public String getUnitMeasurement() {
-        return unitMeasurement;
+    public int getDrNumber() {
+        return drNumber;
     }
 
     /**
-     * @param unitMeasurement the unitMeasurement to set
+     * @param drNumber the drNumber to set
      */
-    public void setUnitMeasurement(String unitMeasurement) {
-        this.unitMeasurement = unitMeasurement;
+    public void setDrNumber(int drNumber) {
+        this.drNumber = drNumber;
+    }
+
+    /**
+     * @return the productID
+     */
+    public int getProductID() {
+        return productID;
+    }
+
+    /**
+     * @param productID the productID to set
+     */
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+
+    /**
+     * @return the size
+     */
+    public String getSize() {
+        return size;
+    }
+
+    /**
+     * @param size the size to set
+     */
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    /**
+     * @return the consumption
+     */
+    public int getConsumption() {
+        return consumption;
+    }
+
+    /**
+     * @param consumption the consumption to set
+     */
+    public void setConsumption(int consumption) {
+        this.consumption = consumption;
+    }
+
+    /**
+     * @return the unit
+     */
+    public String getUnit() {
+        return unit;
+    }
+
+    /**
+     * @param unit the unit to set
+     */
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    /**
+     * @return the productionQty
+     */
+    public int getProductionQty() {
+        return productionQty;
+    }
+
+    /**
+     * @param productionQty the productionQty to set
+     */
+    public void setProductionQty(int productionQty) {
+        this.productionQty = productionQty;
+    }
+
+    /**
+     * @return the color
+     */
+    public String getColor() {
+        return color;
+    }
+
+    /**
+     * @param color the color to set
+     */
+    public void setColor(String color) {
+        this.color = color;
     }
 }

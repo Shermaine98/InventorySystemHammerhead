@@ -26,21 +26,18 @@ public class InventoryReportDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "insert into inventory_report(promo,outlet,dateMade,productionNumber,sex,itemDescription,ageGroup,color,size,remainingQty,soldQty,pulledOutQty) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "insert into inventory_report(promo, "
+                    + "dateMade, productID, size, color, remainingQty,soldQty,pulledOutQty) "
+                    + "values (?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, newInventoryReport.getPromo());
-            pstmt.setString(2, newInventoryReport.getOutlet());
             pstmt.setDate(3, newInventoryReport.getDateMade());
-            pstmt.setInt(4, newInventoryReport.getProductionNumber());
-            pstmt.setString(5, newInventoryReport.getSex());
-            pstmt.setString(6, newInventoryReport.getItemDescription());
-            pstmt.setString(7, newInventoryReport.getAgeGroup());
-            pstmt.setString(8, newInventoryReport.getColor());
-            pstmt.setString(9, newInventoryReport.getSize());
-            pstmt.setDouble(10, newInventoryReport.getRemainingQuantity());
-            pstmt.setInt(11, newInventoryReport.getSoldQty());
-            pstmt.setInt(12, newInventoryReport.getPulledOutQty());
+            pstmt.setString(4, newInventoryReport.getSize());
+            pstmt.setString(5, newInventoryReport.getColor());
+            pstmt.setInt(6, newInventoryReport.getRemainingQuantity());
+            pstmt.setInt(7, newInventoryReport.getSoldQty());
+            pstmt.setInt(8, newInventoryReport.getPulledOutQty());
 
             int rows = pstmt.executeUpdate();
             conn.close();
@@ -63,14 +60,10 @@ public class InventoryReportDAO {
             while (rs.next()) {
                 InventoryReport newInventoryReport = new InventoryReport();
                 newInventoryReport.setPromo(rs.getInt("promo"));
-                newInventoryReport.setOutlet(rs.getString("outlet"));
                 newInventoryReport.setDateMade(rs.getDate("dateMade"));
-                newInventoryReport.setProductionNumber(rs.getInt("productionNumber"));
-                newInventoryReport.setSex(rs.getString("sex"));
-                newInventoryReport.setItemDescription(rs.getString("itemDescription"));
-                newInventoryReport.setAgeGroup(rs.getString("ageGroup"));
-                newInventoryReport.setColor(rs.getString("color"));
+                newInventoryReport.setProductID(rs.getInt("productID"));
                 newInventoryReport.setSize(rs.getString("size"));
+                newInventoryReport.setColor(rs.getString("color"));
                 newInventoryReport.setRemainingQuantity(rs.getInt("remainingQty"));
                 newInventoryReport.setSoldQty(rs.getInt("soldQty"));
                 newInventoryReport.setPulledOutQty(rs.getInt("pulledOutQty"));
