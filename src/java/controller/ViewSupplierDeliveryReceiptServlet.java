@@ -25,12 +25,12 @@ public class ViewSupplierDeliveryReceiptServlet extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             SupplierDeliveryReceiptDAO DRDAO = new SupplierDeliveryReceiptDAO();
-            ArrayList<SupplierDeliveryReceipt> drList = DRDAO.GetDeliveryReceiptList();
+            ArrayList<SupplierDeliveryReceipt> SdrList = DRDAO.GetDeliveryReceiptList();
             
             ServletContext context = getServletContext();
             HttpSession session = request.getSession();
             RequestDispatcher rd = context.getRequestDispatcher("/GetSupplierDeliveryReceipt.jsp");
-            session.setAttribute("drList", drList);
+            session.setAttribute("SdrList", SdrList);
             rd.forward(request, response);         
           
     }

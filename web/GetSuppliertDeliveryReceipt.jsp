@@ -41,7 +41,7 @@
                     </tr>
                
                 <%
-                    ArrayList<SupplierDeliveryReceipt> SDeliveryReceipt = (ArrayList<SupplierDeliveryReceipt>) session.getAttribute("drList");
+                    ArrayList<SupplierDeliveryReceipt> SDeliveryReceipt = (ArrayList<SupplierDeliveryReceipt>) session.getAttribute("SdrList");
                     for (int i = 0; i < SDeliveryReceipt.size(); i++) {
                 %>
                 <tr>

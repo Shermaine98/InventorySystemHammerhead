@@ -64,15 +64,15 @@ public class SupplierDeliveryReceiptDAO {
             while (rs.next()) {
 
                 SupplierDeliveryReceipt temp = new SupplierDeliveryReceipt();
-                temp.setDeliveryReceiptNumber(rs.getInt("deliveryReceiptNumber"));
+                temp.setDeliveryReceiptNumber(rs.getInt("drNumber"));
                 temp.setPoNumber(rs.getInt("poNumber"));
-                temp.setPoNumber(rs.getInt("itemDescription"));
+                temp.setItemDescription("itemDescription");
                 temp.setReceivedDate(rs.getDate("dateReceived"));
                 temp.setCheckedBy(rs.getInt("checkedBy"));
                 temp.setreceivedBy(rs.getInt("receivedBy"));
-                temp.setCheckedBy(rs.getInt("status"));
+                temp.setStatus("status");
                 temp.setQty(rs.getInt("qty"));
-                temp.setCheckedBy(rs.getInt("comment"));
+                temp.setComment("comment");
 
                 DeliveryReceipt.add(temp);
             }

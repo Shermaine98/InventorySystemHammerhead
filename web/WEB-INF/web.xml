@@ -89,10 +89,6 @@
         <servlet-class>controller.ViewInventoryReportServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ViewSupplierDeliveryReceiptServlet</servlet-name>
-        <servlet-class>controller.ViewSupplierDeliveryReceiptServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ViewProductionInventoryServlet</servlet-name>
         <servlet-class>controller.ViewProductionInventoryServlet</servlet-class>
     </servlet>
@@ -143,6 +139,10 @@
     <servlet>
         <servlet-name>SupplierDeliveryReceiptServlet</servlet-name>
         <servlet-class>controller.SupplierDeliveryReceiptServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewSupplierDeliveryReceiptServlet</servlet-name>
+        <servlet-class>controller.ViewSupplierDeliveryReceiptServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
