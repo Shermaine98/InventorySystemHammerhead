@@ -4,6 +4,8 @@
     Author     : Shermaine
 --%>
 
+<%@page import="Model.DeliveryReceipt"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="Dao.DeliveryReceiptDAO"%>
 <%@page import="Dao.ConsumptionReportDAO"%>
 <%@page import="Dao.PromoDAO"%>
@@ -17,108 +19,66 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Monitor Warehouse Inventory</title>
-        <!-- Bootstrap -->
+
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/TABLE.css" rel="stylesheet">
         <style>
-            td.edits {
-                text-align: center;
-            }
-
-            th.edits {
-                text-align: center;
-            }
         </style>
-
-        <script>
-            function addRow(tableID) {
-
-                var table = document.getElementById(tableID);
-
-                var rowCount = table.rows.length;
-                var row = table.insertRow(rowCount);
-
-                var colCount = table.rows[0].cells.length;
-
-                for (var i = 0; i < colCount; i++) {
-
-                    var newcell = row.insertCell(i);
-
-                    newcell.innerHTML = table.rows[0].cells[i].innerHTML;
-                    //alert(newcell.childNodes);
-                    switch (newcell.childNodes[0].type) {
-                        case "text":
-                            newcell.childNodes[0].value = "";
-                            break;
-                        case "checkbox":
-                            newcell.childNodes[0].checked = false;
-                            break;
-                        case "select-one":
-                            newcell.childNodes[0].selectedIndex = 0;
-                            break;
-                    }
-                }
-            }
-
-            function deleteRow(tableID) {
-                try {
-                    var table = document.getElementById(tableID);
-                    var rowCount = table.rows.length;
-
-                    for (var i = 0; i < rowCount; i++) {
-                        var row = table.rows[i];
-                        var chkbox = row.cells[0].childNodes[0];
-                        if (null != chkbox && true == chkbox.checked) {
-                            if (rowCount <= 1) {
-                                alert("Cannot delete all the rows.");
-                                break;
-                            }
-                            table.deleteRow(i);
-                            rowCount--;
-                            i--;
-                        }
-
-
-                    }
-                } catch (e) {
-                    alert(e);
-                }
-            }
-
-        </script>
+    <script>          
+    </script>
     </head>
     <body>  
     <br/><br/><br/>
-    <center><h2>Warehouse Inventory</h2></center>
-        <form method="POST" action="AccessoriesInventoryServlet">
+    <center><h2>Updating Accessories Inventory</h2></center>
+    
+      <%               
+          ArrayList<DeliveryReceipt> DeliveryReceipt = (ArrayList<DeliveryReceipt>) session.getAttribute("drList");
+       %>
+       
+       <div>
+           <h1>Delivery Receipt Number</h1>
+          
+          <select name="deliveryReceiptNumber" style="width:90px">
+               <%-- for (int i=0;i>DeliveryReceipt.size();i++){ --%>
+                    <option value="Accessories">ll</option>
+               <%-- 
+                  }  
+                --%>
+          </select>
+ 
+       </div>
+      <form method="POST" action="AccessoriesInventoryServlet">
             <div align="center">
                 <table class="tableContainer" width="80%">
-                    <thead class="fixedHeader"><tr>
-                        <th></th>
+                    <thead class="fixedHeader"><tr>                                   
                         <th>Category</th> 
-                        <th>Accessory Description</th>            
-                        <th>Delivery Receipt Number</th>
+                        <th>Accessory Description</th>
                         <th>Quantity</th>
-                        <th>Unit Measurement</th> 
+                       <th>Unit Measurement</th>
 
+  <!-- Temporary -->
+                        <th>Approval</th> 
+                        
+<!-- Temporary -->
                         </tr></thead>
                     <tbody id="dataTable" class="scrollContent"><tr>
                         <td><input type="checkbox" name="chk"/></td>
-                        <td><input type="text" name="category" size="10"/></td>
-                        <td><input type="text" name="accessoryDescription" size="18"/></td>
-                        
-                        <td><select name="deliveryReceiptNumber" style="width:90px">
-                                <%  DeliveryReceiptDAO DeliveryReceiptDAO = new DeliveryReceiptDAO();
-                                    for (int i = 0; i < DeliveryReceiptDAO.GetDeliveryReceiptList().size(); i++) {
-                                %>
-                                <option value="<%=DeliveryReceiptDAO.GetDeliveryReceiptList().get(i).getDeliveryReceiptNumber()%>">
-                                    <%= DeliveryReceiptDAO.GetDeliveryReceiptList().get(i).getDeliveryReceiptNumber()%></option>
-                                    <%
-                                        }
-                                    %>
+ 
+   <!-- Kulang yata sa database?? -->
+                        <td><select name="category">  
+                                <option value="Accessories">T-shirt</option>
+                                 <option value="Accessories">Pants</option>
                             </select>
-                        </td> 
+                        </td>
+                        
+                        <td><input type="text" name="accessoryDescription" size="18"/></td>
+                <%-- 
+                        for( int i=0; i<DeliveryReceiptNumber.size();i++){
+                            may if statements pa
+            }
+                --%>
                         <td><input type="text" name="qty" size="4"/></td>
+                       
                         <td> <select name ="unitMeasurement">
                                     <option value="kg">Kilogram</option>
                                     <option value="meter">meter</option>

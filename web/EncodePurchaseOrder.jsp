@@ -7,42 +7,26 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="navigationBar.jsp" />
 <%@include file="security.jsp" %>
-<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Encoding Purchase Order</title>
-        <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/TABLE.css" rel="stylesheet">
-        <style>
-            td.edits {
-                text-align: center;
-            }
-
-            th.edits {
-                text-align: center;
-            }
-        </style>
 
         <script>
             function addRow(tableID) {
 
                 var table = document.getElementById(tableID);
-
                 var rowCount = table.rows.length;
                 var row = table.insertRow(rowCount);
-
                 var colCount = table.rows[0].cells.length;
 
                 for (var i = 0; i < colCount; i++) {
-
                     var newcell = row.insertCell(i);
-
                     newcell.innerHTML = table.rows[0].cells[i].innerHTML;
-                    //alert(newcell.childNodes);
                     switch (newcell.childNodes[0].type) {
                         case "text":
                             newcell.childNodes[0].value = "";
@@ -74,8 +58,6 @@
                             rowCount--;
                             i--;
                         }
-
-
                     }
                 } catch (e) {
                     alert(e);
@@ -85,53 +67,90 @@
         </script>
     </head>
     <body>  
-    <br/><br/><br/>
+        <br/><br/><br/>
+        <%--
+        
+            ArrayList <Supplier> Supplier = new ArrayList<Supplier> get.session("Slist");
+        --%>
+        <div>
+            <h1>Supplier</h1>
+            <select name="Supplier" style="width:90px">
+                <%-- for (int i=0; i>Supplier.size();i++) { --%>
+                <option value="Supplier"><%--Supplier.get(i).getSupplierID() +
+                        Supplier.get(i).getSupplierName()--%></option>
+                    <%-- 
+                        }
+                    --%>
+            </select>
+        </div>
     <center><h2>Encoding Purchase Order</h2></center>
-        <form method="POST" action="PurchaseOrderServlet">
-            <div align="center">
-                <table class="tableContainer" width="80%">
-                    <thead class="fixedHeader"><tr>
-                            <th></th>
-                        <th>PO #</th>
+    <form method="POST" action="PurchaseOrderServlet">
+        <div align="center">
+            <table class="tableContainer" width="80%">
+                <thead class="fixedHeader"><tr>   
                         <th>Item Description</th>
+
+                        <th>Type</th>
                         <th>Quantity</th>
                         <th>Unit Measurement</th> 
                         <th>Unit Price</th> 
                         <th>Vat</th> 
                         <th>Prepared By</th> 
                         <th>Approved By</th> 
-                        </tr></thead>
-                    <tbody id="dataTable" class="scrollContent"><tr>
-                            <td><input type="checkbox" name="chk"/></td>
-                        <td><input type="text" name="poNumber" size="3"/></td>
-                        <td><input type="text" name="itemDescription" size="10"/></td>
+                        <th>Delivery Schedule </th>
+                    </tr></thead>
+                <tbody id="dataTable" class="scrollContent"><tr>
+
+                        <td><input type="checkbox" name="chk"/></td>
+ <!--if that, selected itemDescription, itemDescription  -- for the next row -->
+
+                        <td>  
+                            <select name="itemDescription" style="width:90px">
+
+                                <%-- for (int i=0; i>Supplier.size();i++) {                      
+                              if (getSelected == Supplier.get(i).getSuppplierID)
+                                --%>
+                                <option value="Supplier"><%--Supplier.get(i).getSupplierItem() +
+                                         Supplier.get(i).getSupplierItem()--%></option>
+                                    <%-- 
+                                     }
+                                    --%>
+                            </select>
+                        </td> 
+                        
+                        <td>
+                            <select name="Type">  
+                                <option value="Accessories">Accessories</option>
+                                <option value="Accessories">Fabric</option>
+                            </select>
+                        </td>  
+
                         <td><input type="text" name="qty" size="10"/></td>
                         <td> <select name ="unitMeasurement">
-                                    <option value="Kg">Kilogram</option>
-                                    <option value="Yd">Yard</option>
-                                    <option value="centimeter">Centimeter</option>
-                                    <option value="box">box</option>
-                                    <option value="pcs">Pcs</option>
-                             </select></td>
+                                <option value="Kg">Kilogram</option>
+                                <option value="Yd">Yard</option>
+                                <option value="centimeter">Centimeter</option>
+                                <option value="box">box</option>
+                                <option value="pcs">Pcs</option>
+                            </select></td>
+
                         <td><input type="text" name="UnitPrice" size="10"/></td>
                         <td><input type="text" name="vat" size="10"/></td>
                         <td><input type="text" name="preparedBy" size="10"/></td>
                         <td><input type="text" name="approvedBy" size="10"/></td>
-                        </tr></tbody>
-                </table>
-                
-                <br/><br/>
-                <input type="button" class="btn btn-danger" value="Add Row" onclick="addRow('dataTable')" />
-                <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
-                <br/><br/>
-             <input type="submit" class="btn btn-danger" value="OK"/> 
-                <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
-            </div>
-        </form>
-         <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-        
-    </body>
+                        <td><input type="text" name="DeliverySchedule" size="10"/></td>
+                    </tr></tbody>
+            </table>
 
+            <br/><br/>
+            <input type="button" class="btn btn-danger" value="Add Row" onclick="addRow('dataTable')" />
+            <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
+            <br/><br/>
+            <input type="submit" class="btn btn-danger" value="OK"/> 
+            <a href="EncodePurchaseOrder.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
+        </div>
+    </form>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>      
+</body>
 </html>
