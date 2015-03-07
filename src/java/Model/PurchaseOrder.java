@@ -189,11 +189,16 @@ public class PurchaseOrder {
     /**
      * @param deliverySchedule the deliverySchedule to set
      */
-    public void setDeliverySchedule(String date) throws ParseException{
+   
+     public void setDeliverySchedule(java.sql.Date deliverySchedule) {
+        this.deliverySchedule = deliverySchedule;
+    }
+    
+    public void setDeliverySchedule(String deliverySchedule) throws ParseException{
      DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        java.util.Date madeDate = formatter.parse(df.format(date));
-        java.sql.Date sqlreceivedDate1 = new java.sql.Date(madeDate.getTime());
-        this.dateMade = sqlreceivedDate1;
+        java.util.Date deliverySchedule1 = formatter.parse(df.format(deliverySchedule));
+        java.sql.Date sqlreceivedDate1 = new java.sql.Date(deliverySchedule1.getTime());
+        this.deliverySchedule = sqlreceivedDate1;
     }
 
     /**
