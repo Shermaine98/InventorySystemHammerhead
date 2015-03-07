@@ -13,10 +13,6 @@
         <servlet-class>controller.deliveryScheduleServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DeliveryReceiptServlet</servlet-name>
-        <servlet-class>controller.DeliveryReceiptServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ConsumptionReportServlet</servlet-name>
         <servlet-class>controller.ConsumptionReportServlet</servlet-class>
     </servlet>
@@ -93,8 +89,8 @@
         <servlet-class>controller.ViewInventoryReportServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ViewDeliveryReceiptServlet</servlet-name>
-        <servlet-class>controller.ViewDeliveryReceiptServlet</servlet-class>
+        <servlet-name>ViewSupplierDeliveryReceiptServlet</servlet-name>
+        <servlet-class>controller.ViewSupplierDeliveryReceiptServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewProductionInventoryServlet</servlet-name>
@@ -144,6 +140,10 @@
         <servlet-name>EncodePickingForm</servlet-name>
         <servlet-class>controller.EncodePickingForm</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SupplierDeliveryReceiptServlet</servlet-name>
+        <servlet-class>controller.SupplierDeliveryReceiptServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
         <url-pattern>/BaseServlet</url-pattern>
@@ -155,10 +155,6 @@
     <servlet-mapping>
         <servlet-name>deliveryScheduleServlet</servlet-name>
         <url-pattern>/deliveryScheduleServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DeliveryReceiptServlet</servlet-name>
-        <url-pattern>/DeliveryReceiptServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ConsumptionReportServlet</servlet-name>
@@ -237,10 +233,6 @@
         <url-pattern>/ViewInventoryReportServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ViewDeliveryReceiptServlet</servlet-name>
-        <url-pattern>/ViewDeliveryReceiptServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ViewProductionInventoryServlet</servlet-name>
         <url-pattern>/ViewProductionInventoryServlet</url-pattern>
     </servlet-mapping>
@@ -287,6 +279,14 @@
     <servlet-mapping>
         <servlet-name>EncodePickingForm</servlet-name>
         <url-pattern>/EncodePickingForm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SupplierDeliveryReceiptServlet</servlet-name>
+        <url-pattern>/SupplierDeliveryReceiptServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewSupplierDeliveryReceiptServlet</servlet-name>
+        <url-pattern>/ViewSupplierDeliveryReceiptServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

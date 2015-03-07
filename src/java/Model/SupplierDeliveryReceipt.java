@@ -18,7 +18,7 @@ public class SupplierDeliveryReceipt {
     private int poNumber;
     private String itemDescription;
     private int checkedBy;
-    private int approvedBy;
+    private int receivedBy;
     private String status;
     private int qty;
     private java.sql.Date receivedDate;
@@ -70,15 +70,15 @@ public class SupplierDeliveryReceipt {
     /**
      * @return the approvedBy
      */
-    public int getApprovedBy() {
-        return approvedBy;
+    public int getreceivedBy() {
+        return receivedBy;
     }
 
     /**
-     * @param approvedBy the approvedBy to set
+     * @param receivedBy the approvedBy to set
      */
-    public void setApprovedBy(int approvedBy) {
-        this.approvedBy = approvedBy;
+    public void setreceivedBy(int receivedBy) {
+        this.receivedBy = receivedBy;
     }
 
     /**

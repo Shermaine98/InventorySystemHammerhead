@@ -4,7 +4,7 @@
     Author     : Shermaine
 --%>
 
-<%@page import="Model.DeliveryReceipt"%>
+<%@page import="Model.SupplierDeliveryReceipt"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="navigationBar.jsp" />
@@ -27,26 +27,35 @@
     <form method="POST" action="ConsumptionReportServlet">
         <div align="center">
             <table id="dataTable" class="table table-hover" style= "width:800px">
-                <tr>
+            
                      <tr>
                         <th>Delivery Receipt Number</th>
                         <th>Production Number</th>
-                        <th>Checked By</th>
-                        <th>received By</th> 
-
+                        <th>Item Description</th>
+                        <th>Received Date</th>
+                        <th>Checked by</th>
+                        <th>received By</th>
+                        <th>Status</th>
+                        <th>Quantity</th>
+                        <th>Comment</th>
                     </tr>
                
                 <%
-                    ArrayList<DeliveryReceipt> DeliveryReceipt = (ArrayList<DeliveryReceipt>) session.getAttribute("drList");
-                    for (int i = 0; i < DeliveryReceipt.size(); i++) {
+                    ArrayList<SupplierDeliveryReceipt> SDeliveryReceipt = (ArrayList<SupplierDeliveryReceipt>) session.getAttribute("drList");
+                    for (int i = 0; i < SDeliveryReceipt.size(); i++) {
                 %>
                 <tr>
                     <td><input type="checkbox" name="chk"/></td> 
  
-                    <td><%= DeliveryReceipt.get(i).getDeliveryReceiptNumber()%></td>
-                    <td><%= DeliveryReceipt.get(i).getPoNumber()%></td>
-                    <td><%= DeliveryReceipt.get(i).getCheckedBy()%></td>
-                    <td><%= DeliveryReceipt.get(i).getReceivedDate()%></td>                             
+                    <td><%= SDeliveryReceipt.get(i).getDeliveryReceiptNumber()%></td>
+                    <td><%= SDeliveryReceipt.get(i).getPoNumber()%></td>
+                    <td><%= SDeliveryReceipt.get(i).getItemDescription()%></td>
+                    <td><%= SDeliveryReceipt.get(i).getReceivedDate()%></td>
+                    <td><%= SDeliveryReceipt.get(i).getCheckedBy()%></td>
+                    <td><%= SDeliveryReceipt.get(i).getreceivedBy()%></td> 
+                    <td><%= SDeliveryReceipt.get(i).getStatus()%></td>
+                    <td><%= SDeliveryReceipt.get(i).getQty()%></td>
+                    <td><%= SDeliveryReceipt.get(i).getComment()%></td>
                 </tr>        
                 <%
                     }

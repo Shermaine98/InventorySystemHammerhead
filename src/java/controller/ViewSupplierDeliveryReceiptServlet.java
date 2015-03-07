@@ -5,8 +5,8 @@
  */
 package controller;
 
-import Dao.DeliveryReceiptDAO;
-import Model.DeliveryReceipt;
+import Dao.SupplierDeliveryReceiptDAO;
+import Model.SupplierDeliveryReceipt;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -20,16 +20,16 @@ import javax.servlet.http.HttpSession;
  *
  * @author gcla109
  */
-public class ViewDeliveryReceiptServlet extends BaseServlet {
+public class ViewSupplierDeliveryReceiptServlet extends BaseServlet {
 
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            DeliveryReceiptDAO DRDAO = new DeliveryReceiptDAO();
-            ArrayList<DeliveryReceipt> drList = DRDAO.GetDeliveryReceiptList();
+            SupplierDeliveryReceiptDAO DRDAO = new SupplierDeliveryReceiptDAO();
+            ArrayList<SupplierDeliveryReceipt> drList = DRDAO.GetDeliveryReceiptList();
             
             ServletContext context = getServletContext();
             HttpSession session = request.getSession();
-            RequestDispatcher rd = context.getRequestDispatcher("/GetDeliveryReceipt.jsp");
+            RequestDispatcher rd = context.getRequestDispatcher("/GetSupplierDeliveryReceipt.jsp");
             session.setAttribute("drList", drList);
             rd.forward(request, response);         
           

@@ -1,8 +1,10 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Dao;
 
-
-import Model.SupplierDeliveryReceipt;
 import db.DBConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Model.SupplierDeliveryReceipt;
 
 /**
  *
@@ -20,29 +23,25 @@ import java.util.logging.Logger;
  * @author Nunez
  *
  */
-
 public class SupplierDeliveryReceiptDAO {
 
-
-    public boolean EncodeSupplierDeliveryReceipt(SupplierDeliveryReceipt newSupplierDeliveryReceipt) {
+    public boolean EncodeDeliveryReceipt(SupplierDeliveryReceipt newSupplierDeliveryReceipt) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             String query = "insert into supplier_delivery_receipt"
-                    + "(drNumber,poNumber,itemDescription,dateReceived,checkedBy,receivedBy,status,qty,comment) "
-                    + "values (?,?,?,?,?,?,?,?,?)";
+                    + "(poNumber,itemDescription,dateReceived,checkedBy,receivedBy,status,qty,comment) values (?,?,?,?,?,?,?,?) ";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
-            pstmt.setInt(1, newSupplierDeliveryReceipt.getDeliveryReceiptNumber());
-            pstmt.setInt(2, newSupplierDeliveryReceipt.getPoNumber());
-            pstmt.setString(3, newSupplierDeliveryReceipt.getItemDescription());
-            pstmt.setDate(4, newSupplierDeliveryReceipt.getReceivedDate());
-            pstmt.setInt(5, newSupplierDeliveryReceipt.getCheckedBy());
-            pstmt.setInt(6, newSupplierDeliveryReceipt.getApprovedBy());
-            pstmt.setString(4, newSupplierDeliveryReceipt.getStatus());
-            pstmt.setInt(5, newSupplierDeliveryReceipt.getQty());
-            pstmt.setString(6, newSupplierDeliveryReceipt.getComment());
-            
+            pstmt.setInt(1, newSupplierDeliveryReceipt.getPoNumber());
+            pstmt.setString(2, newSupplierDeliveryReceipt.getItemDescription());
+            pstmt.setDate(3, newSupplierDeliveryReceipt.getReceivedDate());
+            pstmt.setInt(4, newSupplierDeliveryReceipt.getCheckedBy());
+            pstmt.setInt(5, newSupplierDeliveryReceipt.getreceivedBy());
+            pstmt.setString(6, newSupplierDeliveryReceipt.getStatus());
+            pstmt.setInt(7, newSupplierDeliveryReceipt.getQty());
+            pstmt.setString(8, newSupplierDeliveryReceipt.getComment());
+
             int rows = pstmt.executeUpdate();
             conn.close();
             return rows == 1;
@@ -52,41 +51,38 @@ public class SupplierDeliveryReceiptDAO {
         return false;
     }
 
-    public ArrayList<SupplierDeliveryReceipt> MonitorSupplierDeliveryReceipt() {
-        ArrayList<SupplierDeliveryReceipt> supplierDeliveryReceipt = new ArrayList<SupplierDeliveryReceipt>();
+    public ArrayList<SupplierDeliveryReceipt> GetDeliveryReceiptList() {
+
+        ArrayList<SupplierDeliveryReceipt> DeliveryReceipt = new ArrayList<SupplierDeliveryReceipt>();
 
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM supplier_delivery_receipt");
-
+            PreparedStatement pstmt = conn.prepareStatement("select * from supplier_delivery_receipt");
             ResultSet rs = pstmt.executeQuery();
+
             while (rs.next()) {
-                SupplierDeliveryReceipt newSupplierDeliveryReceipt = new SupplierDeliveryReceipt();
-                
-                newSupplierDeliveryReceipt.setDeliveryReceiptNumber(rs.getInt("doNumber"));
-                newSupplierDeliveryReceipt.setPoNumber(rs.getInt("poNumber"));
-                newSupplierDeliveryReceipt.setItemDescription(rs.getString("itemDescription"));
-                newSupplierDeliveryReceipt.setReceivedDate(rs.getDate("dateReceived"));
-                newSupplierDeliveryReceipt.setCheckedBy(rs.getInt("checkedBy"));
-                newSupplierDeliveryReceipt.setApprovedBy(rs.getInt("receivedBy"));
-                newSupplierDeliveryReceipt.setStatus(rs.getString("status"));
-                newSupplierDeliveryReceipt.setQty(rs.getInt("qty"));
-                newSupplierDeliveryReceipt.setComment(rs.getString("comment"));
-                
-                supplierDeliveryReceipt.add(newSupplierDeliveryReceipt);
 
+                SupplierDeliveryReceipt temp = new SupplierDeliveryReceipt();
+                temp.setDeliveryReceiptNumber(rs.getInt("deliveryReceiptNumber"));
+                temp.setPoNumber(rs.getInt("poNumber"));
+                temp.setPoNumber(rs.getInt("itemDescription"));
+                temp.setReceivedDate(rs.getDate("dateReceived"));
+                temp.setCheckedBy(rs.getInt("checkedBy"));
+                temp.setreceivedBy(rs.getInt("receivedBy"));
+                temp.setCheckedBy(rs.getInt("status"));
+                temp.setQty(rs.getInt("qty"));
+                temp.setCheckedBy(rs.getInt("comment"));
+
+                DeliveryReceipt.add(temp);
             }
-
             pstmt.close();
-            rs.close();
             conn.close();
 
-            return supplierDeliveryReceipt;
+            return DeliveryReceipt;
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDeliveryReceiptDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 }
-    

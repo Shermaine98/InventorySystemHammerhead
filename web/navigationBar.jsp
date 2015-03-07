@@ -32,8 +32,8 @@
                             <li><a href="/Hammerhead/ViewPurchaseOrderServlet">View Supplier Purchase Order</a></li>   
                             <li><a href="EncodePurchaseOrder.jsp">Encode Supplier Purchase Order</a></li> 
                             <li class="divider"></li>
-                            <li><a href="/Hammerhead/ViewDeliveryReceiptServlet">View Delivery Receipt</a></li>
-                            <li><a href="EncodeDeliveryReceipt.jsp">Encode Delivery Receipt</a></li>
+                            <li><a href="/Hammerhead/ViewSupplierDeliveryReceiptServlet">View Supplier Delivery Receipt</a></li>
+                            <li><a href="EncodeDeliveryReceipt.jsp">Encode Supplier Delivery Receipt</a></li>
                             <li class="divider"></li>
                             <li><a href="EncodeConsumptionReport.jsp">Encode Consumption Report</a></li>
                             <li><a href="/Hammerhead/ViewConsumptionReportServlet">View Consumption Reports</a></li>
