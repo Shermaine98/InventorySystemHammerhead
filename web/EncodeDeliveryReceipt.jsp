@@ -20,57 +20,63 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <style>
-
+         
         </style>
 
         <script>
-
-            <%                
-                ArrayList<PurchaseOrder> PurchaseOrder = (ArrayList<PurchaseOrder>) session.getAttribute("poList");
-            %>
-            var textBlocks = new Array(<%=PurchaseOrder.size()%>);
-            var i;
-              <% int i= 0; %>;
-            for (  i = 0; i < 10; i++)
-            {
-                textBlocks[i] = <%=PurchaseOrder.get(i).getPoNumber()%>;
-                <%i++;%>
+         
+         //retrieve();
+         
+         function retrieve(){
+             var selectedItem = readCookie("selectedItem");
+             var select = document.getElementById("selected");
+             select[2].selected = true;
+         }
+         
+            function selected(){
+                
+                var selected = document.getElementbyId('selected');
+                //var selectedItem = 
+                selected.options[1].selected = true;
+                //createCookie("selectedItem", selectItem);
+                return selected;
             }
-
-            function changeText(elemid) {
-                var ind = document.getElementById(elemid).selectedIndex;
-                document.getElementById("display").innerHTML = textBlocks[ind];
-            }
+            
+            window.onload = function() {
+               //when the document is finished loading, replace everything
+               //between the <a ...> </a> tags with the value of splitText
+               //document.getElementById("selected").value = retrieve();
+            } 
+            /*
+            document.getElementById("lala").innerHTML = retrieve();           
+            */
         </script>
     </head>
     <body>  
         <br/><br/><br/>
 
-        <div id="refresh" align="center" >
-
-
-            <select id="selected" onChange="changeText('selected')" > 
-                <option>choose</option>
-                <%
-                    for (int y = 0; y < PurchaseOrder.size(); y++) {
-                %>
-                <option value="<%=PurchaseOrder.get(i).getPoNumber()%>"> <%=PurchaseOrder.get(i).getPoNumber()%></option>
-                <%
-                    }
-                %> 
-            </select>
-
-        </div>
-
-    <center><h2>Encode Delivery Receipt</h2></center>
-    <div id= "center" align="center">
-        <form method="POST" action="ConsumptionReportServlet">
-            <div id="display">Select from the list to change this box</div> 
-
-            <%
-                int y = 0;
+        <div id="refresh" align="center">
+            <%            
+                       int y= -1;
+                ArrayList<PurchaseOrder> PurchaseOrder = (ArrayList<PurchaseOrder>) session.getAttribute("poList");
             %>
-
+            
+            <select name="selected" onchange="window.location.reload() "> 
+                <!--<option value="PleaseChoose"></option>-->
+                <%
+            for (int i = 0; i < PurchaseOrder.size(); i++) {
+            %>
+                <option value="<% y = i; %>"> <%=PurchaseOrder.get(i).getPoNumber()%></option>
+            <%
+                }
+            %> 
+            </select>
+            
+            
+        </div>
+    <center><h2>Encode Delivery Receipt</h2></center>
+    <form method="POST" action="ConsumptionReportServlet">
+        <div align="center">
             <table id="dataTable" class="table table-hover" style= "width:800px">
                 <tr>
                     <th class = "edits">Purchase Order</th>
@@ -94,7 +100,7 @@
                     <td><%= PurchaseOrder.get(y).getPreparedBy()%></td>
                 </tr>
             </table>
-
+            
             <table class="tableContainer" width="70%">
                 <thead class="fixedHeader">
                     <tr>
@@ -116,9 +122,8 @@
             <br/><br/>
             <input type="submit" class="btn btn-danger" value="Submit">
             <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
-
-        </form>
-    </div>
+        </div>
+    </form>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </body>

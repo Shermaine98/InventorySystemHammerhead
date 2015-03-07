@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,7 +28,6 @@ public class DeliveryReceiptServlet extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-  
         try {
 
             DeliveryReceipt deliveryReceipt = new DeliveryReceipt();
@@ -60,7 +60,7 @@ public class DeliveryReceiptServlet extends BaseServlet {
             if (x == true) {
                 out.print("Valid");
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/Dashboard.jsp");
+                RequestDispatcher rd = context.getRequestDispatcher("/");
                 HttpSession session = request.getSession();
                 session.setAttribute("arrDeliveryReceipt", arrDeliveryReceipt);
                 rd.forward(request, response);
@@ -68,7 +68,7 @@ public class DeliveryReceiptServlet extends BaseServlet {
             } else {
                 out.print("Invalid");
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/EncodeDeliveryReceipt.jsp");
+                RequestDispatcher rd = context.getRequestDispatcher("/");
                 rd.forward(request, response);
 
             }
