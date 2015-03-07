@@ -75,7 +75,7 @@ public class SubconDeliveryReceiptDAO {
                 newSubconDeliveryReceipt.setSize(rs.getString("size"));
                 newSubconDeliveryReceipt.setColor(rs.getString("color"));
                 newSubconDeliveryReceipt.setPoNumber(rs.getInt("poNumber"));
-                newSubconDeliveryReceipt.setDateRecieved();
+                newSubconDeliveryReceipt.setDateReceived(rs.getDate("dateReceived"));
                 newSubconDeliveryReceipt.setCheckedBy(rs.getInt("checkedBy"));
                 newSubconDeliveryReceipt.setReceivedBy(rs.getInt("receivedBy"));
                 newSubconDeliveryReceipt.setStatus(rs.getString("status"));

@@ -207,6 +207,10 @@ public class SubconPurchaseOrder {
         java.sql.Date sqlreceivedDate1 = new java.sql.Date(deliverySched1.getTime());
         this.deliverySchedule = sqlreceivedDate1;
     }
+    
+    public void setDeliverySchedule(java.sql.Date deliverySchedule) {
+        this.deliverySchedule = deliverySchedule;
+    }
 
     /**
      * @return the color
