@@ -20,11 +20,9 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <style>
-
         </style>
 
         <script>
-
             <%                ArrayList<PurchaseOrder> PurchaseOrder = (ArrayList<PurchaseOrder>) session.getAttribute("poList");
             %>
             var textBlocks = new Array(<%=PurchaseOrder.size()%>);
@@ -35,7 +33,6 @@
                 textBlocks[i] = <%=PurchaseOrder.get(i).getPoNumber()%>;
             <%i++;%>
             }
-
             function changeText(elemid) {
                 var ind = document.getElementById(elemid).selectedIndex;
                 document.getElementById("display").innerHTML = textBlocks[ind];
@@ -123,7 +120,6 @@
                                 // i = y;
                             }
                         }
-
                     %>
                     <tr>
                         <th>received by</th>
