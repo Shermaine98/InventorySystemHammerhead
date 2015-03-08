@@ -25,12 +25,12 @@ public class PurchaseOrderDAO {
             try {
                 DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
                 Connection conn = myFactory.getConnection();
-                String query = "insert into supplier_purchase_order(poNumber,itemDescription,supplier,qty,unitMeasurement,unitPrice,vat,dateMade,preparedBy,approvedBy,deliverySchedule) values (?,?,?,?,?,?,?,?,?,?,?) ";
+                String query = "insert into supplier_purchase_order(itemDescription,supplier,type,qty,unitMeasurement,unitPrice,vat,dateMade,preparedBy,approvedBy,deliverySchedule) values (?,?,?,?,?,?,?,?,?,?,?) ";
                 PreparedStatement pstmt = conn.prepareStatement(query);
-
-                pstmt.setInt(1, newPurchaseOrder.getPoNumber());
-                pstmt.setString(2, newPurchaseOrder.getItemDescription());
-                pstmt.setString(3, newPurchaseOrder.getSupplier());
+                
+                pstmt.setString(1, newPurchaseOrder.getItemDescription());
+                pstmt.setString(2, newPurchaseOrder.getSupplier());
+                pstmt.setString(3, newPurchaseOrder.getType());
                 pstmt.setInt(4, newPurchaseOrder.getQty());
                 pstmt.setString(5, newPurchaseOrder.getUnitMeasurement());
                 pstmt.setDouble(6, newPurchaseOrder.getUnitprice());

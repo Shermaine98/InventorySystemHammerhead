@@ -34,7 +34,6 @@ public class PurchaseOrderServlet extends BaseServlet {
             
             PurchaseOrder po = new PurchaseOrder();
       
-            po.setPoNumber(2);
             po.setItemDescription(request.getParameter("itemDescription"));
             po.setSupplier(request.getParameter("Supplier"));
             po.setType(request.getParameter("Type"));
@@ -59,14 +58,14 @@ public class PurchaseOrderServlet extends BaseServlet {
             if (poDAO.EncodePurchaseOrder(po)) {
                 out.print("Valid");
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/GetPurchaseOrder.jsp");
+                RequestDispatcher rd = context.getRequestDispatcher("/dashboard.jsp");
                 HttpSession session = request.getSession();
                 session.setAttribute("po", po);
                 rd.forward(request, response);
             } else {
                 out.print("Invalid");
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/EncodePurchaseOrder.jsp");
+                RequestDispatcher rd = context.getRequestDispatcher("/EncodeSupplierPurchaseOrder.jsp");
                 rd.forward(request, response);
 
             }

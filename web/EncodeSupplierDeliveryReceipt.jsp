@@ -89,7 +89,7 @@
                         <th class = "edits">Unit Measurement</th>
                         <th class = "edits">Unit Price</th>
                         <th class = "edits">Vat</th>
-                        <th>checkbox<th>
+                        <th>check box<th>
                         <th>Status</th>
                     </tr>
                     <%

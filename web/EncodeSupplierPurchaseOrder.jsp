@@ -109,7 +109,7 @@
                         <td>
                             <select name="Type">  
                                 <option value="Accessories">Accessories</option>
-                                <option value="Accessories">Fabric</option>
+                                <option value="Fabric">Fabric</option>
                             </select>
                         </td>  
 

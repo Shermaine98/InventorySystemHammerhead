@@ -1,4 +1,3 @@
-
 package Model;
 
 import java.text.DateFormat;
@@ -14,9 +13,8 @@ import java.util.Date;
  * @author Nunez
  *
  */
-
 public class PurchaseOrder {
-          
+
     private int PoNumber;
     private int qty;
     private String type;
@@ -29,8 +27,8 @@ public class PurchaseOrder {
     private java.sql.Date dateMade;
     private String Supplier;
     private java.sql.Date deliverySchedule;
-    
-   DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+    DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
      * @return the Numeric
@@ -150,7 +148,7 @@ public class PurchaseOrder {
     public java.sql.Date getDateMade() {
         return dateMade;
     }
-    
+
     public void setDateMade() throws ParseException {
         @SuppressWarnings("deprecation")
         java.util.Date dateMade0 = new java.util.Date();
@@ -159,6 +157,7 @@ public class PurchaseOrder {
         java.sql.Date sqlorderdate11 = new java.sql.Date(dateMade1.getTime());
         this.dateMade = sqlorderdate11;
     }
+
     /**
      * @param dateMade the dateMade to set
      */
@@ -190,17 +189,15 @@ public class PurchaseOrder {
     /**
      * @param deliverySchedule the deliverySchedule to set
      */
-   
-     public void setDeliverySchedule(java.sql.Date deliverySchedule) {
+    public void setDeliverySchedule(java.sql.Date deliverySchedule) {
         this.deliverySchedule = deliverySchedule;
     }
-    
-    public void setDeliverySchedule(String deliverySchedule) throws ParseException{
-//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//        java.util.Date deliverySchedule1 = formatter.parse(df.format(deliverySchedule));
-//        java.sql.Date sqlreceivedDate1 = new java.sql.Date(deliverySchedule1.getTime());
-//        this.deliverySchedule = sqlreceivedDate1;
-        this.deliverySchedule = java.sql.Date.valueOf(deliverySchedule);
+
+    public void setDeliverySchedule(String deliverySchedule) throws ParseException {
+        @SuppressWarnings("deprecation")
+        java.util.Date orderdate1 = formatter.parse(deliverySchedule);
+        java.sql.Date sqlorderdate11 = new java.sql.Date(orderdate1.getTime());
+        this.deliverySchedule = sqlorderdate11;
     }
 
     /**
@@ -216,7 +213,5 @@ public class PurchaseOrder {
     public void setType(String type) {
         this.type = type;
     }
-    
-  
-       
+
 }
