@@ -87,27 +87,31 @@
     <body>  
     <br/><br/><br/>
     <center><h2>Add Item</h2></center>
-        <form method="POST" action="ConsumptionReportServlet">
+        <form method="POST" action="CuttingReportServlet">
             <div align="center">
                 <table class="tableContainer" style="width:500px">
                     <thead class="fixedHeader">
                         <tr>
-                        <th>Stock Number</th>
+                        <th>Production Number</th>
                         <th>Category</th>
                         <th>Delivery Receipt Number</th>
                         <th>Cutting Master</th>
                         <th>Raw Quantity</th>
-                        <th>Final Quantity</th>
+                        <th>Calculated Quantity</th>
+                        <th>Actual Quantity</th>
+                        <th>Comment</th>
                         </tr>
                     </thead>
                     <tbody id="dataTable" class="scrollContent">
                         <tr>
-                            <td><input type="text" name="stockNumber" size="10"/></td>
+                            <td><input type="text" name="productionNumber" size="10"/></td>
                             <td><input type="text" name="category" size="16"/></td>                    
-                            <td><input type="text" name="deliveryReceiptNumber" size="16"/></td>                   
+                            <td><input type="text" name="drNumber" size="16"/></td>                   
                             <td><input type="text" name="cuttingMaster" size="16"/></td>                    
                             <td><input type="text" name="rawQty" size="16"/></td>                   
-                            <td><input type="text" name="finlaQty" size="16"/></td>
+                            <td><input type="text" name="CalculatedQty" size="16"/></td>
+                              <td><input type="text" name="actualQty" size="16"/></td>                   
+                            <td><input type="text" name="Comment" size="16"/></td>
                         </tr>
                     </tbody>
                 </table>
@@ -118,10 +122,9 @@
             </div>
         </form>
     
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="js/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
     </body>
 </html>

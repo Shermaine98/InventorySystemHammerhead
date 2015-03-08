@@ -65,7 +65,21 @@
     </head>
     <body>  
         <br/><br/><br/>
-        <!-- codes here-->
+      <%
+        
+        ArrayList<RefSupplier> RefSupplier = (ArrayList<RefSupplier>) session.getAttribute("SList");
+        %>
+        <div align="center">
+            <h1>Choose Supplier</h1>
+            <select name="Supplier" style="width:90px">
+                <% for (int i=0; i>RefSupplier.size();i++) { %>
+                <option value="Supplier"> <%=RefSupplier.get(i).getSupplierID() +
+                        RefSupplier.get(i).getCompanyName()%></option>
+                    <% 
+                        }
+                    %>
+            </select>
+        </div>
     <center><h2>Encoding Purchase Order</h2></center>
     <form method="POST" action="PurchaseOrderServlet">
         <div align="center">

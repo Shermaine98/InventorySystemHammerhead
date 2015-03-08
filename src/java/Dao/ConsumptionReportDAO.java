@@ -30,18 +30,17 @@ public class ConsumptionReportDAO {
                 DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
                 Connection conn = myFactory.getConnection();
                 String query = "insert into consumption_report"
-                        + "(productionNumber, productID, size, color, qty, "
-                        + "preparedBy, approvedBy, dateMade) values (?,?,?,?,?,?,?,?)";
+                        + "(productID, size, color, qty, "
+                        + "preparedBy, approvedBy,dateMade) values (?,?,?,?,?,?,?)";
                 PreparedStatement pstmt = conn.prepareStatement(query);
 
-                pstmt.setInt(1, newConsumptionReport.getProductionNumber());
-                pstmt.setInt(2, newConsumptionReport.getProductID());
-                pstmt.setString(3, newConsumptionReport.getSize());
-                pstmt.setString(4, newConsumptionReport.getColor());
-                pstmt.setInt(5, newConsumptionReport.getProdQty());
-                pstmt.setInt(6, newConsumptionReport.getPreparedBy());
-                pstmt.setInt(7, newConsumptionReport.getApprovedBy());
-                pstmt.setDate(8, newConsumptionReport.getdateMade());
+                pstmt.setInt(1, newConsumptionReport.getProductID());
+                pstmt.setString(2, newConsumptionReport.getSize());
+                pstmt.setString(3, newConsumptionReport.getColor());
+                pstmt.setInt(4, newConsumptionReport.getProdQty());
+                pstmt.setInt(5, newConsumptionReport.getPreparedBy());
+                pstmt.setInt(6, newConsumptionReport.getApprovedBy());
+                pstmt.setDate(7, newConsumptionReport.getdateMade());
                
                 int rows = pstmt.executeUpdate();
                 conn.close();

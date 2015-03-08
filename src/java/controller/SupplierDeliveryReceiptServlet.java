@@ -52,14 +52,14 @@ public class SupplierDeliveryReceiptServlet extends BaseServlet {
             if (SupplierDeliveryReceiptDAO.EncodeDeliveryReceipt(SupplierDeliveryReceipt)) {
                 out.print("Valid");
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/ViewSupplierDeliveryReceipt.jsp");
+                RequestDispatcher rd = context.getRequestDispatcher("/dashboard.jsp");
                 HttpSession session = request.getSession();
                 session.setAttribute("SDRreceipt", SupplierDeliveryReceipt);
                 rd.forward(request, response);
             } else {
                 out.print("Invalid");
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/EncodeSupplierPurchaseOrder.jsp");
+                RequestDispatcher rd = context.getRequestDispatcher("/EncodeSupplierDeliveryReceipt.jsp");
                 rd.forward(request, response);
 
             }

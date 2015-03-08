@@ -28,20 +28,21 @@ public class CuttingReportServlet extends BaseServlet {
         PrintWriter out = response.getWriter();
         try {
             CuttingReport cuttingReport = new CuttingReport();
-            
+           
+            cuttingReport.setProductionNumber(Integer.parseInt(request.getParameter("productionNumber"))); 
             cuttingReport.setCategory(request.getParameter("category")); 
             cuttingReport.setDrNumber(Integer.parseInt(request.getParameter("drNumber")));
             cuttingReport.setCuttingMaster(Integer.parseInt(request.getParameter("cuttingMaster")));
             cuttingReport.setRawQty(Integer.parseInt(request.getParameter("rawQty")));
-            cuttingReport.setCalculatedQty(Integer.parseInt(request.getParameter("calculatedQty")));
+            cuttingReport.setCalculatedQty(Integer.parseInt(request.getParameter("CalculatedQty")));
             cuttingReport.setActualQty(Integer.parseInt(request.getParameter("actualQty")));
-            cuttingReport.setComment(request.getParameter("comment"));
+            cuttingReport.setComment(request.getParameter("Comment"));
             
             CuttingReportDAO cuttingReportDAO = new CuttingReportDAO();
             if (cuttingReportDAO.EncodeCuttingReport(cuttingReport)) {
                 out.print("Valid");
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/ViewCuttingReport.jsp");
+                RequestDispatcher rd = context.getRequestDispatcher("/dashboard.jsp");
                 HttpSession session = request.getSession();
                 session.setAttribute("cuttingReport", cuttingReport);
                 rd.forward(request, response);

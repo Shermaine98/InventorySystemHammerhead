@@ -43,13 +43,14 @@ public class AccessoriesInventoryServlet extends BaseServlet {
             accessoriesInventory.setDeliveryReceiptNumber(Integer.parseInt(request.getParameter("deliveryReceiptNumber")));
             accessoriesInventory.setQty(Integer.parseInt(request.getParameter("qty")));
             accessoriesInventory.setUnitMeasurement(request.getParameter("unitMeasurement"));
+            accessoriesInventory.setApproval(Boolean.parseBoolean(request.getParameter("approval")));
             
             AccessoriesInventoryDAO AIDAO = new AccessoriesInventoryDAO();
             
             if (AIDAO.EncodeAccessoriesInventory(accessoriesInventory)) {
                 out.print("Valid");
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/GetAccessoriesInventory.jsp");
+                RequestDispatcher rd = context.getRequestDispatcher("/dashboard.jsp");
                 HttpSession session = request.getSession();
                 session.setAttribute("accessoriesInventory", accessoriesInventory);
                 rd.forward(request, response);

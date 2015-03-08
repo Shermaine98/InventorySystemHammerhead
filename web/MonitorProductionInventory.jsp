@@ -1,10 +1,12 @@
 <%-- 
-    Document   : MonitorProductionInventory
-    Created on : 02 20, 15, 11:47:33 AM
+    Document   : AccessoriesInventory
+    Created on : 02 20, 15, 11:46:23 AM
     Author     : Shermaine
 --%>
 
-<%@page import="Dao.CuttingReportDAO"%>
+<%@page import="Model.SupplierDeliveryReceipt"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Dao.SupplierDeliveryReceiptDAO"%>
 <%@page import="Dao.ConsumptionReportDAO"%>
 <%@page import="Dao.PromoDAO"%>
 <%@page import="Model.Promo"%>
@@ -17,82 +19,90 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Monitor Production Inventory</title>
-        <!-- Bootstrap -->
+
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/TABLE.css" rel="stylesheet">
+        <style>
+        </style>
+        <script>
+        </script>
     </head>
     <body>  
-    <br/><br/><br/>
-    <center><h2>Production Inventory</h2></center>
-        <form method="POST" action="ProductionInventoryServlet">
-            <div align="center">
-                <table class="tableContainer" width="80%">
-                    <thead class="fixedHeader"><tr>
-                            <th></th>
-                        <th>Quantity</th>
-                        <th>Unit Measurement</th>     
-                        <th>Delivery Receipt Number</th> 
-                        <th>Stock Number</th> 
+        <br/><br/><br/>
+    <center><h2>Updating Accessories Inventory</h2></center>
+
+    <%
+        ArrayList<SupplierDeliveryReceipt> SupplierDeliveryReceipt = (ArrayList<SupplierDeliveryReceipt>) session.getAttribute("SdrList");
+    %>
+
+    <div align="center">
+        <h1>Delivery Receipt Number</h1>
+
+        <select name="SupplierDeliveryReceipt" style="width:90px">
+            <%-- for (int i=0;i>SupplierDeliveryReceipt.size();i++){ --%>
+            <option value="Accessories">ll</option>
+            <%-- 
+               }  
+            --%>
+        </select>
+
+    </div>
+    <form method="POST" action="ProductionInventoryServlet">
+        <div align="center">
+            <table class="tableContainer" width="80%">
+                <thead class="fixedHeader"><tr>  
+                        <th>Production Number</th>
+                         <th>drNumber</th> 
                         <th>Category</th> 
-                        </tr></thead>
-                    <tbody id="dataTable" class="scrollContent"><tr>
+                        <th>Quantity</th>
+                        <th>Unit Measurement</th>
+
+                        <!-- Temporary -->
+                        <th>Approval</th> 
+                        <th>Note</th> 
+
+                        <!-- Temporary -->
+                    </tr></thead>
+                <tbody id="dataTable" class="scrollContent"><tr>
                         <td><input type="checkbox" name="chk"/></td>
+                    <td><input type="text" name="productionNumber" size="18"/></td>
+                    <td><input type="text" name="deliveryReceiptNumber" size="18"/></td>
+                        <td><select name="category">  
+                                <option value="Tshirt">T-shirt</option>
+                                <option value="Pants">Pants</option>
+                            </select>
+                        </td>
+
+                 
                         
-                        <td><input type="text" name="qty" size="10"/></td>
+                            <%-- 
+                                    for( int i=0; i<DeliveryReceiptNumber.size();i++){
+                                        may if statements pa
+                        }
+                            --%>
+                        <td><input type="text" name="qty" size="4"/></td>
+
                         <td> <select name ="unitMeasurement">
-                                    <option value="kg">Kilogram</option>
-                                    <option value="meter">meter</option>
-                             </select></td>
-                        
-                        <td><select name="deliveryReceiptNumber" style="width:90px">
-                                <%  DeliveryReceiptDAO DeliveryReceiptDAO = new DeliveryReceiptDAO();
-                                    for (int i = 0; i < DeliveryReceiptDAO.GetDeliveryReceiptList().size(); i++) {
-                                %>
-                                <option value="<%=DeliveryReceiptDAO.GetDeliveryReceiptList().get(i).getDeliveryReceiptNumber()%>">
-                                    <%= DeliveryReceiptDAO.GetDeliveryReceiptList().get(i).getDeliveryReceiptNumber()%></option>
-                                    <%
-                                        }
-                                    %>
-                            </select>
-                        </td> 
-                        <td><select name="stockNumber" style="width:90px">
-                                <%  CuttingReportDAO CuttingReportDAO = new CuttingReportDAO();
-                                    for (int i = 0; i < CuttingReportDAO.GetCuttingReportList().size(); i++) {
-                                %>
-                                <option value="<%=CuttingReportDAO.GetCuttingReportList().get(i).getStockNumber()%>">
-                                    <%= CuttingReportDAO.GetCuttingReportList().get(i).getStockNumber()%></option>
-                                    <%
-                                        }
-                                    %>
-                            </select>
-                        </td> 
-                        <td><select name="category">
-                                <%  
-                                    for (int i = 0; i < CuttingReportDAO.GetCuttingReportList().size(); i++) {
-                                %>
-                                <option value="<%=CuttingReportDAO.GetCuttingReportList().get(i).getCategory()%>">
-                                    <%= CuttingReportDAO.GetCuttingReportList().get(i).getCategory()%></option>
-                                    <%
-                                        }
-                                    %>
-                            </select>
-                        </td> 
-                        </tr></tbody>
-                </table>
-                
-                <br/><br/>
-                <input type="button" class="btn btn-danger" value="Add Row" onclick="addRow('dataTable')" />
-                <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
-                <br/><br/>
-             <input type="submit" class="btn btn-danger" value="OK"/> 
-             <a href="updateProductionInventory.jsp"><button type="button" class="btn btn-danger">Update Production Inventory</button></a>
-                <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
-            </div>
-        </form>
-          <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-        
-    </body>
+                                <option value="kg">Kilogram</option>
+                                <option value="meter">meter</option>
+                            </select></td>
+
+                        <td><input type="text" name="approval" size="4"/></td>
+                         <td><input type="text" name="note" size="4"/></td>
+                    </tr></tbody>
+            </table>
+
+            <br/><br/>
+            <input type="button" class="btn btn-danger" value="Add Row" onclick="addRow('dataTable')" />
+            <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
+            <br/><br/>
+            <input type="submit" class="btn btn-danger" value="OK"/> 
+            <a href="updateAccessoriesInventory.jsp"><button type="button" class="btn btn-danger">Update Accessories Inventory</button></a>
+            <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
+        </div>
+    </form>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
 
 </html>

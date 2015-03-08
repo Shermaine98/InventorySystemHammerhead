@@ -92,7 +92,9 @@
                 <table class="tableContainer" width="70%">
                     <thead class="fixedHeader">
                         <tr>
-                        <th>Production Number</th>
+                        <th> Product ID </th>
+                        <th>Color </th>
+                        <th>Size</th>
                         <th>Production Quantity</th>
                         <th>Prepared By</th>
                         <th>Approved By</th> 
@@ -101,7 +103,25 @@
                     </thead>
                     <tbody id="dataTable" class="scrollContent">
                         <tr>
-                            <td><input type="text" name="productionNumber" size="10"/></td>
+                            <td><input type="text" name="productID" size="10"/></td>
+                            <td><input type="text" name="color" size="10"/></td>
+                            <td> <select name ="size">
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="29">31</option>
+                                <option value="30">32</option>
+                                <option value="29">33</option>
+                                <option value="30">34</option>
+                                <option value="29">36</option>
+                                <option value="30">38</option>
+                                <option value="L">L</option>
+                                <option value="M">M</option>
+                                <option value="S">S</option>
+                                <option value="M">XXXL</option>
+                                <option value="M">XL</option>
+                                <option value="S">XS</option>
+                            </select></td>
+                           
                             <td><input type="text" name="productionQty" size="16"/></td>                    
                             <td><input type="text" name="preparedBy" size="16"/></td>                   
                             <td><input type="text" name="approvedBy" size="16"/></td>
@@ -120,6 +140,5 @@
         <script src="js/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
     </body>
 </html>

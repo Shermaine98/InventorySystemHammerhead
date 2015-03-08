@@ -26,7 +26,7 @@ public class AccessoriesInventoryDAO {
                 DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
                 Connection conn = myFactory.getConnection();
                 String query = "insert into accessories_inventory"
-                        + "(category,accessoryDescrption,deliveryReceiptNumber,dateUpdated,qty,unitMeasurement,approval,note) "
+                        + "(category,accessoryDescription,drNumber,dateUpdated,qty,unitMeasurement,approval,note) "
                         + "values (?,?,?,?,?,?,?,?) ";
                 PreparedStatement pstmt = conn.prepareStatement(query);
 

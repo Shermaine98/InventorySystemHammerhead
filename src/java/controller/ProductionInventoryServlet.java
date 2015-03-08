@@ -40,10 +40,10 @@ public class ProductionInventoryServlet extends BaseServlet {
         }
             productionInventory.setProductionNumber(Integer.parseInt(request.getParameter("productionNumber")));
             productionInventory.setCategory(request.getParameter("category"));
-            productionInventory.setDrNumber(Integer.parseInt(request.getParameter("DeliveryReceiptNumber")));
+            productionInventory.setDrNumber(Integer.parseInt(request.getParameter("deliveryReceiptNumber")));
             productionInventory.setQty(Integer.parseInt(request.getParameter("qty")));
             productionInventory.setUnitMeasurement(request.getParameter("unitMeasurement"));
-            productionInventory.setApproval(Boolean.parseBoolean(request.getParameter("Approval")));
+            productionInventory.setApproval(Boolean.parseBoolean(request.getParameter("approval")));
             productionInventory.setNote(request.getParameter("note"));
            
             
@@ -52,7 +52,7 @@ public class ProductionInventoryServlet extends BaseServlet {
             if (PIDAO.EncodeProductionInventory(productionInventory)) {
                 out.print("Valid");
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/GetProductionInventory.jsp");
+                RequestDispatcher rd = context.getRequestDispatcher("/dashboard.jsp");
                 HttpSession session = request.getSession();
                 session.setAttribute("productionInventory", productionInventory);
                 rd.forward(request, response);

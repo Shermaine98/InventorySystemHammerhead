@@ -98,11 +98,11 @@
                     %>
 
                     <tr>
-                        <td><input name="itemDescription" value="<%= PurchaseOrder.get(y).getItemDescription()%>"/></td>
-                        <td><%= PurchaseOrder.get(y).getQty()%></td>
-                        <td><%= PurchaseOrder.get(y).getUnitMeasurement()%></td>
-                        <td><%= PurchaseOrder.get(y).getUnitprice()%></td>
-                        <td><%= PurchaseOrder.get(y).getVat()%></td>
+                        <td><input name="itemDescription" value="<%= PurchaseOrder.get(1).getItemDescription()%>"/></td>
+                        <td><%= PurchaseOrder.get(1).getQty()%></td>
+                        <td><%= PurchaseOrder.get(1).getUnitMeasurement()%></td>
+                        <td><%= PurchaseOrder.get(1).getUnitprice()%></td>
+                        <td><%= PurchaseOrder.get(1).getVat()%></td>
                         <td><input type="checkbox" name="chk"/></td>
                         <td> 
                         <select name="status">

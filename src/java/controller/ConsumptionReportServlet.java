@@ -10,6 +10,9 @@ import Model.ConsumptionReport;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -31,17 +34,23 @@ public class ConsumptionReportServlet extends BaseServlet {
         try {
             
             ConsumptionReport consumptionReport = new ConsumptionReport();
-            consumptionReport.setProductionNumber(Integer.parseInt(request.getParameter("productionNumber")));
+            consumptionReport.setProductID(Integer.parseInt(request.getParameter("productID")));
+            consumptionReport.setSize(request.getParameter("size"));
+            consumptionReport.setColor(request.getParameter("color"));
             consumptionReport.setProdQty(Integer.parseInt(request.getParameter("productionQty")));
             consumptionReport.setPreparedBy(Integer.parseInt(request.getParameter("preparedBy")));
             consumptionReport.setApprovedBy(Integer.parseInt(request.getParameter("approvedBy")));
-            consumptionReport.setdateMade(Date.valueOf(request.getParameter("dateMade")));
+            try {
+                consumptionReport.setDateMade();
+            } catch (ParseException ex) {
+                Logger.getLogger(ConsumptionReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             ConsumptionReportDAO consumptionReportDAO = new ConsumptionReportDAO();
             if (consumptionReportDAO.EncodeConsumptionReport(consumptionReport)) {
                 out.print("Valid");
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/ViewConsumptionReports.jsp");
+                RequestDispatcher rd = context.getRequestDispatcher("/dashboard.jsp");
                 HttpSession session = request.getSession();
                 session.setAttribute("consumptionReport", consumptionReport);
                 rd.forward(request, response);
