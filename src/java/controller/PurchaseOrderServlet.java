@@ -34,6 +34,7 @@ public class PurchaseOrderServlet extends BaseServlet {
             
             PurchaseOrder po = new PurchaseOrder();
       
+            po.setPoNumber(2);
             po.setItemDescription(request.getParameter("itemDescription"));
             po.setSupplier(request.getParameter("Supplier"));
             po.setType(request.getParameter("Type"));

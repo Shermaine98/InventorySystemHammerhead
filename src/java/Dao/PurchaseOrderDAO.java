@@ -28,8 +28,6 @@ public class PurchaseOrderDAO {
                 String query = "insert into supplier_purchase_order(poNumber,itemDescription,supplier,qty,unitMeasurement,unitPrice,vat,dateMade,preparedBy,approvedBy,deliverySchedule) values (?,?,?,?,?,?,?,?,?,?,?) ";
                 PreparedStatement pstmt = conn.prepareStatement(query);
 
-                
-                
                 pstmt.setInt(1, newPurchaseOrder.getPoNumber());
                 pstmt.setString(2, newPurchaseOrder.getItemDescription());
                 pstmt.setString(3, newPurchaseOrder.getSupplier());

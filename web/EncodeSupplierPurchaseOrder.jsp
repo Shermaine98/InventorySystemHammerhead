@@ -71,6 +71,7 @@
         <div align="center">
             <table class="tableContainer" width="80%">
                 <thead class="fixedHeader"><tr>   
+                        <th></th>
                         <th>Item Description</th>
                         <th>Supplier</th>
                         <th>Type</th>
