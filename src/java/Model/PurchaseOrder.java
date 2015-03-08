@@ -4,6 +4,7 @@ package Model;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -195,7 +196,7 @@ public class PurchaseOrder {
     }
     
     public void setDeliverySchedule(String deliverySchedule) throws ParseException{
-     DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date deliverySchedule1 = formatter.parse(df.format(deliverySchedule));
         java.sql.Date sqlreceivedDate1 = new java.sql.Date(deliverySchedule1.getTime());
         this.deliverySchedule = sqlreceivedDate1;

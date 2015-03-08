@@ -156,6 +156,10 @@
         <servlet-name>ViewSupplierServlet</servlet-name>
         <servlet-class>controller.ViewSupplierServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SupplierServlet</servlet-name>
+        <servlet-class>controller.SupplierServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
         <url-pattern>/BaseServlet</url-pattern>
@@ -311,6 +315,10 @@
     <servlet-mapping>
         <servlet-name>ViewSupplierServlet</servlet-name>
         <url-pattern>/ViewSupplierServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SupplierServlet</servlet-name>
+        <url-pattern>/SupplierServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -4,9 +4,9 @@
     Author     : Shermaine
 --%>
 
-<%@page import="Model.DeliveryReceipt"%>
+<%@page import="Model.SupplierDeliveryReceipt"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Dao.DeliveryReceiptDAO"%>
+<%@page import="Dao.SupplierDeliveryReceiptDAO"%>
 <%@page import="Dao.ConsumptionReportDAO"%>
 <%@page import="Dao.PromoDAO"%>
 <%@page import="Model.Promo"%>
@@ -32,14 +32,14 @@
     <center><h2>Updating Accessories Inventory</h2></center>
     
       <%               
-          ArrayList<DeliveryReceipt> DeliveryReceipt = (ArrayList<DeliveryReceipt>) session.getAttribute("drList");
+          ArrayList<SupplierDeliveryReceipt> SupplierDeliveryReceipt = (ArrayList<SupplierDeliveryReceipt>) session.getAttribute("SdrList");
        %>
        
        <div>
            <h1>Delivery Receipt Number</h1>
           
-          <select name="deliveryReceiptNumber" style="width:90px">
-               <%-- for (int i=0;i>DeliveryReceipt.size();i++){ --%>
+          <select name="SupplierDeliveryReceipt" style="width:90px">
+               <%-- for (int i=0;i>SupplierDeliveryReceipt.size();i++){ --%>
                     <option value="Accessories">ll</option>
                <%-- 
                   }  

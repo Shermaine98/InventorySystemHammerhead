@@ -4,6 +4,8 @@
     Author     : Shermaine
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.RefSupplier"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="navigationBar.jsp" />
 <%@include file="security.jsp" %>
@@ -63,28 +65,14 @@
     </head>
     <body>  
         <br/><br/><br/>
-        <%--
-        
-            ArrayList <Supplier> Supplier = new ArrayList<Supplier> get.session("Slist");
-        --%>
-        <div>
-            <h1>Supplier</h1>
-            <select name="Supplier" style="width:90px">
-                <%-- for (int i=0; i>Supplier.size();i++) { --%>
-                <option value="Supplier"><%--Supplier.get(i).getSupplierID() +
-                        Supplier.get(i).getSupplierName()--%></option>
-                    <%-- 
-                        }
-                    --%>
-            </select>
-        </div>
+        <!-- codes here-->
     <center><h2>Encoding Purchase Order</h2></center>
     <form method="POST" action="PurchaseOrderServlet">
         <div align="center">
             <table class="tableContainer" width="80%">
                 <thead class="fixedHeader"><tr>   
                         <th>Item Description</th>
-
+                        <th>Supplier</th>
                         <th>Type</th>
                         <th>Quantity</th>
                         <th>Unit Measurement</th> 
@@ -100,6 +88,10 @@
          <!--if that, selected itemDescription, itemDescription  -- for the next row -->
 
                         <td>  
+                            
+                         <input type="text" name="itemDescription" size="10"/>  </td> 
+                        <td><input type="text" name="Supplier" size="10"/></td>
+                          <!--
                             <select name="itemDescription" style="width:90px">
 
                                 <%-- for (int i=0; i>Supplier.size();i++) {                      
@@ -110,8 +102,8 @@
                                     <%-- 
                                      }
                                     --%>
-                            </select>
-                        </td> 
+                            </select> -->
+                      
                         
                         <td>
                             <select name="Type">  
