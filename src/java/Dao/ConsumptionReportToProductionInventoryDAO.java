@@ -64,7 +64,7 @@ public class ConsumptionReportToProductionInventoryDAO {
 
                 while (rs.next()) {
                     ConsumptionReportToProductionInventory temp = new ConsumptionReportToProductionInventory();
-                    temp.setProductionNumber(rs.getInt("deliveryReceiptNumber"));
+                    temp.setProductionNumber(rs.getInt("productionNumber"));
                     temp.setCategory(rs.getString("category"));
                     temp.setDrNumber(rs.getInt("drNumber"));
                     temp.setProductID(rs.getInt("productID"));

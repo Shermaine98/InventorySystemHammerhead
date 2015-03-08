@@ -66,7 +66,7 @@ public class SupplierDeliveryReceiptDAO {
                 SupplierDeliveryReceipt temp = new SupplierDeliveryReceipt();
                 temp.setDeliveryReceiptNumber(rs.getInt("drNumber"));
                 temp.setPoNumber(rs.getInt("poNumber"));
-                temp.setItemDescription("itemDescription");
+                temp.setItemDescription(rs.getString("itemDescription"));
                 temp.setReceivedDate(rs.getDate("dateReceived"));
                 temp.setCheckedBy(rs.getInt("checkedBy"));
                 temp.setreceivedBy(rs.getInt("receivedBy"));

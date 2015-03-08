@@ -93,20 +93,31 @@
                 <table class="tableContainer" style="width:500px">
                     <thead class="fixedHeader">
                         <tr>
+                        
                         <th>Production Number</th>
                         <th>Category</th>
+                        <th>Delivery Receipt</th>
                         <th>Accessory Description</th>
+                        <th>Product ID</th>
+                        <th>Size</th>
+                        <th>Color</th>
                         <th>Consumption</th>
                         <th>Unit</th>
+                        <th>Production Qty</th>
                         </tr>
                     </thead>
                     <tbody id="dataTable" class="scrollContent">
                         <tr>
                             <td><input type="text" name="productionNumber" size="10"/></td>
-                            <td><input type="text" name="category" size="16"/></td>                    
-                            <td><input type="text" name="accessoryDescription" size="16"/></td>                   
+                            <td><input type="text" name="category" size="16"/></td>       
+                            <td><input type="text" name="drNumber" size="10"/></td>
+                            <td><input type="text" name="accessoryDescription" size="16"/></td>
+                            <td><input type="text" name="productID" size="10"/></td>                   
+                            <td><input type="text" name="Size" size="10"/></td>
+                            <td><input type="text" name="Color" size="10"/></td> 
                             <td><input type="text" name="consumption" size="16"/></td>                   
                             <td><input type="text" name="unit" size="16"/></td>
+                            <td><input type="text" name="ProductionQty" size="10"/></td> 
                         </tr>
                     </tbody>
                 </table>
@@ -119,8 +130,6 @@
     
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="js/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
     </body>
 </html>

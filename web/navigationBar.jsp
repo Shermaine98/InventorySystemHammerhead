@@ -91,7 +91,7 @@
                             <li><a href="/Hammerhead/ViewCRtoAIServlet">View Reports to Accessories Inventory</a></li>
                             <li class="divider"></li>
                             <li><a href="EncodeCRTPI.jsp">Report to Production Inventory</a></li>
-                            <li><a href="/Hammerhead/ViewCRToPIServlet">View Reports to Production Inventory</a></li>
+                            <li><a href="/Hammerhead/ViewCRtoPIServlet">View Reports to Production Inventory</a></li>
                         </ul>
                     </li>
 

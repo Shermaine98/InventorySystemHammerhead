@@ -117,7 +117,7 @@
         <servlet-class>controller.ViewCuttingReportServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ViewCRtoPI</servlet-name>
+        <servlet-name>ViewCRtoPIServlet</servlet-name>
         <servlet-class>controller.ViewCRtoPIServlet</servlet-class>
     </servlet>
     <servlet>
@@ -277,8 +277,8 @@
         <url-pattern>/ViewCuttingReportServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ViewCRtoPI</servlet-name>
-        <url-pattern>/ViewCRtoPI</url-pattern>
+        <servlet-name>ViewCRtoPIServlet</servlet-name>
+        <url-pattern>/ViewCRtoPIServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewPickingFormServlet</servlet-name>

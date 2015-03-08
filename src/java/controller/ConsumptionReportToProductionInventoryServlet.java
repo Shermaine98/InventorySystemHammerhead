@@ -33,13 +33,13 @@ public class ConsumptionReportToProductionInventoryServlet extends BaseServlet {
 
             String[] productionNumber = request.getParameterValues("productionNumber");
             String[] category = request.getParameterValues("category");
-            String [] DrNuber = request.getParameterValues("DrNumber");
-            String [] productID = request.getParameterValues("ProductID");
-            String[] size = request.getParameterValues("size");
-            String[] color = request.getParameterValues("color");
+            String [] DrNuber = request.getParameterValues("drNumber");
+            String [] productID = request.getParameterValues("productID");
+            String[] size = request.getParameterValues("Size");
+            String[] color = request.getParameterValues("Color");
             String[] consumption = request.getParameterValues("consumption");
             String[] unit = request.getParameterValues("unit");
-            String[] productionQty = request.getParameterValues("prodcutionQty");
+            String[] productionQty = request.getParameterValues("ProductionQty");
             boolean x = false;
 
             for (int i = 0; i < productionNumber.length; i++) {

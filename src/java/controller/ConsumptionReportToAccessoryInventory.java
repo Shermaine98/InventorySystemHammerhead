@@ -31,21 +31,31 @@ public class ConsumptionReportToAccessoryInventory extends BaseServlet {
             ConsumptionReportToAccessoriesInventory CRtoAI = new ConsumptionReportToAccessoriesInventory();
             ArrayList<ConsumptionReportToAccessoriesInventory> arrCRtoAI = new ArrayList<ConsumptionReportToAccessoriesInventory>();
             ConsumptionReportToAccessoryInventoryDAO CRtoAIDAO = new ConsumptionReportToAccessoryInventoryDAO();
-
-            String[] productionNumber = request.getParameterValues("productionNumber");
+              
             String[] category = request.getParameterValues("category");
             String[] accessoryDescription = request.getParameterValues("accessoryDescription");
+            String[] drNumber = request.getParameterValues("drNumber");
+            String[] productionNumber = request.getParameterValues("productionNumber");
+            String[] productID = request.getParameterValues("productID");
+            String[] size = request.getParameterValues("Size");
+            String[] color = request.getParameterValues("Color");
             String[] consumption = request.getParameterValues("consumption");
             String[] unit = request.getParameterValues("unit");
+            String[] productQty = request.getParameterValues("ProductionQty");
 
             boolean x = false;
 
             for (int i = 0; i < productionNumber.length; i++) {
-                CRtoAI.setProductionNumber(Integer.parseInt(productionNumber[i]));
                 CRtoAI.setCategory(category[i]);
                 CRtoAI.setAccessoryDescription(accessoryDescription[i]);
+                CRtoAI.setDrNumber(Integer.parseInt(drNumber[i]));
+                CRtoAI.setProductionNumber(Integer.parseInt(productionNumber[i]));
+                CRtoAI.setProductID(Integer.parseInt(productID[i]));
+                CRtoAI.setSize(size[i]);
+                CRtoAI.setColor(color[i]);
                 CRtoAI.setConsumption(Integer.parseInt(consumption[i]));
                 CRtoAI.setUnit(unit[i]);
+                CRtoAI.setProductionQty(Integer.parseInt(productQty[i]));
 
                 if (CRtoAIDAO.EncodeCRTAI(CRtoAI)) {
                     x = true;
@@ -58,7 +68,7 @@ public class ConsumptionReportToAccessoryInventory extends BaseServlet {
             if (x == true) {
                 out.print("Valid");
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("");
+                RequestDispatcher rd = context.getRequestDispatcher("/dashboard.jsp");
                 HttpSession session = request.getSession();
                 session.setAttribute("arrCRtoAI", arrCRtoAI);
                 rd.forward(request, response);
@@ -66,7 +76,7 @@ public class ConsumptionReportToAccessoryInventory extends BaseServlet {
             } else {
                 out.print("Invalid");
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("");
+                RequestDispatcher rd = context.getRequestDispatcher("/EncodeCRTAI");
                 rd.forward(request, response);
 
             }

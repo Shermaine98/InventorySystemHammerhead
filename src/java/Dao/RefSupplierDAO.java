@@ -28,17 +28,16 @@ public class RefSupplierDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "insert into ref-supplier"
-                    + "(supplierID,itemDescription,companyName,companyAddress,contactPerson,contactNumber) "
-                    + "values (?,?,?,?,?,?)";
+            String query = "insert into `ref-supplier`"
+                    + "(itemDescription,companyName,companyAddress,contactPerson,contactNumber) "
+                    + "values (?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
-            pstmt.setInt(1, newRefSupplier.getSupplierID());
-            pstmt.setString(2, newRefSupplier.getItemDescription());
-            pstmt.setString(3, newRefSupplier.getCompanyName());
-            pstmt.setString(4, newRefSupplier.getCompanyAddress());
-            pstmt.setString(5, newRefSupplier.getContactPerson());
-            pstmt.setInt(6, newRefSupplier.getContactNumber());
+            pstmt.setString(1, newRefSupplier.getItemDescription());
+            pstmt.setString(2, newRefSupplier.getCompanyName());
+            pstmt.setString(3, newRefSupplier.getCompanyAddress());
+            pstmt.setString(4, newRefSupplier.getContactPerson());
+            pstmt.setInt(5, newRefSupplier.getContactNumber());
             
             int rows = pstmt.executeUpdate();
             conn.close();
@@ -55,7 +54,7 @@ public class RefSupplierDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM ref-supplier");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM `ref-supplier`");
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {

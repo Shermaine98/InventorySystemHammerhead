@@ -30,8 +30,8 @@ public class ConsumptionReportToAccessoryInventoryDAO {
                 DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
                 Connection conn = myFactory.getConnection();
                 String query = "insert into CR_to_AI"
-                        + "(category,accessoryDescription,drNumber,productionNumber,productID,size,consumption,unit,productionQty) "
-                        + "values (?,?,?,?,?,?,?,?,?) ";
+                        + "(category,accessoryDescription,drNumber,productionNumber,productID,size,color,consumption,unit,productionQty) "
+                        + "values (?,?,?,?,?,?,?,?,?,?) ";
                 PreparedStatement pstmt = conn.prepareStatement(query);
 
                 pstmt.setString(1, newCRTAI.getCategory());
@@ -40,9 +40,10 @@ public class ConsumptionReportToAccessoryInventoryDAO {
                 pstmt.setInt(4, newCRTAI.getProductionNumber());
                 pstmt.setInt(5, newCRTAI.getProductID());
                 pstmt.setString(6, newCRTAI.getSize());
-                pstmt.setInt(7, newCRTAI.getConsumption());
-                pstmt.setString(8, newCRTAI.getUnit());
-                pstmt.setInt(9, newCRTAI.getProductionQty());
+                 pstmt.setString(7, newCRTAI.getColor());
+                pstmt.setInt(8, newCRTAI.getConsumption());
+                pstmt.setString(9, newCRTAI.getUnit());
+                pstmt.setInt(10, newCRTAI.getProductionQty());
                
                 int rows = pstmt.executeUpdate();
                 conn.close();
@@ -68,6 +69,7 @@ public class ConsumptionReportToAccessoryInventoryDAO {
                     temp.setCategory(rs.getString("category"));
                     temp.setAccessoryDescription(rs.getString("accessoryDescription"));
                     temp.setDrNumber(rs.getInt("drNumber"));
+                    temp.setColor(rs.getString("color"));
                     temp.setProductionNumber(rs.getInt("productionNumber"));
                     temp.setProductID(rs.getInt("productID"));
                     temp.setSize(rs.getString("size"));

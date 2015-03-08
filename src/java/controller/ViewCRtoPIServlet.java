@@ -30,7 +30,7 @@ public class ViewCRtoPIServlet extends BaseServlet {
 
         ServletContext context = getServletContext();
         HttpSession session = request.getSession();
-        RequestDispatcher rd = context.getRequestDispatcher("/ViewCCRTPI.jsp");
+        RequestDispatcher rd = context.getRequestDispatcher("/ViewCRTPI.jsp");
         session.setAttribute("crtopiList", crtopiList);
         rd.forward(request, response);
 
