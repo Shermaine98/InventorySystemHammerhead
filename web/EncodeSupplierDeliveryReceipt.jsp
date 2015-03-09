@@ -37,6 +37,14 @@
                 var ind = document.getElementById(elemid).selectedIndex;
                 document.getElementById("display").innerHTML = textBlocks[ind];
             }
+            function createQuantityName(int i){
+                String qty = "quantity" + i;
+                return qty;
+            }
+            function createCommentName(int i){
+                String qty = "comment" + i;
+                return qty;
+            }
         </script>
     </head>
     <body>  
@@ -101,11 +109,11 @@
 
                     <tr>
                         <td><input name="itemDescription" value="<%= PurchaseOrder.get(1).getItemDescription()%>"/></td>
-                        <td><%= PurchaseOrder.get(1).getQty()%></td>
+                        <td><input name="quantity" value="<%= PurchaseOrder.get(1).getQty()%>"/></td>
                         <td><%= PurchaseOrder.get(1).getUnitMeasurement()%></td>
                         <td><%= PurchaseOrder.get(1).getUnitprice()%></td>
                         <td><%= PurchaseOrder.get(1).getVat()%></td>
-                        <td><input type="checkbox" name="chk" onClick="document.getElementById('comment').disabled=!this.checked;document.getElementById('quantity').disabled=!this.checked;"/></td>
+                        <td><input type="checkbox" name="chk" onClick="document.getElementById('createCommentName(<%=y%>)').disabled=!this.checked;document.getElementById('createQuantityName(<%=y%>)').disabled=!this.checked;"/></td>
                         <td> 
                             <select name="status">
                                 <option value="in progress">In Progress</option>
@@ -114,9 +122,9 @@
                                 <option value="rejected">rejected</option>
                             </select></td>
 
-                        <td><input type="text" name="qunatity" id="quantity" size="5" disabled/></td>
+                        <td><input type="text" name="qunatity" id="createQuantityName(<%=y%>)" size="5" disabled/></td>
 
-                        <td><input type="text" name="comment" id="comment" size="5" disabled/></td>
+                        <td><input type="text" name="comment" id="createCommentName(<%=y%>)" size="5" disabled/></td>
                     </tr>
                     <%
                                 // i = y;
