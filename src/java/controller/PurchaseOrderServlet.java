@@ -35,26 +35,20 @@ public class PurchaseOrderServlet extends BaseServlet {
             
             PurchaseOrder po = new PurchaseOrder();
             PurchaseOrderDAO poDAO = new PurchaseOrderDAO();
-            //po = (PurchaseOrder)request.getAttribute("");
             
             String[] itemDescription = request.getParameterValues("itemDescription");
-            String[] supplier = request.getParameterValues("Supplier");
             String[] type = request.getParameterValues("Type");
             String[] unitMeasurement = request.getParameterValues("unitMeasurement");
             String[] qty = request.getParameterValues("qty");
-            String[] unitPrice = request.getParameterValues("unitPrice");
+            String[] unitPrice = request.getParameterValues("UnitPrice");
             String[] vat = request.getParameterValues("vat");
-//            String[] dateMade = request.getParameterValues("dateMade");
-            String[] preparedBy = request.getParameterValues("preparedBy");
-            String[] approvedBy = request.getParameterValues("approvedBy");
-            String[] deliverySchedule = request.getParameterValues("DeliverySchedule");
             
             ArrayList<PurchaseOrder> newPOList = new ArrayList<PurchaseOrder>();
             boolean x = false;
             
             for(int i = 0; i < itemDescription.length; i++) {
                 po.setItemDescription(itemDescription[i]);
-                po.setSupplier(supplier[i]);
+                po.setSupplier(Integer.parseInt(request.getParameter("Supplier")));
                 po.setType(type[i]);
                 po.setQty(Integer.parseInt(qty[i]));
                 po.setUnitMeasurement(unitMeasurement[i]);
@@ -65,10 +59,10 @@ public class PurchaseOrderServlet extends BaseServlet {
                 } catch (ParseException ex) {
                     Logger.getLogger(PurchaseOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                po.setPreparedBy(Integer.parseInt(preparedBy[i]));
-                po.setApprovedBy(Integer.parseInt(approvedBy[i]));
+                po.setPreparedBy(Integer.parseInt(request.getParameter("preparedBy")));
+                po.setApprovedBy(Integer.parseInt(request.getParameter("approvedBy")));
                 try {
-                    po.setDeliverySchedule(deliverySchedule[i]);
+                    po.setDeliverySchedule(request.getParameter("DeliverySchedule"));
                 } catch (ParseException ex) {
                     Logger.getLogger(PurchaseOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }

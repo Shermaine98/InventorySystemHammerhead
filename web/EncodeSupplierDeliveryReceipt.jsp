@@ -66,31 +66,33 @@
             <table class="tableContainer" width="50%">
                 <thead class="fixedHeader">
                     <tr>
-                        <th class = "edits">Purchase Order</th>
+                        <th>Purchase Order</th>
                         <td><input name="poNumber" type="text" value="<%=PurchaseOrder.get(1).getPoNumber()%>"/></td>
-                        <th class = "edits">Supplier</th>
+                        <th>Supplier</th>
                         <td><%= PurchaseOrder.get(1).getSupplier()%></td>
                     </tr>
                     <tr>
-                        <th class = "edits">Prepared By</th>
+                        <th>Prepared By</th>
                         <td><%= PurchaseOrder.get(1).getPreparedBy()%></td>
-                        <th class = "edits">Approved By</th>
+                        <th>Approved By</th>
                         <td><%= PurchaseOrder.get(1).getApprovedBy()%></td>
                     </tr>
                     <tr>
-                        <th class = "edits">Delivery Schedule</th>
+                        <th>Delivery Schedule</th>
                         <td><%= PurchaseOrder.get(1).getDeliverySchedule()%></td>
-                        <th class = "edits">Date Made</th>
+                        <th>Date Made</th>
                         <td><%= PurchaseOrder.get(1).getDateMade()%></td>
                     </tr>
                     <tr>
-                        <th class = "edits">Item Description</th>
-                        <th class = "edits">Quantity</th>
-                        <th class = "edits">Unit Measurement</th>
-                        <th class = "edits">Unit Price</th>
-                        <th class = "edits">Vat</th>
-                        <th>check box<th>
+                        <th>Item Description</th>
+                        <th>Quantity</th>
+                        <th>Unit Measurement</th>
+                        <th>Unit Price</th>
+                        <th>Vat</th>
+                        <th>check box</th>
                         <th>Status</th>
+                        <th>Quantity</th>
+                        <th>Comment</th>
                     </tr>
                     <%
                         for (int y = 0; y < PurchaseOrder.size(); y++) {
@@ -105,17 +107,17 @@
                         <td><%= PurchaseOrder.get(1).getVat()%></td>
                         <td><input type="checkbox" name="chk"/></td>
                         <td> 
-                        <select name="status">
+                            <select name="status">
                                 <option value="in progress">In Progress</option>
                                 <option value="complete">Complete</option>
                                 <option value="incomplete">Incomplete</option>
                                 <option value="rejected">rejected</option>
-                         </select></td>
-                         <th>Quantity</th>
-                          <td><input type="text" name="qunatity" size="5" disabled/></td>
-                        <th>Comment</th>
-                         <td><input type="text" name="comment" size="5" disabled/></td>
-                         </tr>
+                            </select></td>
+
+                        <td><input type="text" name="qunatity" size="5" disabled/></td>
+
+                        <td><input type="text" name="comment" size="5" disabled/></td>
+                    </tr>
                     <%
                                 // i = y;
                             }

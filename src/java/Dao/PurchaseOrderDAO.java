@@ -29,7 +29,7 @@ public class PurchaseOrderDAO {
                 PreparedStatement pstmt = conn.prepareStatement(query);
                 
                 pstmt.setString(1, newPurchaseOrder.getItemDescription());
-                pstmt.setString(2, newPurchaseOrder.getSupplier());
+                pstmt.setInt(2, newPurchaseOrder.getSupplier());
                 pstmt.setString(3, newPurchaseOrder.getType());
                 pstmt.setInt(4, newPurchaseOrder.getQty());
                 pstmt.setString(5, newPurchaseOrder.getUnitMeasurement());
@@ -63,7 +63,7 @@ public class PurchaseOrderDAO {
                     PurchaseOrder temp = new PurchaseOrder();
                     temp.setPoNumber(rs.getInt("poNumber"));
                     temp.setItemDescription(rs.getString("itemDescription"));
-                    temp.setSupplier(rs.getString("supplier"));
+                    temp.setSupplier(rs.getInt("supplier"));
                     temp.setQty(rs.getInt("qty"));
                     temp.setUnitMeasurement(rs.getString("unitMeasurement"));
                     temp.setUnitprice(rs.getDouble("unitPrice"));

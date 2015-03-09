@@ -84,18 +84,24 @@
     <form method="POST" action="PurchaseOrderServlet">
         <div align="center">
             <table class="tableContainer" width="80%">
-                <thead class="fixedHeader"><tr>   
+                <thead class="fixedHeader"><tr> 
+                        <th>Supplier</th>
+                        <td><input type="text" name="Supplier" size="10"/></td>
+                        <th>Prepared By</th> 
+                        <td><input type="text" name="preparedBy" size="10"/></td>
+                        <th>Approved By</th> 
+                        <td><input type="text" name="approvedBy" size="10"/></td>
+                        <th>Delivery Schedule </th>
+                        <td><input type="text" name="DeliverySchedule" size="10"/></td>
+                    </tr>
+                    <tr>
                         <th></th>
                         <th>Item Description</th>
-                        <th>Supplier</th>
                         <th>Type</th>
                         <th>Quantity</th>
                         <th>Unit Measurement</th> 
                         <th>Unit Price</th> 
                         <th>Vat</th> 
-                        <th>Prepared By</th> 
-                        <th>Approved By</th> 
-                        <th>Delivery Schedule </th>
                     </tr></thead>
                 <tbody id="dataTable" class="scrollContent"><tr>
 
@@ -105,7 +111,7 @@
                         <td>  
                             
                          <input type="text" name="itemDescription" size="10"/>  </td> 
-                        <td><input type="text" name="Supplier" size="10"/></td>
+                       
                           <!--
                             <select name="itemDescription" style="width:90px">
 
@@ -138,9 +144,7 @@
 
                         <td><input type="text" name="UnitPrice" size="10"/></td>
                         <td><input type="text" name="vat" size="10"/></td>
-                        <td><input type="text" name="preparedBy" size="10"/></td>
-                        <td><input type="text" name="approvedBy" size="10"/></td>
-                        <td><input type="text" name="DeliverySchedule" size="10"/></td>
+                        
                     </tr></tbody>
             </table>
 
