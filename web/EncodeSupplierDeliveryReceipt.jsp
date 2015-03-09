@@ -105,7 +105,7 @@
                         <td><%= PurchaseOrder.get(1).getUnitMeasurement()%></td>
                         <td><%= PurchaseOrder.get(1).getUnitprice()%></td>
                         <td><%= PurchaseOrder.get(1).getVat()%></td>
-                        <td><input type="checkbox" name="chk"/></td>
+                        <td><input type="checkbox" name="chk" onClick="document.getElementById('comment').disabled=!this.checked;document.getElementById('quantity').disabled=!this.checked;"/></td>
                         <td> 
                             <select name="status">
                                 <option value="in progress">In Progress</option>
@@ -114,9 +114,9 @@
                                 <option value="rejected">rejected</option>
                             </select></td>
 
-                        <td><input type="text" name="qunatity" size="5" disabled/></td>
+                        <td><input type="text" name="qunatity" id="quantity" size="5" disabled/></td>
 
-                        <td><input type="text" name="comment" size="5" disabled/></td>
+                        <td><input type="text" name="comment" id="comment" size="5" disabled/></td>
                     </tr>
                     <%
                                 // i = y;
