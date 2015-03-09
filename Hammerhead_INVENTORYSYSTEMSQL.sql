@@ -1,6 +1,8 @@
+CREATE DATABASE  IF NOT EXISTS `mydb` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `mydb`;
 -- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
 --
--- Host: localhost    Database: mydb
+-- Host: 127.0.0.1    Database: mydb
 -- ------------------------------------------------------
 -- Server version	5.6.22-log
 
@@ -113,6 +115,7 @@ CREATE TABLE `cr_to_ai` (
 
 LOCK TABLES `cr_to_ai` WRITE;
 /*!40000 ALTER TABLE `cr_to_ai` DISABLE KEYS */;
+INSERT INTO `cr_to_ai` VALUES ('Shirt','Hashtags - S28',1,1,855,'S','Blue',1,'pcs',2000);
 /*!40000 ALTER TABLE `cr_to_ai` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,6 +149,7 @@ CREATE TABLE `cr_to_pi` (
 
 LOCK TABLES `cr_to_pi` WRITE;
 /*!40000 ALTER TABLE `cr_to_pi` DISABLE KEYS */;
+INSERT INTO `cr_to_pi` VALUES (1,'Shirt',2,855,'S','Blue',2,'pcs',5000);
 /*!40000 ALTER TABLE `cr_to_pi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,7 +208,7 @@ CREATE TABLE `delivery_order` (
   KEY `FKDOtoUser_idx` (`preparedBy`),
   CONSTRAINT `FKDOtoUser` FOREIGN KEY (`preparedBy`) REFERENCES `user` (`employeeID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_DOtoPF` FOREIGN KEY (`promo`, `dateMade`, `productID`, `size`, `color`) REFERENCES `picking_form` (`promo`, `dateMade`, `productID`, `size`, `color`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,6 +217,7 @@ CREATE TABLE `delivery_order` (
 
 LOCK TABLES `delivery_order` WRITE;
 /*!40000 ALTER TABLE `delivery_order` DISABLE KEYS */;
+INSERT INTO `delivery_order` VALUES (1,3,'2015-03-21',855,'S','Blue',500,1,2,1);
 /*!40000 ALTER TABLE `delivery_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,6 +250,7 @@ CREATE TABLE `delivery_schedule` (
 
 LOCK TABLES `delivery_schedule` WRITE;
 /*!40000 ALTER TABLE `delivery_schedule` DISABLE KEYS */;
+INSERT INTO `delivery_schedule` VALUES (1,3,1,'2015-01-20',100,2);
 /*!40000 ALTER TABLE `delivery_schedule` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,6 +283,7 @@ CREATE TABLE `inventory_report` (
 
 LOCK TABLES `inventory_report` WRITE;
 /*!40000 ALTER TABLE `inventory_report` DISABLE KEYS */;
+INSERT INTO `inventory_report` VALUES (3,'2015-03-21',855,'S','Blue',300,158,5);
 /*!40000 ALTER TABLE `inventory_report` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -308,6 +315,7 @@ CREATE TABLE `picking_form` (
 
 LOCK TABLES `picking_form` WRITE;
 /*!40000 ALTER TABLE `picking_form` DISABLE KEYS */;
+INSERT INTO `picking_form` VALUES (3,'2015-03-21',855,'S','Blue',2,5000);
 /*!40000 ALTER TABLE `picking_form` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -529,7 +537,7 @@ CREATE TABLE `subcon_delivery_receipt` (
   CONSTRAINT `FK_SubDRtoSPO` FOREIGN KEY (`poNumber`, `productionNumber`, `productID`, `size`, `color`) REFERENCES `subcon_purchase_order` (`poNumber`, `productionNumber`, `productID`, `size`, `color`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_SubDRtoStatus` FOREIGN KEY (`status`) REFERENCES `ref-status` (`statusName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_SubDRtoUser` FOREIGN KEY (`checkedBy`) REFERENCES `user` (`employeeID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -538,6 +546,7 @@ CREATE TABLE `subcon_delivery_receipt` (
 
 LOCK TABLES `subcon_delivery_receipt` WRITE;
 /*!40000 ALTER TABLE `subcon_delivery_receipt` DISABLE KEYS */;
+INSERT INTO `subcon_delivery_receipt` VALUES (1,1,855,'S','Blue',1,'2015-02-17',1,2,'complete',1000,NULL);
 /*!40000 ALTER TABLE `subcon_delivery_receipt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -569,7 +578,7 @@ CREATE TABLE `subcon_purchase_order` (
   CONSTRAINT `FK_SPOtoCR` FOREIGN KEY (`productionNumber`, `productID`, `size`, `color`) REFERENCES `consumption_report` (`productionNumber`, `productID`, `size`, `color`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_SPOtoSubcon` FOREIGN KEY (`subcon`, `service`) REFERENCES `ref-subcon` (`subconID`, `service`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_SPOtoUser0` FOREIGN KEY (`preparedBy`) REFERENCES `user` (`employeeID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -578,6 +587,7 @@ CREATE TABLE `subcon_purchase_order` (
 
 LOCK TABLES `subcon_purchase_order` WRITE;
 /*!40000 ALTER TABLE `subcon_purchase_order` DISABLE KEYS */;
+INSERT INTO `subcon_purchase_order` VALUES (1,1,855,'S','Blue',1,1000,'Printing',450,'2015-02-13',2,1,'2015-02-16');
 /*!40000 ALTER TABLE `subcon_purchase_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -589,7 +599,7 @@ DROP TABLE IF EXISTS `supplier_delivery_receipt`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `supplier_delivery_receipt` (
-  `drNumber` int(11) NOT NULL,
+  `drNumber` int(11) NOT NULL AUTO_INCREMENT,
   `poNumber` int(11) NOT NULL,
   `itemDescription` varchar(45) NOT NULL,
   `dateReceived` date NOT NULL,
@@ -605,7 +615,7 @@ CREATE TABLE `supplier_delivery_receipt` (
   CONSTRAINT `FK_SDRtoSPO` FOREIGN KEY (`poNumber`, `itemDescription`) REFERENCES `supplier_purchase_order` (`poNumber`, `itemDescription`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_SDRtoStatus` FOREIGN KEY (`status`) REFERENCES `ref-status` (`statusName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_SDRtoUser` FOREIGN KEY (`checkedBy`) REFERENCES `user` (`employeeID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -715,6 +725,7 @@ CREATE TABLE `warehouse_inventory` (
 
 LOCK TABLES `warehouse_inventory` WRITE;
 /*!40000 ALTER TABLE `warehouse_inventory` DISABLE KEYS */;
+INSERT INTO `warehouse_inventory` VALUES (1,1,855,'S','Blue','2015-02-17',1000,1,NULL);
 /*!40000 ALTER TABLE `warehouse_inventory` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -727,4 +738,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-07 16:11:49
+-- Dump completed on 2015-03-09 16:57:17
