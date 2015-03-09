@@ -46,7 +46,18 @@ public class PurchaseOrderServlet extends BaseServlet {
             ArrayList<PurchaseOrder> newPOList = new ArrayList<PurchaseOrder>();
             boolean x = false;
             
+            ArrayList<PurchaseOrder> oldList = new ArrayList<PurchaseOrder>();
+            try {
+                oldList = poDAO.GetAllPurchaseOrder();
+            } catch (ParseException ex) {
+                Logger.getLogger(PurchaseOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            int lastObj = oldList.size()-1;
+            int lastPOnumber = oldList.get(lastObj).getPoNumber();
+            
             for(int i = 0; i < itemDescription.length; i++) {
+                po.setPoNumber(lastPOnumber);
                 po.setItemDescription(itemDescription[i]);
                 po.setSupplier(Integer.parseInt(request.getParameter("Supplier")));
                 po.setType(type[i]);
