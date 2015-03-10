@@ -108,11 +108,11 @@
                     %>
 
                     <tr>
-                        <td><input name="itemDescription" value="<%= PurchaseOrder.get(1).getItemDescription()%>"/></td>
-                        <td><input name="quantity" value="<%= PurchaseOrder.get(1).getQty()%>"/></td>
-                        <td><%= PurchaseOrder.get(1).getUnitMeasurement()%></td>
-                        <td><%= PurchaseOrder.get(1).getUnitprice()%></td>
-                        <td><%= PurchaseOrder.get(1).getVat()%></td>
+                        <td><input name="itemDescription" value="<%= PurchaseOrder.get(y).getItemDescription()%>"/></td>
+                        <td><input name="quantity" value="<%= PurchaseOrder.get(y).getQty()%>"/></td>
+                        <td><%= PurchaseOrder.get(y).getUnitMeasurement()%></td>
+                        <td><%= PurchaseOrder.get(y).getUnitprice()%></td>
+                        <td><%= PurchaseOrder.get(y).getVat()%></td>
                         <td><input type="checkbox" name="chk" onClick="document.getElementById('createCommentName(<%=y%>)').disabled=!this.checked;document.getElementById('createQuantityName(<%=y%>)').disabled=!this.checked;"/></td>
                         <td> 
                             <select name="status">

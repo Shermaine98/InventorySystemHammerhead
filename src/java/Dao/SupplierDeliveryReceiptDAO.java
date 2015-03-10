@@ -29,8 +29,7 @@ public class SupplierDeliveryReceiptDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "insert into supplier_delivery_receipt"
-                    + "(drNumber,poNumber,itemDescription,dateReceived,checkedBy,receivedBy,status,qty,comment) values (?,?,?,?,?,?,?,?,?) ";
+            String query = "insert into supplier_delivery_receipt (drNumber,poNumber,itemDescription,dateReceived,checkedBy,receivedBy,status,qty,comment) values (?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(query);
             
             pstmt.setInt(1, newSupplierDeliveryReceipt.getDeliveryReceiptNumber());

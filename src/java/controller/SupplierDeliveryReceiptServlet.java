@@ -52,15 +52,16 @@ public class SupplierDeliveryReceiptServlet extends BaseServlet {
                        
             int lastObj = sdrDAO.GetDeliveryReceiptList().size()-1;
             int lastDR = sdrDAO.GetDeliveryReceiptList().get(lastObj).getDeliveryReceiptNumber();
-            
-            System.out.println(lastDR);
+
             for(int i = 0; i < itemDescription.length; i++) {
-                SDR.setDeliveryReceiptNumber(3);
+                SDR.setDeliveryReceiptNumber(lastDR+1);
                 SDR.setPoNumber(Integer.parseInt(request.getParameter("poNumber")));
                 SDR.setItemDescription(itemDescription[i]);
                 SDR.setQty(Integer.parseInt(quantity[i]));
                 SDR.setStatus(status[i]);
-//                SDR.setComment(comment[i]);
+                if(comment[i] != null){
+                     SDR.setComment(comment[i]);
+                }
                 SDR.setreceivedBy(Integer.parseInt(request.getParameter("receivedBy")));
                 SDR.setCheckedBy(Integer.parseInt(request.getParameter("checkedBy")));
                 try {
