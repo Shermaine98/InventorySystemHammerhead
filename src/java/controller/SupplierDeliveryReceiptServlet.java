@@ -49,14 +49,13 @@ public class SupplierDeliveryReceiptServlet extends BaseServlet {
             
             ArrayList<SupplierDeliveryReceipt> newPOList = new ArrayList<SupplierDeliveryReceipt>();
             boolean x = false;
+                       
+            int lastObj = sdrDAO.GetDeliveryReceiptList().size()-1;
+            int lastDR = sdrDAO.GetDeliveryReceiptList().get(lastObj).getDeliveryReceiptNumber();
             
-        //    ArrayList<SupplierDeliveryReceipt> oldList = new ArrayList<SupplierDeliveryReceipt>();
-          //      oldList = sdrDAO.GetDeliveryReceiptList();
-            
-          //  int lastObj = oldList.size()-1;
-           // int lastPOnumber = oldList.get(lastObj).getPoNumber();
-            
+            System.out.println(lastDR);
             for(int i = 0; i < itemDescription.length; i++) {
+                SDR.setDeliveryReceiptNumber(3);
                 SDR.setPoNumber(Integer.parseInt(request.getParameter("poNumber")));
                 SDR.setItemDescription(itemDescription[i]);
                 SDR.setQty(Integer.parseInt(quantity[i]));

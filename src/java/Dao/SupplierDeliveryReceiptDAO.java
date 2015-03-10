@@ -30,17 +30,18 @@ public class SupplierDeliveryReceiptDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             String query = "insert into supplier_delivery_receipt"
-                    + "(poNumber,itemDescription,dateReceived,checkedBy,receivedBy,status,qty,comment) values (?,?,?,?,?,?,?,?) ";
+                    + "(drNumber,poNumber,itemDescription,dateReceived,checkedBy,receivedBy,status,qty,comment) values (?,?,?,?,?,?,?,?,?) ";
             PreparedStatement pstmt = conn.prepareStatement(query);
-
-            pstmt.setInt(1, newSupplierDeliveryReceipt.getPoNumber());
-            pstmt.setString(2, newSupplierDeliveryReceipt.getItemDescription());
-            pstmt.setDate(3, newSupplierDeliveryReceipt.getReceivedDate());
-            pstmt.setInt(4, newSupplierDeliveryReceipt.getCheckedBy());
-            pstmt.setInt(5, newSupplierDeliveryReceipt.getreceivedBy());
-            pstmt.setString(6, newSupplierDeliveryReceipt.getStatus());
-            pstmt.setInt(7, newSupplierDeliveryReceipt.getQty());
-            pstmt.setString(8, newSupplierDeliveryReceipt.getComment());
+            
+            pstmt.setInt(1, newSupplierDeliveryReceipt.getDeliveryReceiptNumber());
+            pstmt.setInt(2, newSupplierDeliveryReceipt.getPoNumber());
+            pstmt.setString(3, newSupplierDeliveryReceipt.getItemDescription());
+            pstmt.setDate(4, newSupplierDeliveryReceipt.getReceivedDate());
+            pstmt.setInt(5, newSupplierDeliveryReceipt.getCheckedBy());
+            pstmt.setInt(6, newSupplierDeliveryReceipt.getreceivedBy());
+            pstmt.setString(7, newSupplierDeliveryReceipt.getStatus());
+            pstmt.setInt(8, newSupplierDeliveryReceipt.getQty());
+            pstmt.setString(9, newSupplierDeliveryReceipt.getComment());
 
             int rows = pstmt.executeUpdate();
             conn.close();
