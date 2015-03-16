@@ -21,11 +21,17 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom styles for this template -->
-        <link href="navbar.css" rel="stylesheet">
+        <link href="css/signin.css" rel="stylesheet">
 
         <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
         <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
         <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
         <style>
 
@@ -38,74 +44,42 @@
                 margin-left: auto;
                 margin-right: auto;
             }
+            
+            .red{
+                color: navy blue;
+            }
 
-
+            .width{
+                width: 100px;
+            }
         </style>
 
     </head>
     <body>
+        <div align="center"><h2 class="red"><b>Register</b></h2></div>
+        <br/>
+        <!--<div class="jumbotron">-->
+    <center>
+        <form action="Register" method ="POST">
 
-        <div class="container">
+            <div class="form-group">
 
-            <!-- Fixed navbar -->
-            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a href="Home.html"><img src="Images/logo.png" alt="logo"
-                                                 height="50" width="150"> </a>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active" ><a href="index.jsp">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                    </div><!--/.nav-collapse -->
-                </div>
-            </div>
-
-            <br/> <br/> <br/><br/>
-            <center><h1 style="font-family:Georgia">Register</h1></center>
-            <br/>
-            <div class="jumbotron">
-
-                <form action="Register" method ="POST">
-                    <center>
-                        <div class="form-group">
-                            
-                            <label>Number</label>
-                            <input type="text" name="number" class="form-control"/>
-                            <label>First Name</label>
-                            <input type="text" name="reqfirstname" class="form-control"/>
-                            <br/>
-                            <label>Last Name</label>
-                            <input type="text" name="reqlastname" class="form-control"/>
-                            <br/>
-                            <br/><br/>
-                            <label>Company Position</label>
-                            <input type="text" name="reqposition" class="form-control"/>
-                            <br/>
-                            <label>Username</label>
-                            <input type="text" name="requsername" class="form-control"/>
-                            <br/>
-                            <label>Password</label>
-                            <input type="password" name="reqpassword" class="form-control"/>
-                            <br/>
-                        </div> 
-                        <input type="submit" class="btn btn-primary" value="Register"/>
-                    </center>
-                </form>
-            </div>
-        </div>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-    </body>
+                <input type="text" name="number" class="form-control" value="Number"/><br/>
+                <input type="text" name="reqfirstname" class="form-control" value="First Name"/><br/>
+                <input type="text" name="reqlastname" class="form-control" value="Last Name"/><br/>
+                <input type="text" name="reqposition" class="form-control" value="Company Position"/><br/>
+                <input type="text" name="requsername" class="form-control" value="Username"/><br/>
+                <input type="password" name="reqpassword" class="form-control" value="Password"/>
+                <br/>
+            </div> 
+            <input type="submit" class="btn btn-primary width" value="Register"/>
+        </form>
+    <a href="index.jsp"><button class="btn btn-primary width">Cancel</button></a>
+    </center>
+    <!--</div>-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
 
 </html>
