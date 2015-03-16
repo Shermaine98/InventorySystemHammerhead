@@ -61,7 +61,7 @@ public class SupplierDeliveryReceiptServlet extends BaseServlet {
                 SDR.setStatus(status[i]);
             //    if(comment[i] != null){
               //       SDR.setComment(comment[i]);
-                //}
+                //wahhh}
                 SDR.setreceivedBy(Integer.parseInt(request.getParameter("receivedBy")));
                 SDR.setCheckedBy(Integer.parseInt(request.getParameter("checkedBy")));
                 try {
