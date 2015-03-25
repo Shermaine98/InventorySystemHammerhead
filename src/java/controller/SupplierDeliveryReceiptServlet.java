@@ -88,7 +88,6 @@ public class SupplierDeliveryReceiptServlet extends BaseServlet {
                 ServletContext context = getServletContext();
                 RequestDispatcher rd = context.getRequestDispatcher("/EncodeSupplierDeliveryReceipt.jsp");
                 rd.forward(request, response);
-
             }
         } finally {
             out.close();

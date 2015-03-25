@@ -81,41 +81,58 @@
                     alert(e);
                 }
             }
+             function createActualQuantity(i) {
+                var qty = "quantity"+i;
+                return qty;
+            }
+            function createCommentName(i) {
+                var qty = "comment"+i;
+                return qty;
+            }
 
         </script>
     </head>
     <body>  
     <br/><br/><br/>
-    <center><h2>Add Item</h2></center>
+    <center><h2>Encode Cutting</h2></center>
         <form method="POST" action="CuttingReportServlet">
             <div align="center">
                 <table class="tableContainer" style="width:500px">
                     <thead class="fixedHeader">
                         <tr>
-                        <th>Production Number</th>
                         <th>Category</th>
                         <th>Delivery Receipt Number</th>
                         <th>Cutting Master</th>
                         <th>Raw Quantity</th>
                         <th>Calculated Quantity</th>
+                        <th>Check Box</th>
                         <th>Actual Quantity</th>
                         <th>Comment</th>
                         </tr>
                     </thead>
                     <tbody id="dataTable" class="scrollContent">
                         <tr>
-                            <td><input type="text" name="productionNumber" size="10"/></td>
-                            <td><input type="text" name="category" size="16"/></td>                    
-                            <td><input type="text" name="drNumber" size="16"/></td>                   
+                           <td>
+                           <select name="category" style="width:90px">                             
+                                <option value="Shirt"> Shirt </option>
+                                <option value="Pants"> Pants </option>                     
+                           </select> 
+                            </td>                    
+                            <td><input type="text" name="drNumber" size="16" value="AUTO"/></td>                   
                             <td><input type="text" name="cuttingMaster" size="16"/></td>                    
                             <td><input type="text" name="rawQty" size="16"/></td>                   
-                            <td><input type="text" name="CalculatedQty" size="16"/></td>
-                              <td><input type="text" name="actualQty" size="16"/></td>                   
-                            <td><input type="text" name="Comment" size="16"/></td>
+                            <td><input type="text" name="CalculatedQty"  value="AUTO" size="16"/></td>
+                             <td><input type="checkbox" name="chk" onClick="document.getElementById('createCommentName(<%=1%>)').disabled = this.checked;
+                                document.getElementById('createActualQuantity(<%=1%>)').disabled = this.checked;" checked/></td>
+                        <td><input type="text" name="actualQty" id="createActualQuantity(<%=1%>)" size="5" disabled/></td>
+                        <td><input type="text" name="Comment" id="createCommentName(<%=1%>)" size="5" disabled/></td>
                         </tr>
                     </tbody>
                 </table>
-                
+                  <br/><br/>
+            <input type="button" class="btn btn-danger" value="Add Row" onclick="addRow('dataTable')" />
+            <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
+           
                 <br/><br/>
                 <input type="submit" class="btn btn-danger" value="Submit">
                 <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>

@@ -129,6 +129,13 @@ public class User {
         java.sql.Date sqlreceivedDate1 = new java.sql.Date(birthDate1.getTime());
         this.birthDate = sqlreceivedDate1;
     }
+    
+     public void setBirthDate(String birthDate) throws ParseException {
+        @SuppressWarnings("deprecation")
+        java.util.Date hbirthDate = formatter.parse(birthDate);
+        java.sql.Date sqlbirthDate = new java.sql.Date(hbirthDate.getTime());
+        this.birthDate = sqlbirthDate;
+    }
 
     /**
      * @return the entryDate
@@ -166,6 +173,13 @@ public class User {
         java.util.Date leftDate1 = formatter.parse(df.format(leftDate0));
         java.sql.Date sqlreceivedDate1 = new java.sql.Date(leftDate1.getTime());
         this.leftDate = sqlreceivedDate1;
+    }
+    
+    public void setLeftDate(String LeftDate) throws ParseException {
+        @SuppressWarnings("deprecation")
+        java.util.Date hDate = formatter.parse(LeftDate);
+        java.sql.Date sqlLeftDate = new java.sql.Date(hDate.getTime());
+        this.leftDate = sqlLeftDate;
     }
     
 }

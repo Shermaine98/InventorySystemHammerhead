@@ -70,7 +70,7 @@
                     }
                 %>
             </table>
-
+            
             <br/><br/>
             <input type="submit" class="btn btn-danger" value="Submit">
             <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>

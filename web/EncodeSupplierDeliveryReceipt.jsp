@@ -23,26 +23,20 @@
         </style>
 
         <script>
-            <%                ArrayList<PurchaseOrder> PurchaseOrder = (ArrayList<PurchaseOrder>) session.getAttribute("poList");
-            %>
-            var textBlocks = new Array(<%=PurchaseOrder.size()%>);
-            var i;
-            <% int i = 0;%>;
-            for (i = 0; i < 10; i++)
-            {
-                textBlocks[i] = <%=PurchaseOrder.get(i).getPoNumber()%>;
-            <%i++;%>
+            var v="1";
+            
+            function onChange(data) {
+             document.getElementById("display").value = data.value;
+             $("#table tbody tr").remove();
+                  v= data.value;
             }
-            function changeText(elemid) {
-                var ind = document.getElementById(elemid).selectedIndex;
-                document.getElementById("display").innerHTML = textBlocks[ind];
-            }
-            function createQuantityName(int i){
-                String qty = "quantity" + i;
+            
+            function createQuantityName(i) {
+                var qty = "quantity"+i;
                 return qty;
             }
-            function createCommentName(int i){
-                String qty = "comment" + i;
+            function createCommentName(i) {
+                var qty = "comment"+i;
                 return qty;
             }
         </script>
@@ -50,46 +44,54 @@
     <body>  
         <br/><br/><br/>
 
-        <div id="refresh" align="center" >
-
-
-            <select id="selected" onChange="changeText('selected')" > 
-                <option>choose</option>
-                <%
+        <div align="center">
+            <select name="selected" onchange="onChange(this)" > 
+                <option value="1">choose</option>
+                <%  
+                    ArrayList<PurchaseOrder> PurchaseOrder = (ArrayList<PurchaseOrder>) session.getAttribute("poList");
+                    ArrayList<Integer> PONumber = new ArrayList<Integer>();
                     for (int y = 0; y < PurchaseOrder.size(); y++) {
+
+                        if (!(PONumber.contains(PurchaseOrder.get(y).getPoNumber()))) {
+                            PONumber.add(PurchaseOrder.get(y).getPoNumber());
+                        }
+                    }
+                    int i=0;
+                    for (i=0; i < PONumber.size(); i++) {
                 %>
-                <option value="<%=PurchaseOrder.get(i).getPoNumber()%>"> <%=PurchaseOrder.get(i).getPoNumber()%></option>
+                <option value="<%=PONumber.get(i)%>"> <%=PONumber.get(i)%></option>
                 <%
                     }
-                %> 
+                
+                %>
             </select>
-
         </div>
 
+        <input id="display" name="poNumberl" >
     <center><h2>Encode Delivery Receipt</h2></center>
     <div id= "center" align="center">
         <form method="POST" action="SupplierDeliveryReceiptServlet">
-            <div id="display">Select from the list to change this box</div> 
 
-            <table class="tableContainer" width="50%">
+
+            <table class="tableContainer" width="50%" id="table">
                 <thead class="fixedHeader">
                     <tr>
                         <th>Purchase Order</th>
-                        <td><input name="poNumber" type="text" value="<%=PurchaseOrder.get(1).getPoNumber()%>"/></td>
+                        <td><input name="poNumber" type="text" value="<%=PurchaseOrder.get(i).getPoNumber()%>"/></td>
                         <th>Supplier</th>
-                        <td><%= PurchaseOrder.get(1).getSupplier()%></td>
+                        <td><%= PurchaseOrder.get(i).getSupplier()%></td>
                     </tr>
                     <tr>
                         <th>Prepared By</th>
-                        <td><%= PurchaseOrder.get(1).getPreparedBy()%></td>
+                        <td><%= PurchaseOrder.get(i).getPreparedBy()%></td>
                         <th>Approved By</th>
-                        <td><%= PurchaseOrder.get(1).getApprovedBy()%></td>
+                        <td><%= PurchaseOrder.get(i).getApprovedBy()%></td>
                     </tr>
                     <tr>
                         <th>Delivery Schedule</th>
-                        <td><%= PurchaseOrder.get(1).getDeliverySchedule()%></td>
+                        <td><%= PurchaseOrder.get(i).getDeliverySchedule()%></td>
                         <th>Date Made</th>
-                        <td><%= PurchaseOrder.get(1).getDateMade()%></td>
+                        <td><%= PurchaseOrder.get(i).getDateMade()%></td>
                     </tr>
                     <tr>
                         <th>Item Description</th>
@@ -102,32 +104,35 @@
                         <th>Quantity</th>
                         <th>Comment</th>
                     </tr>
+                <tbody>
+                    
                     <%
                         for (int y = 0; y < PurchaseOrder.size(); y++) {
-                            if (PurchaseOrder.get(y).getPoNumber() == PurchaseOrder.get(1).getPoNumber()) {
+                            if (PurchaseOrder.get(y).getPoNumber() == PurchaseOrder.get(i).getPoNumber()) {
                     %>
 
                     <tr>
-                        <td><input name="itemDescription" value="<%= PurchaseOrder.get(y).getItemDescription()%>"/></td>
-                        <td><input name="quantity" value="<%= PurchaseOrder.get(y).getQty()%>"/></td>
-                        <td><%= PurchaseOrder.get(y).getUnitMeasurement()%></td>
-                        <td><%= PurchaseOrder.get(y).getUnitprice()%></td>
-                        <td><%= PurchaseOrder.get(y).getVat()%></td>
-                        <td><input type="checkbox" name="chk" onClick="document.getElementById('createCommentName(<%=y%>)').disabled=!this.checked;document.getElementById('createQuantityName(<%=y%>)').disabled=!this.checked;"/></td>
+                        <td><input name="itemDescription" value="<%= PurchaseOrder.get(i).getItemDescription()%>"/></td>
+                        <td><input name="quantity" value="<%= PurchaseOrder.get(i).getQty()%>"/></td>
+                        <td><%= PurchaseOrder.get(i).getUnitMeasurement()%></td>
+                        <td><%= PurchaseOrder.get(i).getUnitprice()%></td>
+                        <td><%= PurchaseOrder.get(i).getVat()%></td>
+                        <td><input type="checkbox" name="chk" onClick="document.getElementById('createCommentName(<%=y%>)').disabled = this.checked;
+                                document.getElementById('createQuantityName(<%=y%>)').disabled = this.checked;" checked/></td>
                         <td> 
                             <select name="status">
-                                <option value="in progress">In Progress</option>
                                 <option value="complete">Complete</option>
+                                <option value="in progress">In Progress</option>
                                 <option value="incomplete">Incomplete</option>
                                 <option value="rejected">rejected</option>
                             </select></td>
 
                         <td><input type="text" name="qunatity" id="createQuantityName(<%=y%>)" size="5" disabled/></td>
-
                         <td><input type="text" name="comment" id="createCommentName(<%=y%>)" size="5" disabled/></td>
                     </tr>
+                <tbody>
                     <%
-                                // i = y;
+                                 i = y;
                             }
                         }
                     %>

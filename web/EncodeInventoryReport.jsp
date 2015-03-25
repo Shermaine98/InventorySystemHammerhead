@@ -94,7 +94,8 @@
         <form method="POST" action="InventoryReportServlet">
             <div align="center">
                 <table class="tableContainer">
-                    <thead class="fixedHeader" width="100%"><tr>
+                    <thead class="fixedHeader"> 
+                        <tr>
                             <th></th>
                         <th>Promo</th>
                         <th>Outlet</th>
@@ -136,8 +137,8 @@
                                 <%  ProductDAO Product = new ProductDAO();
                                     for (int i = 0; i < Product.GetAllProductList().size(); i++) {
                                 %>
-                                <option value="<%=Product.GetAllProductList().get(i).getProductionNumber()%>">
-                                    <%= Product.GetAllProductList().get(i).getProductionNumber()%></option>
+                                <option value="<%=Product.GetAllProductList().get(i).getProductID()%>">
+                                    <%= Product.GetAllProductList().get(i).getProductID()%></option>
                                     <%
                                         }
                                     %>
@@ -158,8 +159,8 @@
                                 <%
                                     for (int i = 0; i < Product.GetAllProductList().size(); i++) {
                                 %>
-                                <option value="<%=Product.GetAllProductList().get(i).getItemDescription()%>">
-                                    <%= Product.GetAllProductList().get(i).getItemDescription()%></option>
+                                <option value="<%=Product.GetAllProductList().get(i).getProductDescription()%>">
+                                    <%= Product.GetAllProductList().get(i).getProductDescription()%></option>
                                     <%
                                         }
                                     %>
@@ -168,7 +169,7 @@
                                 <%
                                     for (int i = 0; i < Product.GetAllProductList().size(); i++) {
                                 %>
-                                < <option value="<%=Product.GetAllProductList().get(i).getAgeGroup()%>">
+                                 <option value="<%=Product.GetAllProductList().get(i).getAgeGroup()%>">
                                     <%= Product.GetAllProductList().get(i).getAgeGroup()%></option>
                                     <%
                                         }
@@ -178,7 +179,7 @@
                                 <%
                                     for (int i = 0; i < Product.GetAllProductList().size(); i++) {
                                 %>
-                                < <option value="<%=Product.GetAllProductList().get(i).getColor()%>">
+                                 <option value="<%=Product.GetAllProductList().get(i).getColor()%>">
                                     <%= Product.GetAllProductList().get(i).getColor()%></option>
                                     <%
                                         }
@@ -188,7 +189,7 @@
                                 <%
                                     for (int i = 0; i < Product.GetAllProductList().size(); i++) {
                                 %>
-                                < <option value="<%=Product.GetAllProductList().get(i).getSize()%>">
+                                <option value="<%=Product.GetAllProductList().get(i).getSize()%>">
                                     <%= Product.GetAllProductList().get(i).getSize()%></option>
                                     <%
                                         }

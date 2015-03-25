@@ -64,33 +64,38 @@
         </script>
     </head>
     <body>  
+       
         <br/><br/><br/>
-      <%
-        
-        ArrayList<RefSupplier> RefSupplier = (ArrayList<RefSupplier>) session.getAttribute("SList");
+         <center><h2>Encoding Purchase Order</h2></center>
+        <%          ArrayList<RefSupplier> RefSupplier = (ArrayList<RefSupplier>) session.getAttribute("SList");
         %>
         <div align="center">
             <h1>Choose Supplier</h1>
             <select name="Supplier" style="width:90px">
-                <% for (int i=0; i>RefSupplier.size();i++) { %>
-                <option value="Supplier"> <%=RefSupplier.get(i).getSupplierID() +
-                        RefSupplier.get(i).getCompanyName()%></option>
-                    <% 
+                <%
+                    ArrayList<Integer> SupplierNumber = new ArrayList<Integer>();
+                    ArrayList<String> name = new ArrayList<String>();
+                    for (int y = 0; y < RefSupplier.size(); y++) {
+                        if (!(SupplierNumber.contains(RefSupplier.get(y).getSupplierID()))) {
+                            SupplierNumber.add(RefSupplier.get(y).getSupplierID());
+                            name.add(RefSupplier.get(y).getCompanyName());
                         }
-                    %>
+                    }
+                    for (int i = 0; i < SupplierNumber.size(); i++) {
+                %>
+                <option value="<%=SupplierNumber.get(i)%>"> <%=SupplierNumber.get(i) + " - " + name.get(i)%></option>
+                <%
+                    }
+
+                %>
             </select>
         </div>
-    <center><h2>Encoding Purchase Order</h2></center>
     <form method="POST" action="PurchaseOrderServlet">
         <div align="center">
             <table class="tableContainer" width="80%">
                 <thead class="fixedHeader"><tr> 
                         <th>Supplier</th>
-                        <td><input type="text" name="Supplier" size="10"/></td>
-                        <th>Prepared By</th> 
-                        <td><input type="text" name="preparedBy" size="10"/></td>
-                        <th>Approved By</th> 
-                        <td><input type="text" name="approvedBy" size="10"/></td>
+                        <td><input name="Supplier"  value="<%=RefSupplier.get(1).getSupplierID()%>"/></td>
                         <th>Delivery Schedule </th>
                         <td><input type="text" name="DeliverySchedule" size="10"/></td>
                     </tr>
@@ -106,26 +111,21 @@
                 <tbody id="dataTable" class="scrollContent"><tr>
 
                         <td><input type="checkbox" name="chk"/></td>
-         <!--if that, selected itemDescription, itemDescription  -- for the next row -->
+                        <!--if that, selected itemDescription, itemDescription  -- for the next row -->
 
                         <td>  
-                            
-                         <input type="text" name="itemDescription" size="10"/>  </td> 
-                       
-                          <!--
                             <select name="itemDescription" style="width:90px">
+                                <% for (int i = 0; i < RefSupplier.size(); i++) {
+                                        if (RefSupplier.get(i).getSupplierID() == 1)
+                                %>
+                                <option value="<%=RefSupplier.get(i).getItemDescription()%>"> <%=
+                                         RefSupplier.get(i).getItemDescription()%></option>
+                                    <%
+                                                                         }
+                                    %>
+                            </select> 
+                        </td> 
 
-                                <%-- for (int i=0; i>Supplier.size();i++) {                      
-                              if (getSelected == Supplier.get(i).getSuppplierID)
-                                --%>
-                                <option value="Supplier"><%--Supplier.get(i).getSupplierItem() +
-                                         Supplier.get(i).getSupplierItem()--%></option>
-                                    <%-- 
-                                     }
-                                    --%>
-                            </select> -->
-                      
-                        
                         <td>
                             <select name="Type">  
                                 <option value="Accessories">Accessories</option>
@@ -141,13 +141,16 @@
                                 <option value="box">box</option>
                                 <option value="pcs">Pcs</option>
                             </select></td>
-
                         <td><input type="text" name="UnitPrice" size="10"/></td>
-                        <td><input type="text" name="vat" size="10"/></td>
-                        
-                    </tr></tbody>
+                        <td><input type="text" name="vat" size="10"/></td>     
+                </tbody>
+                 <tr>
+                        <th>Prepared By</th> 
+                        <td><input type="text" name="preparedBy" size="10"/></td>
+                        <th>Approved By</th> 
+                        <td><input type="text" name="approvedBy" size="10"/></td>
+                    </tr>
             </table>
-
             <br/><br/>
             <input type="button" class="btn btn-danger" value="Add Row" onclick="addRow('dataTable')" />
             <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />

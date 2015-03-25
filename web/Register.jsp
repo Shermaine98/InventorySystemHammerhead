@@ -44,7 +44,7 @@
                 margin-left: auto;
                 margin-right: auto;
             }
-            
+
             .red{
                 color: navy blue;
             }
@@ -67,14 +67,19 @@
                 <input type="text" name="number" class="form-control" value="Number"/><br/>
                 <input type="text" name="reqfirstname" class="form-control" value="First Name"/><br/>
                 <input type="text" name="reqlastname" class="form-control" value="Last Name"/><br/>
-                <input type="text" name="reqposition" class="form-control" value="Company Position"/><br/>
+                <select name ="reqposition">
+                    <option value="Promo">Promo</option>
+                    <option value="GManager">General Manger</option>
+                    <option value="Secretary">Secretary</option>
+                    <option value="Cutter">Cutter</option>
+                </select><br/><br/>
                 <input type="text" name="requsername" class="form-control" value="Username"/><br/>
                 <input type="password" name="reqpassword" class="form-control" value="Password"/>
                 <br/>
             </div> 
             <input type="submit" class="btn btn-primary width" value="Register"/>
         </form>
-    <a href="index.jsp"><button class="btn btn-primary width">Cancel</button></a>
+        <a href="index.jsp"><button class="btn btn-primary width">Cancel</button></a>
     </center>
     <!--</div>-->
     <script src="js/jquery.min.js"></script>
