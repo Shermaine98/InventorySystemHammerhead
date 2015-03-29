@@ -28,36 +28,30 @@ public class PurchaseOrderServlet extends BaseServlet {
 
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();    
-    
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+
         try {
-            
+
             PurchaseOrder po = new PurchaseOrder();
             PurchaseOrderDAO poDAO = new PurchaseOrderDAO();
-            
+
             String[] itemDescription = request.getParameterValues("itemDescription");
             String[] type = request.getParameterValues("Type");
             String[] unitMeasurement = request.getParameterValues("unitMeasurement");
             String[] qty = request.getParameterValues("qty");
             String[] unitPrice = request.getParameterValues("UnitPrice");
             String[] vat = request.getParameterValues("vat");
-            
+
             ArrayList<PurchaseOrder> newPOList = new ArrayList<PurchaseOrder>();
             boolean x = false;
-            
-            ArrayList<PurchaseOrder> oldList = new ArrayList<PurchaseOrder>();
-            try {
-                oldList = poDAO.GetAllPurchaseOrder();
-            } catch (ParseException ex) {
-                Logger.getLogger(PurchaseOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            int lastObj = oldList.size()-1;
-            int lastPOnumber = oldList.get(lastObj).getPoNumber();
-            
-            for(int i = 0; i < itemDescription.length; i++) {
-                po.setPoNumber(lastPOnumber);
+
+            ArrayList<PurchaseOrder> oldList = poDAO.GetAllPurchaseOrder();
+
+            int lastPOnumber = oldList.get(oldList.size() - 1).getPoNumber();
+
+            for (int i = 0; i < itemDescription.length; i++) {
+                po.setPoNumber(lastPOnumber + 1);
                 po.setItemDescription(itemDescription[i]);
                 po.setSupplier(Integer.parseInt(request.getParameter("Supplier")));
                 po.setType(type[i]);
@@ -77,18 +71,16 @@ public class PurchaseOrderServlet extends BaseServlet {
                 } catch (ParseException ex) {
                     Logger.getLogger(PurchaseOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-                if(poDAO.EncodePurchaseOrder(po)){
+
+                if (poDAO.EncodePurchaseOrder(po)) {
                     x = true;
                     newPOList.add(po);
-                }
-                else
+                } else {
                     x = false;
-                
+                }
             }
-           
-            
-            if (x==true) {
+
+            if (x == true) {
                 out.print("Valid");
                 ServletContext context = getServletContext();
                 RequestDispatcher rd = context.getRequestDispatcher("/dashboard.jsp");
@@ -102,6 +94,8 @@ public class PurchaseOrderServlet extends BaseServlet {
                 rd.forward(request, response);
 
             }
+        } catch (ParseException ex) {
+            Logger.getLogger(PurchaseOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();
         }
