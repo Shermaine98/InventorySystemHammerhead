@@ -40,9 +40,9 @@
                       
                 %> 
                 <tr>
-                    <td><%=Product.get(i).getProductionNumber()%></td>
+                    <td><%=Product.get(i).getProductID()%></td>
                     <td><%= Product.get(i).getSex()%></td>
-                    <td><%= Product.get(i).getItemDescription()%></td>
+                    <td><%= Product.get(i).getProductDescription()%></td>
                     <td><%= Product.get(i).getAgeGroup()%></td>
                     <td><%= Product.get(i).getColor()%></td>
                     <td><%= Product.get(i).getSize()%></td>

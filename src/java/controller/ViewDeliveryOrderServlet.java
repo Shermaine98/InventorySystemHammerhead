@@ -33,7 +33,7 @@ public class ViewDeliveryOrderServlet extends BaseServlet {
             
             ServletContext context = getServletContext();
             HttpSession session = request.getSession();
-            RequestDispatcher rd = context.getRequestDispatcher("/MonitorDeliveryOrder.jsp");
+            RequestDispatcher rd = context.getRequestDispatcher("/ViewDeliveryOrder.jsp");
             session.setAttribute("doList", doList);
             rd.forward(request, response);         
         } catch (ParseException ex) {

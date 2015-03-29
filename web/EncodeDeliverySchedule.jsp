@@ -1,154 +1,117 @@
 <%-- 
-    Document   : EncodeDeliverySchedule
-    Created on : 02 20, 15, 12:14:30 PM
+    Document   : EncodeConsumptionReport
+    Created on : 02 20, 15, 12:15:10 PM
     Author     : Shermaine
 --%>
 
+<%@page import="Model.DeliveryOrder"%>
+<%@page import="Model.PickingForm"%>
+<%@page import="Model.PurchaseOrder"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="navigationBar.jsp" />
+<%@include file="security.jsp" %>
 <!DOCTYPE html>
 <html>
+
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
         <title>Encode Delivery Schedule</title>
-        
-        <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- MetisMenu CSS -->
-        <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-        <!-- Timeline CSS -->
-        <link href="css/plugins/timeline.css" rel="stylesheet">
-
-        <!-- Custom CSS -->
-        <link href="css/sb-admin-2.css" rel="stylesheet">
-
-        <!-- Morris Charts CSS -->
-        <link href="css/plugins/morris.css" rel="stylesheet">
-
-        <!-- Custom CSS -->
-        <link href="css/simple-sidebar.css" rel="stylesheet">
-
-        <!-- Custom Fonts -->
-        <link href="font-awesome-4.1.0/css/font-awesome.min.css"
-              rel="stylesheet" type="text/css">
-
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <!-- Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/TABLE.css" rel="stylesheet">
         <style>
-            td.edits {
-                text-align: center;
-            }
-            th.edits {
-                text-align: center;
-            }
         </style>
 
         <script>
-            function addRow(tableID) {
-
-                var table = document.getElementById(tableID);
-
-                var rowCount = table.rows.length;
-                var row = table.insertRow(rowCount);
-
-                var colCount = table.rows[0].cells.length;
-
-                for (var i = 0; i < colCount; i++) {
-
-                    var newcell = row.insertCell(i);
-
-                    newcell.innerHTML = table.rows[0].cells[i].innerHTML;
-                    //alert(newcell.childNodes);
-                    switch (newcell.childNodes[0].type) {
-                        case "text":
-                            newcell.childNodes[0].value = "";
-                            break;
-                        case "checkbox":
-                            newcell.childNodes[0].checked = false;
-                            break;
-                        case "select-one":
-                            newcell.childNodes[0].selectedIndex = 0;
-                            break;
-                    }
-                }
+            var v="1";
+            
+            function onChange(data) {
+             document.getElementById("display").value = data.value;
+             $("#table tbody tr").remove();
+                  v= data.value;
             }
-
-            function deleteRow(tableID) {
-                try {
-                    var table = document.getElementById(tableID);
-                    var rowCount = table.rows.length;
-
-                    for (var i = 0; i < rowCount; i++) {
-                        var row = table.rows[i];
-                        var chkbox = row.cells[0].childNodes[0];
-                        if (null != chkbox && true == chkbox.checked) {
-                            if (rowCount <= 1) {
-                                alert("Cannot delete all the rows.");
-                                break;
-                            }
-                            table.deleteRow(i);
-                            rowCount--;
-                            i--;
-                        }
-
-
-                    }
-                } catch (e) {
-                    alert(e);
-                }
+            
+            function createQuantityName(i) {
+                var qty = "quantity"+i;
+                return qty;
             }
-
+            function createCommentName(i) {
+                var qty = "comment"+i;
+                return qty;
+            }
+            function createStatusName(i) {
+                var qty = "Status"+i;
+                return qty;
+            }
         </script>
-        
     </head>
-    
     <body>  
-    <br/><br/><br/>
-    <center><h2>Add Item</h2></center>
-        <form method="POST" action="deliveryScheduleServlet">
-            <div align="center">
-                <table class="tableContainer" width="50%">
-                    <thead class="fixedHeader">
-                        <tr>
-                        <th>Delivery Order #</th>
-                        <th>Date</th>
-                        <th>Prepared By</th>
-                        <th>Driver</th>
-                        </tr>
-                    </thead>
-                    <tbody id="dataTable" class="scrollContent">
-                        <tr>
-                            <td><input type="text" name="deliveryOrderNumber" size="10"/></td>
-                            <td><input type="text" name="schedule" size="16"/></td>                    
-                            <td><input type="text" name="preparedBy" size="16"/></td>                   
-                            <td><input type="text" name="driver" size="16"/></td>
-                        </tr>
-                    </tbody>
-                </table>
+         <br/><br/><br/>
+        <center><h1>Encode Delivery Schedule</h1></center>
+   
+         <center><h2>Choose Delivery Order</h2></center>
+         <br/> 
+        <div align="center">
+            <select name="selected" onchange="onChange(this)" > 
+                <option value="1">choose</option>
+                <%  
+                     ArrayList<DeliveryOrder> DeliveryOrder = (ArrayList<DeliveryOrder>) session.getAttribute("doList");
+                //   ArrayList<User> User = (ArrayList<promo>) session.getAttribute("promo");
+                    
+                   
+                   ArrayList<Integer> dONum = new ArrayList<Integer>();
+                  //  ArrayList<String> name = new ArrayList<String>();
+                    for (int y = 0; y < DeliveryOrder.size(); y++) {
+                        if (!(dONum.contains(DeliveryOrder.get(y).getDoNumber()))) {
+                            dONum.add(DeliveryOrder.get(y).getDoNumber());
+                          //  name.add(PickingForm.get(y).getCompanyName());
+                        }
+                    }
+                    for (int i=0; i < dONum.size(); i++) {
+                %>
+               <option value="<%=dONum.get(i)%>"> <%=dONum.get(i)%></option>
+                <%
+                    }
                 
-                <br/><br/>
-                <input type="submit" class="btn btn-danger" value="Submit">
-                <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
-            </div>
-        </form>
+                %>
+            </select>
+        </div>
+
+     <br/><br/>
     
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="js/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-    </body>
+    <div id= "center" align="center">
+        <form method="POST" action="DeliveryOrderServlet">
+
+
+            <table class="tableContainer" width="50%" id="table">
+                <thead class="fixedHeader">
+                    <tr>
+                        <th>Promo</th>
+                        <td><input name="poNumber" type="text" value="<%=DeliveryOrder.get(0).getPromo()%>"/></td>
+                    </tr>
+                    <tr>
+                        <th>Driver</th>
+                        <td><input name="driver" type="text" ></td>
+                        <td></td>
+                        <th>Prepared By</th>
+                       <td><input name="poNumber" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <th>Box Quantity</th>
+                       <td><input name="poNumber" type="text" /></td>
+                    </tr>
+  
+            </table>
+
+            <br/><br/>
+            <input type="submit" class="btn btn-danger" value="Submit">
+            <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
+
+        </form>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
 </html>

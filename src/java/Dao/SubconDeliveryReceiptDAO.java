@@ -69,7 +69,7 @@ public class SubconDeliveryReceiptDAO {
             while (rs.next()) {
                 SubconDeliveryReceipt newSubconDeliveryReceipt = new SubconDeliveryReceipt();
                 
-                newSubconDeliveryReceipt.setPoNumber(rs.getInt("poNumber"));
+                newSubconDeliveryReceipt.setDrNumber(rs.getInt("drNumber"));
                 newSubconDeliveryReceipt.setProductionNumber(rs.getInt("productionNumber"));
                 newSubconDeliveryReceipt.setProductID(rs.getInt("productID"));
                 newSubconDeliveryReceipt.setSize(rs.getString("size"));

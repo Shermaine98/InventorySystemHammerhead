@@ -38,8 +38,11 @@
                             <li><a href="/Hammerhead/ViewPurchaseOrderServlet">View Supplier Purchase Order</a></li>  
                             <li><a href="/Hammerhead/ViewSupplierDeliveryReceiptServlet">View Supplier Delivery Receipt</a></li>
                     <li class="divider"></li>
-                            <li><a href="">View Subcontractor Purchase Order</a></li>
-                            <li><a href="">View Subcontractor Delivery Receipt</a></li>          
+                            <li><a href="/Hammerhead/ViewSubconPurchaseOrderServlet">View Subcontractor Purchase Order</a></li>
+                            <li><a href="/Hammerhead/ViewSubconDeliveryReceiptServlet">View Subcontractor Delivery Receipt</a></li>          
+                    <li class="divider"></li>
+                            <li><a href="EncodeCuttingReport.jsp">Encode Cutting Report</a></li>
+                            <li><a href="/Hammerhead/ViewCuttingReportServlet">View Cutting Reports</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventory<span class="caret"></span></a> <ul class="dropdown-menu" role="menu">
@@ -56,7 +59,7 @@
                     </li> 
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Delivery <span class="caret"></span></a> <ul class="dropdown-menu" role="menu">
                             <li><a href="EncodeDeliveryOrder.jsp">Encode Delivery Orders</a></li>
-                            <li><a href="/Hammerhead/ViewDeliveryOrderServlet">Monitor Delivery Orders</a></li>
+                            <li><a href="/Hammerhead/ViewDeliveryOrderServlet">View Delivery Orders</a></li>
                     <li class="divider"></li>
                             <li><a href="EncodeDeliverySchedule.jsp">Encode Delivery Schedule</a></li>
                             <li><a href="/Hammerhead/ViewDeliveryScheduleServlet">Monitor Delivery Schedules</a></li>
@@ -64,18 +67,21 @@
                     </li>
 
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Other<span class="caret"></span></a>
+                        
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="EncodeInventoryReport.jsp">Encode Inventory Reports</a></li>
-                            <li><a href="/Hammerhead/ViewInventoryReportServlet">View Inventory Reports</a></li>
+                              <li class="divider"></li>
+                         <li><a href="EncodeInventoryReport.jsp">Encode Inventory Reports</a></li>
+                          <li><a href="/Hammerhead/ViewInventoryReportServlet">View Inventory Reports</a></li>
+                          <li class="divider"></li>
+                         <li><a href="EncodePickingForm.jsp">Encode Picking Form</a></li>
+                            <li><a href="/Hammerhead/ViewPickingFormServlet">View Picking Form</a></li>
                         <li class="divider"></li>
                             <li><a href="EncodeSupplier.jsp">Encode Supplier</a></li>
                             <li><a href="/Hammerhead/ViewSupplierServlet">View Supplier</a></li>
                         <li class="divider"></li>
                             <li><a href="EncodeProduct.jsp">Encode Product</a></li>
                             <li><a href="/Hammerhead/ViewProductServlet">View Product</a></li>
-                        <li class="divider"></li>
-                            <li><a href="EncodeCuttingReport.jsp">Encode Cutting Report</a></li>
-                            <li><a href="/Hammerhead/ViewCuttingReportServlet">View Cutting Reports</a></li>
+                      
    
                         </ul>
                     </li>                 

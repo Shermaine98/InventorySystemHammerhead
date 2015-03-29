@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="Model.PickingForm"%>
 <%@page import="Model.InventoryReport"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -29,32 +30,25 @@
                 <tr>
                     <th class="edits"></th>
             
-                        <th>Promo</th>
+                        <th>Promotizer</th>
                         <th>Date Made</th>
-                        <th>Item Description</th> 
-                        <th>Age Group</th> 
+                        <th>Product ID</th> 
                         <th>Color</th> 
                         <th>Size</th> 
-                        <th>Remaining Quantity</th> 
-                        <th>Sold Quantity</th> 
-                        <th>Pulled Out Quantity</th>
+                        <th>Made by</th> 
+                        <th>Requested By</th>
                 </tr>
                 <%
-                    ArrayList<InventoryReport> InventoryReport = (ArrayList<InventoryReport>) session.getAttribute("irList");
-                    for (int i = 0; i < InventoryReport.size(); i++) {
+                    ArrayList<PickingForm> PickingForm = (ArrayList<PickingForm>) session.getAttribute("pickingForm");
+                    for (int i = 0; i < PickingForm.size(); i++) {
                 %>
                 <tr>
-                    <td><input type="checkbox" name="chk"/></td> 
-                    
-                    <td><%= InventoryReport.get(i).getPromo()%></td>
-                  
-                    <td><%= InventoryReport.get(i).getProductionNumber()%></td>
-                   
-                    <td><%= InventoryReport.get(i).getColor()%></td>
-                    <td><%= InventoryReport.get(i).getSize()%></td>
-                    <td><%= InventoryReport.get(i).getRemainingQuantity()%></td>
-                    <td><%= InventoryReport.get(i).getSoldQty()%></td>
-                    <td><%= InventoryReport.get(i).getPulledOutQty()%></td>
+                    <td><%= PickingForm.get(i).getPromo()%></td>
+                    <td><%= PickingForm.get(i).getDateMade()%></td>
+                    <td><%= PickingForm.get(i).getColor()%></td>
+                    <td><%= PickingForm.get(i).getSize()%></td>
+                    <td><%= PickingForm.get(i).getMadeBy() %></td>
+                    <td><%= PickingForm.get(i).getRequestedQty() %></td>
                 </tr>        
                 <%
                                                               }

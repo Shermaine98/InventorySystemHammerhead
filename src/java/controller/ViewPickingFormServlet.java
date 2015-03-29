@@ -37,7 +37,7 @@ public class ViewPickingFormServlet extends BaseServlet {
 
         ServletContext context = getServletContext();
         HttpSession session = request.getSession();
-        RequestDispatcher rd = context.getRequestDispatcher("/GetPickingForm.jsp");
+        RequestDispatcher rd = context.getRequestDispatcher("/ViewPickingForm.jsp");
         session.setAttribute("pickingForm", pickingForm);
         rd.forward(request, response);
 
