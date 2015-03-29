@@ -81,7 +81,7 @@
                     <td><%= SDeliveryReceipt.get(i).getComment()%></td>
                 </tr>        
                 <%
-                                i = y;
+                         
                             }
                         }
                     }

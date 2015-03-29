@@ -113,7 +113,6 @@
 
             <br/><br/>
             <input type="submit" class="btn btn-danger" value="OK"/> 
-            <a href="updateAccessoriesInventory.jsp"><button type="button" class="btn btn-danger">Update Accessories Inventory</button></a>
             <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
         </div>
     </form>

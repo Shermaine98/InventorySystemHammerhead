@@ -81,7 +81,10 @@
                         <li class="divider"></li>
                             <li><a href="EncodeProduct.jsp">Encode Product</a></li>
                             <li><a href="/Hammerhead/ViewProductServlet">View Product</a></li>
-                      
+                        <li class="divider"></li>
+                            <li><a href="EncodeConsumptionReport.jsp">Encode Consumption Report</a></li>
+                            <li><a href="/Hammerhead/ViewConsumptionReportServlet">View Consumption Reports</a></li>
+
    
                         </ul>
                     </li>                 

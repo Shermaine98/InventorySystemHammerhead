@@ -25,20 +25,21 @@ public class PurchaseOrderDAO {
             try {
                 DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
                 Connection conn = myFactory.getConnection();
-                String query = "insert into supplier_purchase_order(itemDescription,supplier,type,qty,unitMeasurement,unitPrice,vat,dateMade,preparedBy,approvedBy,deliverySchedule) values (?,?,?,?,?,?,?,?,?,?,?) ";
+                String query = "insert into supplier_purchase_order(poNumber,itemDescription,supplier,type,qty,unitMeasurement,unitPrice,vat,dateMade,preparedBy,approvedBy,deliverySchedule) values (?,?,?,?,?,?,?,?,?,?,?,?) ";
                 PreparedStatement pstmt = conn.prepareStatement(query);
                 
-                pstmt.setString(1, newPurchaseOrder.getItemDescription());
-                pstmt.setInt(2, newPurchaseOrder.getSupplier());
-                pstmt.setString(3, newPurchaseOrder.getType());
-                pstmt.setInt(4, newPurchaseOrder.getQty());
-                pstmt.setString(5, newPurchaseOrder.getUnitMeasurement());
-                pstmt.setDouble(6, newPurchaseOrder.getUnitprice());
-                pstmt.setDouble(7, newPurchaseOrder.getVat());
-                pstmt.setDate(8, newPurchaseOrder.getDateMade());
-                pstmt.setInt(9, newPurchaseOrder.getPreparedBy());
-                pstmt.setInt(10, newPurchaseOrder.getApprovedBy());
-                pstmt.setDate(11, newPurchaseOrder.getDeliverySchedule());
+                pstmt.setInt(1, newPurchaseOrder.getPoNumber());
+                pstmt.setString(2, newPurchaseOrder.getItemDescription());
+                pstmt.setInt(3, newPurchaseOrder.getSupplier());
+                pstmt.setString(4, newPurchaseOrder.getType());
+                pstmt.setInt(5, newPurchaseOrder.getQty());
+                pstmt.setString(6, newPurchaseOrder.getUnitMeasurement());
+                pstmt.setDouble(7, newPurchaseOrder.getUnitprice());
+                pstmt.setDouble(8, newPurchaseOrder.getVat());
+                pstmt.setDate(9, newPurchaseOrder.getDateMade());
+                pstmt.setInt(10, newPurchaseOrder.getPreparedBy());
+                pstmt.setInt(11, newPurchaseOrder.getApprovedBy());
+                pstmt.setDate(12, newPurchaseOrder.getDeliverySchedule());
                
                 int rows = pstmt.executeUpdate();
                 conn.close();

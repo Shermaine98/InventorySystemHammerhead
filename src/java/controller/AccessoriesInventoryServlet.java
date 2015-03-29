@@ -7,9 +7,11 @@ package controller;
 
 import Dao.AccessoriesInventoryDAO;
 import Model.AccessoriesInventory;
+import Model.PurchaseOrder;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -33,21 +35,42 @@ public class AccessoriesInventoryServlet extends BaseServlet {
         try {
             
             AccessoriesInventory accessoriesInventory = new AccessoriesInventory();
-            accessoriesInventory.setCategory(request.getParameter("category"));
-            accessoriesInventory.setAccessoryDescription(request.getParameter("accessoryDescription"));
+            AccessoriesInventoryDAO AIDAO = new AccessoriesInventoryDAO();
+           ArrayList<AccessoriesInventory> AccessoriesInventory = new ArrayList<AccessoriesInventory>();
+            boolean x= false;
+            
+            String[] category = request.getParameterValues("category");
+            String[] accessoryDes = request.getParameterValues("accessoryDescription");
+            String[] qty = request.getParameterValues("qty");
+            String[] unitMeasurment = request.getParameterValues("unitMeasurement");
+            String[] approval = request.getParameterValues("approval");
+            String[] note = request.getParameterValues("note");
+            
+             for (int i = 0; i < accessoryDes.length; i++) {
+            accessoriesInventory.setCategory(category[i]);
+            accessoriesInventory.setAccessoryDescription(accessoryDes[i]);
         try {
             accessoriesInventory.setDateUpdated();
         } catch (ParseException ex) {
             Logger.getLogger(AccessoriesInventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
             accessoriesInventory.setDeliveryReceiptNumber(Integer.parseInt(request.getParameter("deliveryReceiptNumber")));
-            accessoriesInventory.setQty(Integer.parseInt(request.getParameter("qty")));
-            accessoriesInventory.setUnitMeasurement(request.getParameter("unitMeasurement"));
-            accessoriesInventory.setApproval(Boolean.parseBoolean(request.getParameter("approval")));
+            accessoriesInventory.setQty(Integer.parseInt(qty[i]));
+            accessoriesInventory.setUnitMeasurement(unitMeasurment[i]);
+            accessoriesInventory.setApproval(Boolean.parseBoolean(approval[i]));
+              accessoriesInventory.setNote(note[i]);
             
-            AccessoriesInventoryDAO AIDAO = new AccessoriesInventoryDAO();
+           
+              if (AIDAO.EncodeAccessoriesInventory(accessoriesInventory)) {
+                    x = true;
+                    AccessoriesInventory.add(accessoriesInventory);
+                } else {
+                    x = false;
+                }
             
-            if (AIDAO.EncodeAccessoriesInventory(accessoriesInventory)) {
+             }
+            
+            if (x==true) {
                 out.print("Valid");
                 ServletContext context = getServletContext();
                 RequestDispatcher rd = context.getRequestDispatcher("/dashboard.jsp");
