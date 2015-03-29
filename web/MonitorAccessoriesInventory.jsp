@@ -4,6 +4,7 @@
     Author     : Shermaine
 --%>
 
+<%@page import="Model.PurchaseOrder"%>
 <%@page import="Model.SupplierDeliveryReceipt"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Dao.SupplierDeliveryReceiptDAO"%>
@@ -33,96 +34,83 @@
     </head>
     <body>  
         <br/><br/><br/>
-    <center><h2>Updating Accessories Inventory</h2></center>
+    <center><h1>Reconciling Accessories Inventory</h1></center>
 
     <%
         ArrayList<SupplierDeliveryReceipt> SupplierDeliveryReceipt = (ArrayList<SupplierDeliveryReceipt>) session.getAttribute("SdrList");
+        ArrayList<PurchaseOrder> PurchaseOrder = (ArrayList<PurchaseOrder>) session.getAttribute("poList");
     %>
 
     <div align="center">
-        <h1>Delivery Receipt Number</h1>
+        <h3>Delivery Receipt Number</h3>
         <select name="SupplierDeliveryReceipt" style="width:90px">
             <%
-                //ArrayList<Integer> SupplierNumber = new ArrayList<Integer>();
-                //ArrayList<String> name = new ArrayList<String>();
-                // for (int y = 0; y < SupplierDeliveryReceipt.size(); y++) {
-                //if (!(SupplierNumber.contains(RefSupplier.get(y).getSupplierID()))) {
-                //         SupplierNumber.add(RefSupplier.get(y).getSupplierID());
-                //       name.add(RefSupplier.get(y).getCompanyName());
-                // }
-                // }
-                for (int i = 0; i < SupplierDeliveryReceipt.size(); i++) {
-
+                ArrayList<Integer> DeliveryN = new ArrayList<Integer>();
+                 for (int z = 0; z < SupplierDeliveryReceipt.size(); z++) {
+                if (!(DeliveryN.contains(SupplierDeliveryReceipt.get(z).getDeliveryReceiptNumber()))) {
+                    DeliveryN.add(SupplierDeliveryReceipt.get(z).getDeliveryReceiptNumber());
+              }
+             }
+              
+                for (int i = 0; i < DeliveryN.size(); i++) {
             %>
 
-            <option value="<%=SupplierDeliveryReceipt.get(1)%>"> <%=SupplierDeliveryReceipt.get(1).getDeliveryReceiptNumber()%></option>
+            <option value="<%=DeliveryN.get(i)%>"> <%=DeliveryN.get(i)%></option>
             <%
 
                 }
 
             %>
         </select>
-
     </div>
     <form method="POST" action="AccessoriesInventoryServlet">
         <div align="center">
             <table class="tableContainer" width="80%">
                 <thead class="fixedHeader"><tr>   
                         <th>Delivery Receipt Number</th> 
-                        <th>Category</th> 
-                        <th>Unit Measurement</th>
-
-                        <!-- Temporary -->
-
-                        <!-- Temporary -->
                     </tr></thead>
                 <tbody id="dataTable" class="scrollContent"><tr>
-
-
                         <td><input type="text" name="deliveryReceiptNumber" size="18" value="<%= SupplierDeliveryReceipt.get(1).getDeliveryReceiptNumber()%>"/></td>
-
-                        <td><select name="category">  
-                                <option value="Tshirt">T-shirt</option>
-                                <option value="Pants">Pants</option>
-                            </select>
-                        </td>
-
-                        <td> <select name ="unitMeasurement">
-                                <option value="kg">Kilogram</option>
-                                <option value="meter">meter</option>
-                            </select></td>
-                            
-                            <tr>        
-                            <th>Accessory Description</th>
+                    <tr>  
+                        <th>Category</th>
+                        <th>Accessory Description</th>
                         <th>Quantity</th>
-                         <th>Check Box</th>
+                        <th>Unit Measurement</th>
                         <th>Approval</th>
                         <th>Note</th>
-                        </tr>
-
-                        <%
-                            for (int y = 0; y < SupplierDeliveryReceipt.size(); y++) {
-                                //if (SupplierDeliveryReceipt.get(y).get() == SupplierDeliveryReceipt.get(i).getPoNumber()) {
-                        %>
+                    </tr>
+                    <%
+                        for (int y = 0; y < SupplierDeliveryReceipt.size(); y++) {
+                       //  if (SupplierDeliveryReceipt.get(y).getStatus().equalsIgnoreCase("complete")) {
+                    %>
 
                     <tr>
+                       <td><input type="text" name="category" size="18" value="WEIRDDDD...."/></td>
+                        <td><input name="accessoryDescription" value="<%= SupplierDeliveryReceipt.get(y).getItemDescription()%>"/></td>
+                        <td><input name="qty" value="<%= SupplierDeliveryReceipt.get(y).getQty()%>"/></td>
 
-                        <td><input name="accessoryDescription" value="<%= SupplierDeliveryReceipt.get(1).getItemDescription()%>"/></td>
-                        <td><input name="qty" value="<%= SupplierDeliveryReceipt.get(1).getQty()%>"/></td>
+                        <%
+                            for (int i = 0; i < PurchaseOrder.size(); i++) {
+                                if ((SupplierDeliveryReceipt.get(y).getPoNumber() == PurchaseOrder.get(i).getPoNumber())
+                                        && (SupplierDeliveryReceipt.get(y).getItemDescription().equalsIgnoreCase(PurchaseOrder.get(i).getItemDescription()))) {
+                        %> 
+                        <td><input name="unitMeasurement" value=" <%= PurchaseOrder.get(i).getUnitMeasurement()%>"/></td>
+                        <%
 
+                                }
+                            }
+                        %>
 
-
-                        <td><input type="checkbox" name="chk" onClick="document.getElementById('createNoteName(<%=1%>)').disabled = this.checked;" checked/></td>
-                        
+                        <td><input type="checkbox" name="approval" onClick="document.getElementById('createNoteName(<%=1%>)').disabled = this.checked;" checked/></td>
                         <td><input type="text" name="note" id="createNoteName(<%=1%>)" size="5" disabled/></td>
-                        <td><input type="text" name="approval"  size="5" /></td>
+                       
                             <%
                                 }
                             %>
                     </tr></tbody>
             </table>
 
-            
+
             <br/><br/>
             <input type="submit" class="btn btn-danger" value="OK"/> 
             <a href="updateAccessoriesInventory.jsp"><button type="button" class="btn btn-danger">Update Accessories Inventory</button></a>

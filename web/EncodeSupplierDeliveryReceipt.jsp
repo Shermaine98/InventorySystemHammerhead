@@ -39,6 +39,10 @@
                 var qty = "comment"+i;
                 return qty;
             }
+            function createStatusName(i) {
+                var qty = "Status"+i;
+                return qty;
+            }
         </script>
     </head>
     <body>  
@@ -78,18 +82,24 @@
                     <tr>
                         <th>Purchase Order</th>
                         <td><input name="poNumber" type="text" value="<%=PurchaseOrder.get(i).getPoNumber()%>"/></td>
+                        <td></td>
+                        <td></td>
                         <th>Supplier</th>
                         <td><%= PurchaseOrder.get(i).getSupplier()%></td>
                     </tr>
                     <tr>
                         <th>Prepared By</th>
                         <td><%= PurchaseOrder.get(i).getPreparedBy()%></td>
+                        <td></td>
+                        <td></td>
                         <th>Approved By</th>
                         <td><%= PurchaseOrder.get(i).getApprovedBy()%></td>
                     </tr>
                     <tr>
                         <th>Delivery Schedule</th>
                         <td><%= PurchaseOrder.get(i).getDeliverySchedule()%></td>
+                        <td></td>
+                        <td></td>
                         <th>Date Made</th>
                         <td><%= PurchaseOrder.get(i).getDateMade()%></td>
                     </tr>
@@ -99,6 +109,7 @@
                         <th>Unit Measurement</th>
                         <th>Unit Price</th>
                         <th>Vat</th>
+                        <th>Status</th>
                         <th>check box</th>
                         <th>Status</th>
                         <th>Quantity</th>
@@ -117,16 +128,17 @@
                         <td><%= PurchaseOrder.get(i).getUnitMeasurement()%></td>
                         <td><%= PurchaseOrder.get(i).getUnitprice()%></td>
                         <td><%= PurchaseOrder.get(i).getVat()%></td>
+                        <td><input name="status" value="complete"/></td>
                         <td><input type="checkbox" name="chk" onClick="document.getElementById('createCommentName(<%=y%>)').disabled = this.checked;
-                                document.getElementById('createQuantityName(<%=y%>)').disabled = this.checked;" checked/></td>
+                                document.getElementById('createQuantityName(<%=y%>)').disabled = this.checked; 
+                                document.getElementById('createStatusName(<%=y%>)').disabled = this.checked;" checked/></td>
                         <td> 
-                            <select name="status">
-                                <option value="complete">Complete</option>
-                                <option value="in progress">In Progress</option>
-                                <option value="incomplete">Incomplete</option>
-                                <option value="rejected">rejected</option>
-                            </select></td>
-
+                            <select name="status" id="createStatusName(<%=y%>)" disabled>
+                                <option value="in progress" >In Progress</option>
+                                <option value="incomplete" >Incomplete</option>
+                                <option value="rejected" >rejected</option>
+                            </select>
+                        </td>
                         <td><input type="text" name="qunatity" id="createQuantityName(<%=y%>)" size="5" disabled/></td>
                         <td><input type="text" name="comment" id="createCommentName(<%=y%>)" size="5" disabled/></td>
                     </tr>

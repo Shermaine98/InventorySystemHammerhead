@@ -70,9 +70,9 @@ public class SupplierDeliveryReceiptDAO {
                 temp.setReceivedDate(rs.getDate("dateReceived"));
                 temp.setCheckedBy(rs.getInt("checkedBy"));
                 temp.setreceivedBy(rs.getInt("receivedBy"));
-                temp.setStatus("status");
+                temp.setStatus(rs.getString("status"));
                 temp.setQty(rs.getInt("qty"));
-                temp.setComment("comment");
+                temp.setComment(rs.getString("comment"));
 
                 DeliveryReceipt.add(temp);
             }

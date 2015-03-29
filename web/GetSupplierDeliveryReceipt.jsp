@@ -23,7 +23,25 @@
     </head>
     <body>  
         <br/><br/><br/>
-    <center><h2>Add Item</h2></center>
+        <div class="myrawtable" align= "center">
+        <h2>View Supplier Delivery Receipt</h2>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <input type="text" class="  search-query form-control" placeholder="Search" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-danger" type="button">
+                                <span class=" glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br> <br> <br>
     <form method="POST" action="ConsumptionReportServlet">
         <div align="center">
             <table id="dataTable" class="table table-hover" style= "width:800px">
@@ -34,7 +52,6 @@
                     for (int i = 0; i < SDeliveryReceipt.size(); i++) {
                 %>
                 <tr>
-                    <td><input type="checkbox" name="chk"/></td> 
                     <th>Delivery Receipt Number</th>
                     <td><%= SDeliveryReceipt.get(i).getDeliveryReceiptNumber()%></td>
                     <th>Production Number</th>

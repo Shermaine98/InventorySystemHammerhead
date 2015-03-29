@@ -38,7 +38,6 @@ public class ViewPurchaseOrderServlet extends BaseServlet {
             rd.forward(request, response);         
         } catch (ParseException ex) {
             Logger.getLogger(ViewPurchaseOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          
+        } 
     }
 }

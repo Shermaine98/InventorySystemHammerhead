@@ -22,13 +22,30 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
    </head>
     <body>     
+         <br> <br> <br>
+        <div class="myrawtable" align= "center">
+        <h2>Monitor Production Inventory</h2>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <input type="text" class="  search-query form-control" placeholder="Search" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-danger" type="button">
+                                <span class=" glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
         <br> <br> <br>
          <div class="myrawtable" align= "center">
-            <h2>Production Inventory</h2>
+           
             <table id="dataTable" class="table table-hover" style= "width:800px ">
                 <tr>
-                    <th class="edits"></th>
-     
                     <th>Production Number</th>
                     <th>Category</th>
                     <th>Delivery Receipt Number</th>
@@ -43,7 +60,7 @@
                     for (int i = 0; i < ProductionInventory.size(); i++) {
                 %>
                 <tr>
-                    <td><input type="checkbox" name="chk"/></td> 
+                    
                     <td><%= ProductionInventory.get(i).getProductionNumber()%></td>
                     <td><%= ProductionInventory.get(i).getCategory()%></td>
                     <td><%= ProductionInventory.get(i).getDrNumber()%></td>

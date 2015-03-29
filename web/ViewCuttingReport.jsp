@@ -23,14 +23,29 @@
 
     </head>
     <body>  
-        <br/><br/><br/>
-    <center><h2>Add Item</h2></center>
-    <form method="POST" action="ConsumptionReportServlet">
+     <br> <br> <br>
+        <div class="myrawtable" align= "center">
+        <h2>View Cutting Inventory</h2>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <input type="text" class="  search-query form-control" placeholder="Search" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-danger" type="button">
+                                <span class=" glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br> <br> <br>
         <div align="center">
             <table id="dataTable" class="table table-hover" style= "width:800px ">
                 <tr>
-                    <th class="edits"></th>
-
                     <th>Production Number</th>
                     <th>Category</th>
                     <th>Delivery Receipt Number</th>
@@ -44,7 +59,6 @@
                     for (int i = 0; i < CuttingReport.size(); i++) {
                 %>
                 <tr>
-                    <td><input type="checkbox" name="chk"/></td> 
                     <td><%= CuttingReport.get(i).getProductionNumber()%></td>
                     <td><%= CuttingReport.get(i).getCategory()%></td>
                     <td><%= CuttingReport.get(i).getDrNumber()%></td>
@@ -64,7 +78,6 @@
             <input type="submit" class="btn btn-danger" value="Submit">
             <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
         </div>
-    </form>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>

@@ -66,12 +66,12 @@
     <body>  
        
         <br/><br/><br/>
-         <center><h2>Encoding Purchase Order</h2></center>
+         <center><h1>Encoding Purchase Order</h1></center>
         <%          ArrayList<RefSupplier> RefSupplier = (ArrayList<RefSupplier>) session.getAttribute("SList");
         %>
         <div align="center">
-            <h1>Choose Supplier</h1>
-            <select name="Supplier" style="width:90px">
+            <h2>Choose Supplier</h2>
+            <select name="Supplier" style="width:300px">
                 <%
                     ArrayList<Integer> SupplierNumber = new ArrayList<Integer>();
                     ArrayList<String> name = new ArrayList<String>();
@@ -90,29 +90,33 @@
                 %>
             </select>
         </div>
+         <br><br>
     <form method="POST" action="PurchaseOrderServlet">
         <div align="center">
             <table class="tableContainer" width="80%">
                 <thead class="fixedHeader"><tr> 
                         <th>Supplier</th>
                         <td><input name="Supplier"  value="<%=RefSupplier.get(1).getSupplierID()%>"/></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <th>Delivery Schedule </th>
                         <td><input type="text" name="DeliverySchedule" size="10"/></td>
                     </tr>
+                
                     <tr>
-                        <th></th>
+
+                        <th>Check Box</th>
                         <th>Item Description</th>
                         <th>Type</th>
-                        <th>Quantity</th>
                         <th>Unit Measurement</th> 
                         <th>Unit Price</th> 
                         <th>Vat</th> 
+                         <th>Quantity</th>
                     </tr></thead>
                 <tbody id="dataTable" class="scrollContent"><tr>
-
                         <td><input type="checkbox" name="chk"/></td>
                         <!--if that, selected itemDescription, itemDescription  -- for the next row -->
-
                         <td>  
                             <select name="itemDescription" style="width:90px">
                                 <% for (int i = 0; i < RefSupplier.size(); i++) {
@@ -133,7 +137,7 @@
                             </select>
                         </td>  
 
-                        <td><input type="text" name="qty" size="10"/></td>
+                        
                         <td> <select name ="unitMeasurement">
                                 <option value="Kg">Kilogram</option>
                                 <option value="Yd">Yard</option>
@@ -142,7 +146,8 @@
                                 <option value="pcs">Pcs</option>
                             </select></td>
                         <td><input type="text" name="UnitPrice" size="10"/></td>
-                        <td><input type="text" name="vat" size="10"/></td>     
+                        <td><input type="text" name="vat" size="10"/></td> 
+                        <td><input type="text" name="qty" size="10"/></td>
                 </tbody>
                  <tr>
                         <th>Prepared By</th> 

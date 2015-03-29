@@ -71,8 +71,8 @@
                             <li><a href="EncodeSupplier.jsp">Encode Supplier</a></li>
                             <li><a href="/Hammerhead/ViewSupplierServlet">View Supplier</a></li>
                         <li class="divider"></li>
-                            <li><a href="EncodeSupplier.jsp">Encode Product</a></li>
-                            <li><a href="/Hammerhead/ViewSupplierServlet">View Product</a></li>
+                            <li><a href="EncodeProduct.jsp">Encode Product</a></li>
+                            <li><a href="/Hammerhead/ViewProductServlet">View Product</a></li>
                         <li class="divider"></li>
                             <li><a href="EncodeCuttingReport.jsp">Encode Cutting Report</a></li>
                             <li><a href="/Hammerhead/ViewCuttingReportServlet">View Cutting Reports</a></li>

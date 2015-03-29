@@ -21,9 +21,27 @@
     <body>
         <br> <br> <br>
         <div class="myrawtable" align= "center">
-            <h2>View Purchase Order</h2>
+        <h2>View Supplier Purchase Order</h2>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <input type="text" class="  search-query form-control" placeholder="Search" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-danger" type="button">
+                                <span class=" glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br> <br> <br>
+        <div class="myrawtable" align= "center">
             <table id="dataTable" class="table table-hover" style= "width:800px">
-               
+
                 <%
                     ArrayList<PurchaseOrder> PurchaseOrder = (ArrayList<PurchaseOrder>) session.getAttribute("poList");
                     for (int i = 0; i < PurchaseOrder.size(); i++) {
@@ -38,37 +56,37 @@
                 <tr>
                     <th class = "edits">Prepared By</th>
                     <td><%= PurchaseOrder.get(i).getPreparedBy()%></td>
-                     <th class = "edits">Approved By</th>
+                    <th class = "edits">Approved By</th>
                     <td><%= PurchaseOrder.get(i).getApprovedBy()%></td>
                 </tr>
                 <tr>
-                      <th class = "edits">Delivery Schedule</th>
+                    <th class = "edits">Delivery Schedule</th>
                     <td><%= PurchaseOrder.get(i).getDeliverySchedule()%></td>
-                       <th class = "edits">Date Made</th>
+                    <th class = "edits">Date Made</th>
                     <td><%= PurchaseOrder.get(i).getDateMade()%></td>
                 </tr>
-                 <tr>
+                <tr>
                     <th class = "edits">Item Description</th>
                     <th class = "edits">Quantity</th>
                     <th class = "edits">Unit Measurement</th>
                     <th class = "edits">Unit Price</th>
                     <th class = "edits">Vat</th>
-                 </tr>
-                    <%
-                        for (int y = 0; y < PurchaseOrder.size(); y++) {
-                     if (PurchaseOrder.get(y).getPoNumber() == PurchaseOrder.get(i).getPoNumber()){
-                    %>
-                   
-               <tr>
+                </tr>
+                <%
+                    for (int y = 0; y < PurchaseOrder.size(); y++) {
+                        if (PurchaseOrder.get(y).getPoNumber() == PurchaseOrder.get(i).getPoNumber()) {
+                %>
+
+                <tr>
                     <td><%= PurchaseOrder.get(y).getItemDescription()%></td>
                     <td><%= PurchaseOrder.get(y).getQty()%></td>
                     <td><%= PurchaseOrder.get(y).getUnitMeasurement()%></td>
                     <td><%= PurchaseOrder.get(y).getUnitprice()%></td>
                     <td><%= PurchaseOrder.get(y).getVat()%></td>
-                   
+
                 </tr>
-                    <%
-                        i=y;
+                <%
+                                i = y;
                             }
                         }
                     }
