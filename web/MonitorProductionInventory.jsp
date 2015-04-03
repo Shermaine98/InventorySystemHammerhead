@@ -93,7 +93,7 @@
                            
                         %> 
                         <td><input name="unitMeasurement" value="WAHHHH"/></td>
-                          <td><input type="checkbox" name="chk" onClick="document.getElementById('createNoteName(<%=y%>)').disabled = this.checked;" checked/></td>
+                          <td><input type="checkbox" value="1" name="chk" onClick="document.getElementById('createNoteName(<%=y%>)').disabled = this.checked;" checked/></td>
                         <td><input type="text" name="note" id="createNoteName(<%=y%>)" size="5" disabled/></td>
                         <%
                            }

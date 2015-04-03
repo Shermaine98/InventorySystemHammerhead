@@ -10,6 +10,7 @@ import Model.ProductionInventory;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -33,23 +34,45 @@ public class ProductionInventoryServlet extends BaseServlet {
         try {
             
             ProductionInventory productionInventory = new ProductionInventory();
-        try {
+            ProductionInventoryDAO PIDAO = new ProductionInventoryDAO();
+            ArrayList <ProductionInventory> pi = new ArrayList <ProductionInventory>();
+            boolean x = false;
+            
+            String[] poNum = request.getParameterValues("productionNumber");
+            String[] DrNum = request.getParameterValues("deliveryReceiptNumber");
+            String[] category = request.getParameterValues("category");
+            String[] qty = request.getParameterValues("qty");
+// TODO: THIS NOT SURE
+            String[] unitM = request.getParameterValues("unitMeasurement");
+            String[] Approval = request.getParameterValues("approval");
+// END
+            String[] note = request.getParameterValues("note");
+      
+       for(int i=0; i< category.length;i++){     
+       try {
             productionInventory.setDateUpdated();
         } catch (ParseException ex) {
             Logger.getLogger(ProductionInventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
             productionInventory.setProductionNumber(Integer.parseInt(request.getParameter("productionNumber")));
-            productionInventory.setCategory(request.getParameter("category"));
             productionInventory.setDrNumber(Integer.parseInt(request.getParameter("deliveryReceiptNumber")));
-            productionInventory.setQty(Integer.parseInt(request.getParameter("qty")));
-            productionInventory.setUnitMeasurement(request.getParameter("unitMeasurement"));
-            productionInventory.setApproval(Boolean.parseBoolean(request.getParameter("approval")));
-            productionInventory.setNote(request.getParameter("note"));
+            productionInventory.setCategory(category[i]);
+            productionInventory.setQty(Integer.parseInt(qty[i]));
+            productionInventory.setUnitMeasurement(unitM[i]);
+            productionInventory.setApproval(Boolean.parseBoolean(Approval[i]));
+            productionInventory.setNote(note[i]);
+            
+              if (PIDAO.EncodeProductionInventory(productionInventory)) {
+                    x = true;
+                    pi.add(productionInventory);
+                } else {
+                    x = false;
+                }
+           
+       }
            
             
-            ProductionInventoryDAO PIDAO = new ProductionInventoryDAO();
-            
-            if (PIDAO.EncodeProductionInventory(productionInventory)) {
+            if (x==true) {
                 out.print("Valid");
                 ServletContext context = getServletContext();
                 RequestDispatcher rd = context.getRequestDispatcher("/dashboard.jsp");

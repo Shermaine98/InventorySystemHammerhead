@@ -10,6 +10,7 @@ import Model.WarehouseInventory;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -33,27 +34,45 @@ public class WarehouseInventoryServlet extends BaseServlet {
         try {
             
             WarehouseInventory warehouseInventory = new WarehouseInventory();
+            WarehouseInventoryDAO WIDAO = new WarehouseInventoryDAO();
+            ArrayList <WarehouseInventory> WI = new ArrayList <WarehouseInventory>();
+            boolean x= false;
+            
+            String [] productID = request.getParameterValues("productID");
+            String [] size = request.getParameterValues("size");
+            String [] color = request.getParameterValues("color");
+            String [] qty = request.getParameterValues("qty");
+ // TODO: fix
+            String [] approval = request.getParameterValues("approval");
+            
+            for(int i=0; i < productID.length;i++){
             warehouseInventory.setDrNumber(Integer.parseInt("drNumber"));
             warehouseInventory.setProductionNumber(Integer.parseInt(request.getParameter("productionNumber")));
-            warehouseInventory.setProductID(Integer.parseInt(request.getParameter("productID")));
-            warehouseInventory.setSize(request.getParameter("size"));
-            warehouseInventory.setColor(request.getParameter("color"));
-            warehouseInventory.setQty(Integer.parseInt(request.getParameter("qty")));
-            warehouseInventory.setApproval(Boolean.parseBoolean(request.getParameter("approval")));
-        try {
+            warehouseInventory.setProductID(Integer.parseInt(productID[i]));
+            warehouseInventory.setSize(size[i]);
+            warehouseInventory.setColor(color[i]);
+            warehouseInventory.setQty(Integer.parseInt(qty[i]));
+ // TODO: fix
+            warehouseInventory.setApproval(Boolean.parseBoolean(approval[i]));
+        
+            try {
             warehouseInventory.setDateUpdated();
         } catch (ParseException ex) {
             Logger.getLogger(WarehouseInventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-            warehouseInventory.setNote(request.getParameter("Quantity"));
+             if (WIDAO.EncodeWarehouseInventory(warehouseInventory)) {
+                    x = true;
+                    WI.add(warehouseInventory);
+                } else {
+                    x = false;
+                }
+            }
             
-            WarehouseInventoryDAO WIDAO = new WarehouseInventoryDAO();
-            
-            if (WIDAO.EncodeWarehouseInventory(warehouseInventory)) {
+            if (x==true) {
                 out.print("Valid");
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/GetWarehouseInventory.jsp");
+                RequestDispatcher rd = context.getRequestDispatcher("/dashboard.jsp");
                 HttpSession session = request.getSession();
                 session.setAttribute("warehouseInventory", warehouseInventory);
                 rd.forward(request, response);

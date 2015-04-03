@@ -101,7 +101,7 @@
                             }
                         %>
 
-                        <td><input type="checkbox" name="approval" onClick="document.getElementById('createNoteName(<%=1%>)').disabled = this.checked;" checked/></td>
+                        <td><input type="checkbox" value="1" name="approval" onClick="document.getElementById('createNoteName(<%=1%>)').disabled = this.checked;" checked/></td>
                         <td><input type="text" name="note" id="createNoteName(<%=1%>)" size="5" disabled/></td>
                        
                             <%
